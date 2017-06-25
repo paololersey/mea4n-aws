@@ -27,8 +27,8 @@ export class GridComponent implements OnInit {
         }*/
 
         setInterval(() => {
-            //this.getIncomesMock();
-            this.getIncomes();
+            this.getIncomesMock();
+            //this.getIncomes();
         }, 10000);
 
         // we pass an empty gridOptions in, so we can grab the api out
