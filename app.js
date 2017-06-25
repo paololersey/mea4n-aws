@@ -44,11 +44,11 @@ process.env.TZ= 'Europe/Rome'
 
 var app = express()
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+//app.use(bodyParser.urlencoded({ extended: false }))
 //app.use( require('./static'))
 
 app.use(express.static(__dirname + '/public'))
-//app.use(bodyParser.urlencoded({'extended':'true'}));
+app.use(bodyParser.urlencoded({'extended':'true'}));
 /*app.use( require('./express/api/messageInterceptor'))
 app.use( require('./express/api/operateOnMessages'))
 app.use( require('./express/api/operateOnIncomes'))
