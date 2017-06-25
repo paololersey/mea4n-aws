@@ -45,7 +45,7 @@ process.env.TZ= 'Europe/Rome'
 var app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use( require('./static'))
+app.use( require('./express/static'))
 
 //require('./static.js')(app);
 //app.use(express.static(__dirname + '/frontend/dist'))
