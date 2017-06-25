@@ -7,8 +7,8 @@ var sysInfo = require('./utils/sys-info')
 
 module.exports = function (app) {
   app.get('/', function (req, res) {
-    //res.sendfile('frontend/dist/index.html')
-    res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+    res.sendfile('frontend/dist/index.html')
+    //res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
   })
 
   app.get('/api/messages', function (req, res, next) {
