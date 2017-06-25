@@ -2,7 +2,8 @@ var express = require('express')
 var router = require('express').Router()
 var sysInfo  = require('../utils/sys-info')
 
-router.use(express.static(__dirname + '/../frontend/dist'))
+//router.use(express.static(__dirname + '/../frontend/dist'))
+router.use(express.static(__dirname + '/../public'))
 router.get('/', function (req, res) {
   res.sendfile('frontend/dist/index.html')
 })
