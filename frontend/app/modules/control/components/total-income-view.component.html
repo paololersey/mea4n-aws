@@ -1,0 +1,5 @@
+<div class="row">
+    <div *ngFor="let panel of panels" class="col-xs-3 col-sm-3 col-md-3">
+        <ngb-alert  [dismissible]="false" [type]="panel.type" >{{ panel.message }}</ngb-alert>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "es5", // target es6 resolve 2307 but app is not running
+        "sourceMap": true,
+        "moduleResolution": "node", // 2304 on map, set, promise comes out if "node";  2307 if classic
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true //2912 comes outs
+    }
+}

@@ -1,0 +1,13 @@
+.reset-btn {
+    cursor: pointer;
+    width: 80%;
+    height: 25px;
+    line-height: 10px;
+    color: white;
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 18px;
+    background-color: #5B9BD5;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active{
+    background-color: blue;
+}
