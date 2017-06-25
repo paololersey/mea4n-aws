@@ -46,6 +46,7 @@ var app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use( require('./static'))
+app.use(express.static(__dirname + '/public'))
 /*app.use( require('./express/api/messageInterceptor'))
 app.use( require('./express/api/operateOnMessages'))
 app.use( require('./express/api/operateOnIncomes'))
@@ -54,7 +55,7 @@ app.use( require('./express/api/operateOnErrorMaps'))
 app.use( require('./express/api/cron'))
 app.use( require('./express/api/getTotalMoneyInstaneous'))*/
 
-app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
+//app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
 app.use(morgan('dev')); // log every request to the console
 
 var server = app.listen(process.env.NODE_PORT || process.env.PORT || 8080,  process.env.NODE_IP || 'localhost', function () {
