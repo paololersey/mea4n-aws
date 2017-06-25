@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 //mongoose.set('debug', true);
 
 var connectionString='mongodb://localhost/nice';
-connectionString = 'mongodb://paolokerseydummy:dummyDB@ec2-34-252-176-130.eu-west-1.compute.amazonaws.com:27017/dummyDB';
+connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-54-154-62-241.eu-west-1.compute.amazonaws.com:27017/machine';
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
   connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
   process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
