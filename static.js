@@ -1,6 +1,6 @@
 var express = require('express')
 var router = require('express').Router()
-var sysInfo  = require('../utils/sys-info')
+var sysInfo  = require('./utils/sys-info')
 
 //router.use(express.static(__dirname + '/../frontend/dist'))
 router.use(express.static(__dirname + '/public'))
