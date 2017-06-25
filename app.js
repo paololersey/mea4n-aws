@@ -57,8 +57,8 @@ app.use( require('./express/api/getTotalMoneyInstaneous'))*/
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
 app.use(morgan('dev')); // log every request to the console
 
-var server = app.listen(process.env.NODE_PORT || process.env.PORT || 3000,  process.env.NODE_IP || 'localhost', function () {
-    console.log('Server listening on', 3000)
+var server = app.listen(process.env.NODE_PORT || process.env.PORT || 8080,  process.env.NODE_IP || 'localhost', function () {
+    console.log('Server listening on', 8080)
 })
 
 exports.closeServer = function(){
