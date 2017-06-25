@@ -1,0 +1,1 @@
+db.machines.update({"machineId":"2"},{$set:{"status":"ER"}})
