@@ -1,4 +1,4 @@
-var app = require('../app')
+var app = require('app')
 var router = require('express').Router()
 var sysInfo  = require('./utils/sys-info')
 
