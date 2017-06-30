@@ -20,10 +20,10 @@ router.post('/api/restGet', function (req, res, next) {
     var sender = fullSender.substring(2, fullSender.length);
     elaborateMessage.findAndSaveMessage(sender, message, next).then(messageParsed => {
         elaborateMessage.updateMachineWithStatus(messageParsed).then((result) => {
-                if (result.ok) {
+               /* if (result.ok) {
                     return res.status(200).json(result)
-                }
-                if (process.env.OPENSHIFT_APP_NAME) {
+                }*/
+                if (process.env.LOGNAME) {
                     elaborateMessage.sendMail(message).then((infoMessage) => {
                             //NOP return res.status(200).json(infoMessage)
                             var output = {

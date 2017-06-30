@@ -24,8 +24,8 @@ export class TotalIncomeView implements OnInit {
     constructor(private incomeService: IncomeService) { };
 
     ngOnInit(): void {
-        //this.getTotalCurrentIncomes();
-        this.getTotalCurrentIncomesMock();
+        this.getTotalCurrentIncomes();
+        //this.getTotalCurrentIncomesMock();
     }
 
     getTotalCurrentIncomes(): void {
