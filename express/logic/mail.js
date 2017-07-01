@@ -17,7 +17,7 @@ var transporter = nodemailer.createTransport({
     service: 'Yahoo',
       auth: {
           user: 'paolo_spadoni',
-           pass: 'kersey128D1',
+          pass: 'kersey128D1',
       }
     /*service: 'Gmail',
     auth: {
@@ -43,8 +43,8 @@ exports.sendMail = (errorCode, machine, date ) => {
         /*let transporter = mail.configureTransporter();*/
 
         let mailOptions = {
-            from: 'paolospadoni1980@gmail.com', // sender address
-            to: 'paolospadoni1980@gmail.com', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
+            from: 'paolo_spadoni@yahoo.it', // sender address
+            to: 'paolo_spadoni@yahoo.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
             subject: "N-ICE " + machine + "-" + errorCode + " date:" + date, // Subject line
             text: "ERROR", // plain text body
             html: "<b>The machine </b>" + machine + "<b> has thrown an error with code </b>" + errorCode // html body
@@ -52,17 +52,14 @@ exports.sendMail = (errorCode, machine, date ) => {
 
         transporter.verify(function(error, success) {
         if (error) {
-                console.log(error);        
-                resolve(error);
+                console.log('error mail is' + error);                    
         } else {
                 console.log('Server is ready to take our messages');
-                console.log(success);
-                resolve(success);
-                
+                console.log('success mail is '+ success);     
         }
         });
 
-       /* transporter.sendMail(mailOptions, (error, info) => {
+       transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 console.log(error);
                 transporter.close();
@@ -73,7 +70,7 @@ exports.sendMail = (errorCode, machine, date ) => {
             transporter.close();
             resolve(info);
 
-        });*/
+        });
     })
 
 
