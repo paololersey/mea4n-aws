@@ -1,5 +1,4 @@
-var request = require("request"),
-    assert = require('assert'),
+var assert = require('assert'),
     app = require("../../app.js"),
     base_url = "http://localhost:3000/",
     parsing = require('../../express/logic/parsingMessage'),

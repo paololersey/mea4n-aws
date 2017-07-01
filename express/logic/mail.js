@@ -1,13 +1,41 @@
 'use strict';
 const nodemailer = require('nodemailer');
 
+
 var transporter = nodemailer.createTransport({
-    service: 'gmail',
+   /* service: 'gmail',
     auth: {
         user: 'paolospadoni1980@gmail.com',
+        pass: 'kersey11',
+        debug: true,
+        type: 'oauth2',
+        clientId: "983953215141-2a2hljh6jch8b8b450j6m609lunfurs1.apps.googleusercontent.com",
+        clientSecret: "pyql-PydQKBL5MYTivNQ4a9N",
+        refreshToken:'1/MdHshhXnhnrw6Bel1a0lpPibyFXy22Q8EH8vQGZuH77fOi5rRHMsA5jF1XgDlddO'
+        
+    }*/
+    service: 'Yahoo',
+      auth: {
+          user: 'paolo_spadoni',
+           pass: 'kersey128D1',
+      }
+    /*service: 'Gmail',
+    auth: {
+        user: 'paolospadoni19801@gmail.com',
         pass: 'kersey11'
-    }
+    }*/
 });
+
+
+/*var transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com', // hostname
+  port: 587, // secure:true for port 465, secure:false for port 587
+  secure: false, // port for secure SMTP
+  auth: {
+    user: 'paolospadoni1980@gmail.com',
+    pass: 'kersey11'
+  }
+});*/
 
 
 exports.sendMail = (errorCode, machine, date ) => {
@@ -22,7 +50,15 @@ exports.sendMail = (errorCode, machine, date ) => {
             html: "<b>The machine </b>" + machine + "<b> has thrown an error with code </b>" + errorCode // html body
         };
 
-        transporter.sendMail(mailOptions, (error, info) => {
+        transporter.verify(function(error, success) {
+        if (error) {
+                console.log(error);
+        } else {
+                console.log('Server is ready to take our messages');
+        }
+        });
+
+       /* transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 console.log(error);
                 transporter.close();
@@ -30,9 +66,10 @@ exports.sendMail = (errorCode, machine, date ) => {
             }
             
             console.log('Message %s sent: %s', info);
+            transporter.close();
             resolve(info);
 
-        });
+        });*/
     })
 
 

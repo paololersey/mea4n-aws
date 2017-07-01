@@ -27,7 +27,7 @@ exports.combineStatusWithIncome = (incomes) => {
                 var arrayResult = new Array();
                 console.log(machines)
                 machines.map(machine => {
-                    messagesPromises.push(messageDao.findLastMessagebyMachineid(machine[0].machineId));
+                    messagesPromises.push(messageDao.findLastMessagebyMachineidInError(machine[0].machineId));
                 })
 
                 Promise.all(messagesPromises).then((messages) => {

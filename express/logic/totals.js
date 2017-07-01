@@ -13,13 +13,13 @@ exports.getTotalsSplitByMachine = (machineNumbers, matrixMachineTotalFrequency) 
             }
             Promise.all(machinePromises).then(machines => {
                     for (let k = 0; k < machines.length; k++) {
-                        messagesPromises.push(messageDao.findLastMessagebyMachineid(machines[k][0].machineId));
+                        messagesPromises.push(messageDao.findLastMessagebyMachineidInError(machines[k][0].machineId));
                     }
                     Promise.all(messagesPromises).then(messages => {
                             for (let k = 0; k < machines.length; k++) {
                                 var lastError = "";
                                 if (machines[k][0].status !== 'OK' && messages[k][0]) {
-                                    var date = messages[k][0].dayOfMonth + "/" + messages[k][0].month + "/" + messages[k][0].year + ",h." + messages[k][0].hour + ":" + messages[k][0].minutes
+                                    var date = messages[k][0].dayOfMonth + "/" + messages[k][0].month + "/" + messages[k][0].year + ",h." + messages[k][0].hour + ":" + messages[k][0].minutes.toString()
                                     lastError = messages[k][0].errorCode + "-" + date
                                 }
                                 let totalCurrentDay = matrixMachineTotalFrequency[k][0];

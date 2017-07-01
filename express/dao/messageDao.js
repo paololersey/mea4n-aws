@@ -30,7 +30,7 @@ exports.findAllMessages = function (callback) {
  * @param  {} machineNumber 
  * @param  {} callback
  */
-exports.findLastErrorMessagebyMachineId = function (machineId, callback) {
+exports.findLastMessagebyMachineId = function (machineId, callback) {
     Message.find({
             "machine": machineId,
             "status": "PA",
@@ -39,7 +39,7 @@ exports.findLastErrorMessagebyMachineId = function (machineId, callback) {
         .exec(callback)
 }
 
-exports.findLastMessagebyMachineid = function (machineId) {
+exports.findLastMessagebyMachineidInError = function (machineId) {
     return Message.find({
             "machine": machineId,
             "status": "PA",
@@ -52,6 +52,18 @@ exports.findLastMessagebyMachineid = function (machineId) {
         .exec()
 }
 
+exports.findLastMessagebyMachineidInErrorCallback = function (machineId, callback) {
+    return Message.find({
+            "machine": machineId,
+            "status": "PA",
+            "errorCode" :{
+                $not : { $type : 10 },// $type operator selects documents where value is a BSON type (10 is "null")
+                $exists : true
+            }
+           
+        }).sort('-date').limit(1)
+        .exec(callback)
+}
 
 
 /**

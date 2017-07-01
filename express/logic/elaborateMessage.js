@@ -13,7 +13,7 @@ exports.findAndSaveMessage = (sender, message, next) => {
             machineDao.findMachineIdByNumber(sender, (err, machine) => {
                 if (machine) {
                     try {
-                        messageDao.findLastErrorMessagebyMachineId(machine[0].machineId, (err, lastMessage) => {
+                        messageDao.findLastMessagebyMachineId(machine[0].machineId, (err, lastMessage) => {
                             if (err) {
                                 return next(err)
                             }

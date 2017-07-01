@@ -1,5 +1,4 @@
-var request = require("request"),
-    assert = require('assert'),
+var assert = require('assert'),
     app = require("../app.js"),
     base_url = "http://localhost:3000/",
     parsing = require('../express/logic/parsingMessage'),
@@ -23,7 +22,7 @@ ERROR=A6
                 machineDao.findMachineIdByNumber(sender, (err, machine) => {
                     messageDao.removeMessageByMachineId(machine[0].machineId, (err, res) => {
                         elaborateMessage.findAndSaveMessage(sender, messageDangerTest, next).then((message) => {
-                            messageDao.findLastMessagebyMachineid(machine[0].machineId).then(
+                            messageDao.findLastMessagebyMachineidInError(machine[0].machineId).then(
                                 lastMessage => {
                                     resolve(lastMessage[0])
                                 },
