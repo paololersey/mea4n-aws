@@ -24,7 +24,7 @@ var job = new CronJob('50 23 * * *', function () {
   console.log("job  has stopped")
 }, true, 'Europe/Rome');
 
-var job = new CronJob('* 23 * * *', function () {
+var job = new CronJob('20 * * * *', function () {
   // console.log('running a task every minute');
   //computation.computeTotals();
   checkMachineBreakdown.checkMachineBreakdown().then((result) => {

@@ -1,6 +1,7 @@
 var router = require('express').Router()
 var Machine = require('../models/machine')
 var machineDao = require('../dao/machineDao')
+var checkMachineBreakdown = require('../logic/checks/checkMachineBreakdown')
 
 
 // get all Machines
@@ -28,5 +29,11 @@ router.post('/api/statusUpd',
                 res.status(500).json(err)
             });
     })
+
+router.get('/api/checkMachineNoComm',function (req, res, next) {
+    checkMachineBreakdown.checkMachineBreakdown().then((result) => {
+        res.status(200).json(result)
+    });
+});
 
 module.exports = router

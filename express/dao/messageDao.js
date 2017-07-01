@@ -52,6 +52,15 @@ exports.findLastMessagebyMachineidInError = function (machineId) {
         .exec()
 }
 
+exports.findLastMessageParsed = function (machineId) {
+    return Message.find({
+            "machine": machineId,
+            "status": "PA"
+        }).sort('-date').limit(1)
+        .exec()
+}
+
+
 exports.findLastMessagebyMachineidInErrorCallback = function (machineId, callback) {
     return Message.find({
             "machine": machineId,
