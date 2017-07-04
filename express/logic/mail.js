@@ -53,14 +53,14 @@ exports.sendMail = (errorCode, machine, date ) => {
             html: "<b>The machine </b>" + machine + "<b> has thrown a code </b>" + errorCode // html body
         };
 
-        transporter.verify(function(error, success) {
+        /*transporter.verify(function(error, success) {
         if (error) {
                 console.log('error mail is' + error);                    
         } else {
                 console.log('Server is ready to take our messages');
                 console.log('success mail is '+ success);     
         }
-        });
+        });*/
 
        transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
