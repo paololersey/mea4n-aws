@@ -20,16 +20,22 @@ exports.findAndSaveMessage = (sender, message, next) => {
                             message.machine = machine[0].machineId;
                             message.moneyFromLastSms = 0;
                             if (lastMessage !== null && lastMessage.length == 1) {
-                                console.log("found 1 message")
                                 if (message.money) {
-                                    if (lastMessage[0].money === message.money) {
-                                        console.log("money is the same as last message")
-                                    }
                                     message.moneyFromLastSms = message.money - lastMessage[0].money;
                                     if (message.moneyFromLastSms > 0) console.log("money is not the same as last message, so moneyFromLastSms=" + message.moneyFromLastSms)
                                     if (!message.moneyFromLastSms || message.moneyFromLastSms < 0) {
                                         message.moneyFromLastSms = message.money;
-                                        console.log("there has been an income clear=" + message.moneyFromLastSms)
+                                        if (message.moneyFromLastSms < 0 && process.env.BITNAMI_ROOT) {
+                                            mail.sendMail("INCOME CLEAR", message.machine, message.date).then(
+                                                (infoMessage) => {
+                                                    resolve(infoMessage)
+                                                },
+                                                (error) => {
+                                                    reject(Error(error))
+                                                }
+                                            )
+                                        }
+
                                     }
                                 } else {
                                     message.money = 0

@@ -23,7 +23,7 @@ router.post('/api/restGet', function (req, res, next) {
                 if (result.ok) {
                     return res.status(200).json(result)
                 }
-               // if (process.env.LOGNAME) {
+                if (process.env.BITNAMI_ROOT) {
                     elaborateMessage.sendMail(message).then((infoMessage) => {
                             //NOP return res.status(200).json(infoMessage)
                             var output = {
@@ -39,10 +39,10 @@ router.post('/api/restGet', function (req, res, next) {
                             }
                             return res.status(200).json(output)
                         })
-               /* }
+                }
                 else{
                     return res.status(200).json(result)
-                }*/
+                }
 
             },
             err => {

@@ -13,7 +13,9 @@ exports.checkMachineBreakdown = function () {
                 for (let k = 0; k < machineNumbers.length; k++) {
                     lastMessagePromises.push(messageDao.findLastMessageParsed(machineNumbers[k].machineId));
                 }
-                var updateNocommunicationErrorPromises  = new Array()
+                var updateNocommunicationErrorPromises = new Array()
+                var updateStatusOkPromises = new Array()
+
                 Promise.all(lastMessagePromises).then((messages) => {
                         for (let k = 0; k < messages.length; k++) {
                             if (messages[k][0] && messages[k][0].date) {
@@ -21,25 +23,33 @@ exports.checkMachineBreakdown = function () {
                                 var nowTwoHoursBefore = moment().add('hours', -2);
                                 var lastDateTwoHoursBefore = moment(messages[k][0].date)
                                 if (lastDate.isBefore(nowTwoHoursBefore)) {
-                                    updateNocommunicationErrorPromises.push(machineDao.updateMachine(messages[k][0].machine, "ER"))
-                                    console.log("messagesDate=" + lastDate);
+                                    updateNocommunicationErrorPromises.push(machineDao.updateMachine(messages[k][0].machine, "TI"))
+                                } else {
+                                    updateStatusOkPromises.push(machineDao.updateMachine(messages[k][0].machine, "OK"))
                                 }
                             }
                         }
-                        if (updateNocommunicationErrorPromises.length > 0) {
-                            Promise.all(updateNocommunicationErrorPromises).then( (result) => {
-                                    for (let k = 0; k < updateNocommunicationErrorPromises.length; k++) {
-                                        console.log("result" + result);
-                                    }
-                                    resolve("COMM ERROR RETRIEVED")
-                                },
-                                (err) => {
-                                    reject(Error(err))
-                                })
 
-                        } else {
-                            resolve("OK")
-                        }
+
+                        Promise.all(updateStatusOkPromises).then((result) => {
+                                if (updateNocommunicationErrorPromises.length > 0) {
+                                    Promise.all(updateNocommunicationErrorPromises).then((result) => {
+                                            for (let k = 0; k < updateNocommunicationErrorPromises.length; k++) {
+                                                console.log("result" + result);
+                                            }
+                                            resolve(result)
+                                        },
+                                        (err) => {
+                                            reject(Error(err))
+                                        })
+                                } else {
+                                    resolve("ONLY STATUS OK")
+                                }
+                            },
+                            (err) => {
+                                reject(Error(err))
+                            })
+
 
                     },
                     (err) => {

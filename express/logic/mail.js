@@ -41,13 +41,16 @@ var transporter = nodemailer.createTransport({
 exports.sendMail = (errorCode, machine, date ) => {
     return new Promise((resolve, reject) => {
         /*let transporter = mail.configureTransporter();*/
-
+        var textMail ="ERROR"
+        if(errorCode.indexOf('INCOME')!=-1){
+            textMail = "INFO"
+        }
         let mailOptions = {
             from: 'paolo_spadoni@yahoo.it', // sender address
-            to: 'michele.romanin.jacur@n-ice.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
+            to: 'paolo_spadoni@yahoo.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
             subject: "N-ICE " + machine + "-" + errorCode + " date:" + date, // Subject line
-            text: "ERROR", // plain text body
-            html: "<b>The machine </b>" + machine + "<b> has thrown an error with code </b>" + errorCode // html body
+            text: textMail, // plain text body
+            html: "<b>The machine </b>" + machine + "<b> has thrown a code </b>" + errorCode // html body
         };
 
         transporter.verify(function(error, success) {
