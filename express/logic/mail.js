@@ -44,7 +44,7 @@ exports.sendMail = (errorCode, machine, date ) => {
 
         let mailOptions = {
             from: 'paolo_spadoni@yahoo.it', // sender address
-            to: 'paolo_spadoni@yahoo.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
+            to: 'michele.romanin.jacur@n-ice.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
             subject: "N-ICE " + machine + "-" + errorCode + " date:" + date, // Subject line
             text: "ERROR", // plain text body
             html: "<b>The machine </b>" + machine + "<b> has thrown an error with code </b>" + errorCode // html body

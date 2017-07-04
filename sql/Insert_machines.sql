@@ -8,6 +8,7 @@ db.machines.insert({"machineId" : "7", "machineCurrentNumber" : "3398823255","st
 db.machines.insert({"machineId" : "8", "machineCurrentNumber" : "3338820590","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "9", "machineCurrentNumber" : "3338820507","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "10", "machineCurrentNumber" : "3338820643","startDate" : null,"status":"OK"});
+db.machines.insert({"machineId" : "11", "machineCurrentNumber" : "0000000000","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "12", "machineCurrentNumber" : "3397354709","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "13", "machineCurrentNumber" : "3338161987","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "14", "machineCurrentNumber" : "3338162146","startDate" : null,"status":"OK"});
@@ -20,6 +21,7 @@ db.machines.insert({"machineId" : "20", "machineCurrentNumber" : "3338161456","s
 db.machines.insert({"machineId" : "21", "machineCurrentNumber" : "3338162343","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "22", "machineCurrentNumber" : "3318385645","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "23", "machineCurrentNumber" : "3318385666","startDate" : null,"status":"OK"});
+db.machines.insert({"machineId" : "24", "machineCurrentNumber" : "1111111111","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "25", "machineCurrentNumber" : "3318385657","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "26", "machineCurrentNumber" : "3318385650","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "27", "machineCurrentNumber" : "3318385659","startDate" : null,"status":"OK"});
