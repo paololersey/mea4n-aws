@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-mongoose.set('debug', true);
+//mongoose.set('debug', true);
 
 var connectionString = 'mongodb://localhost/nice';
 
@@ -13,7 +13,7 @@ if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 }
 
 // AWS connection string
-console.log(process.env.BITNAMI_ROOT)
+
 if (process.env.BITNAMI_ROOT) {
   connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com:27017/machine';
 }
