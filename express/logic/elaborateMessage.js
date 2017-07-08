@@ -73,7 +73,6 @@ exports.updateMachineWithStatus = (messageParsed) => {
     return new Promise((resolve, reject) => {
         if (messageParsed.status && messageParsed.status == 'PA') {
             // message correctly parsed 
-            console.log("message parsed errorCode=" + messageParsed.errorCode)
             if (messageParsed.errorCode) {
                 mapErrorCodeToStatus.mapErrorCodeToStatus(messageParsed.errorCode,
                     (err, errorMap) => {
@@ -81,7 +80,6 @@ exports.updateMachineWithStatus = (messageParsed) => {
                         machineStatus.updateMachine(messageParsed.machine, errorMap[0].machineStatus).then(
                             (result) => {
                                 console.log("Status to update-----" + errorMap[0].machineStatus)
-                                console.log("--" + result.ok)
                                 if (result && result.ok && errorMap[0] && errorMap[0].emailToSend == 'Y') {
                                     resolve(messageParsed);
                                 } else {

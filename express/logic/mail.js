@@ -47,7 +47,8 @@ exports.sendMail = (errorCode, machine, date ) => {
         }
         let mailOptions = {
             from: 'paolo_spadoni@yahoo.it', // sender address
-            to: 'macchine@n-ice.it, paolo_spadoni@yahoo.it, michele.romanin.jacur@n-ice.it, ludovica.fante@n-ice.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
+           // to: 'macchine@n-ice.it, paolo_spadoni@yahoo.it, michele.romanin.jacur@n-ice.it, ludovica.fante@n-ice.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
+            to: 'macchine@n-ice.it, paolo_spadoni@yahoo.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
             subject: "N-ICE " + machine + "-" + errorCode + " date:" + date, // Subject line
             text: textMail, // plain text body
             html: "<b>The machine </b>" + machine + "<b> has thrown a code </b>" + errorCode // html body
@@ -68,8 +69,11 @@ exports.sendMail = (errorCode, machine, date ) => {
                 transporter.close();
                 reject(Error(error))
             }
-            
-            console.log('Message %s sent: %s', info);
+            if(info.accepted){
+                info.accepted.map(destination =>{
+                     console.log('Message to %s sent', destination);
+                })
+            }
             transporter.close();
             resolve(info);
 
