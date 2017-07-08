@@ -8,7 +8,7 @@ router.post('/api/restGet', function (req, res, next) {
     var fullSender = req.body.sender;
     var text = req.body.text;
     // here we parse the message
-    if(text.indexOf("ERROR"!=-1)){
+    if(text.indexOf("ERROR")!=-1){
         console.error("ERROR from sender=" + fullSender + ", text=" + text)
     }
    
