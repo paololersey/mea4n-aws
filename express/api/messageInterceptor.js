@@ -9,12 +9,16 @@ router.post('/api/restGet', function (req, res, next) {
     var text = req.body.text;
     // here we parse the message
     if(text.indexOf("ERROR"!=-1)){
-        console.error("sender=" + fullSender + ", text=" + text)
+        console.error("ERROR from sender=" + fullSender + ", text=" + text)
     }
+   
 
     var message = parsingMessage.parsingMessage(req.body);
     if(message.errorCode){
         console.error("after parsing sender=" + fullSender + ", text=" + message)
+    }
+     else{
+        console.log("ORDINARY message from sender=" + fullSender)
     }
 
     if (!message.date || !message.code) {
