@@ -8,11 +8,18 @@ router.post('/api/restGet', function (req, res, next) {
     var fullSender = req.body.sender;
     var text = req.body.text;
     // here we parse the message
-    console.log("sender=" + fullSender + ", text=" + text)
+    if(text.indexOf("ERROR"!=-1)){
+        console.error("sender=" + fullSender + ", text=" + text)
+    }
+
     var message = parsingMessage.parsingMessage(req.body);
-    console.log("dopo parsing sender=" + sender + ", text=" + message)
+    if(message.errorCode){
+        console.error("after parsing sender=" + fullSender + ", text=" + message)
+    }
+
     if (!message.date || !message.code) {
         // message not correct
+        console.error("no date or code available for sender "+ fullSender)
         return res.status(500).json(message)
     }
 
