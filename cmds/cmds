@@ -1,0 +1,44 @@
+forever start app -l LOGFILE -e ERRFILE
+forever stop app
+forever list
+
+vi /home/bitnami/.forever/f_mj.log
+grep "ERROR" /home/bitnami/.forever/f_mj.log
+
+
+--MONGO
+
+bitnami
+YJDSqMEaseY0
+
+db.createUser(
+    {
+      user: "paolokersey",
+      pwd: "kersey11",
+      roles: [ "root" ]
+    }
+)
+db.createUser({
+        user: "paolo.spadoni",
+        pwd: "kersey8D1",
+        roles:[
+                {
+                        "role" : "readWrite",
+						"db"   : "machine"
+                }
+        ]
+})
+db.createUser({
+        user: "paolokerseydummy",
+        pwd: "dummyDB",
+        roles:[
+                {
+                        "role" : "readWrite",
+						"db"   : "dummyDB"
+                }
+        ]
+})
+
+sudo bash ctlscript.sh restart mongodb
+sudo mongo admin --username paolokersey --password kersey11
+sudo mongodump --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
