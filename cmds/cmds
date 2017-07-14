@@ -42,3 +42,4 @@ db.createUser({
 sudo bash ctlscript.sh restart mongodb
 sudo mongo admin --username paolokersey --password kersey11
 sudo mongodump --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
+sudo mongorestore --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
