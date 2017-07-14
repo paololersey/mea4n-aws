@@ -10,7 +10,7 @@ exports.parsingMessage = function (body) {
     // replace /r and /n character with a standard separator
     //let lineSplit = utils.replaceAll(body.line, (/(\r\n|\n|\r)/gm), ';');
     //let line = lineSplit.substring(0, lineSplit.length)
-
+    console.log("text="+body.text)
     let lineSplit = body.text.split("\r\n")
     for (let key in lineSplit) {
         var line = lineSplit[key]
