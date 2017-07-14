@@ -5,7 +5,7 @@ exports.prepareDates = () => {
 
     arrayStartDates[0] = moment().startOf('day');
     arrayStartDates[1] = moment().subtract(1, 'days').startOf('day');
-    arrayStartDates[2] = moment().startOf('week').add(1, 'days');
+    arrayStartDates[2] = moment().startOf('isoweek'); // or .startOf('week').isoWeekday(1);
     arrayStartDates[3] = moment().startOf('month');
 
     let arrayEndDates = new Array();

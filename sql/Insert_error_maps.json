@@ -6,7 +6,7 @@ db.errormaps.insert({"errorCode" : "A2", "machineStatus" : "WA","startDate" : "2
 db.errormaps.insert({"errorCode" : "A3", "machineStatus" : "ER","startDate" : "2017-05-15","endDate":null, "description":"", "emailToSend":"Y"});
 db.errormaps.insert({"errorCode" : "A4", "machineStatus" : "OK","startDate" : "2017-05-15","endDate":null, "description":"", "emailToSend":"Y"});
 db.errormaps.insert({"errorCode" : "A5", "machineStatus" : "OK","startDate" : "2017-05-15","endDate":null, "description":"", "emailToSend":"Y"});
-db.errormaps.insert({"errorCode" : "A6", "machineStatus" : "ER","startDate" : "2017-05-15","endDate":null, "description":"", "emailToSend":"Y"});
+db.errormaps.insert({"errorCode" : "A6", "machineStatus" : "WA","startDate" : "2017-05-15","endDate":null, "description":"", "emailToSend":"Y"});
 db.errormaps.insert({"errorCode" : "A8", "machineStatus" : "OK","startDate" : "2017-05-15","endDate":null, "description":"", "emailToSend":"Y"});
 db.errormaps.insert({"errorCode" : "A9", "machineStatus" : "OK","startDate" : "2017-05-15","endDate":null, "description":"", "emailToSend":"Y"});
 db.errormaps.insert({"errorCode" : "B1", "machineStatus" : "ER","startDate" : "2017-05-15","endDate":null, "description":"", "emailToSend":"Y"});
