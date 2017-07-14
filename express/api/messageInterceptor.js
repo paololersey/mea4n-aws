@@ -7,6 +7,8 @@ var elaborateMessage = require('../logic/elaborateMessage')
 router.post('/api/restGet', function (req, res, next) {
     var fullSender = req.body.sender;
     var text = req.body.text;
+    console.log("sender"+fullSender+",text0="+req.body.text)
+    console.log("sender"+fullSender+"text1="+req.body.text)
     // here we parse the message
     if(text.indexOf("ERROR")!=-1){
         console.error("ERROR from sender=" + fullSender + ", text=" + text)
