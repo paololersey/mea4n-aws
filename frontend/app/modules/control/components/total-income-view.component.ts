@@ -21,21 +21,34 @@ export class TotalIncomeView implements OnInit {
     @Input()
     public panels: Array<IPanel> = [];
 
-    constructor(private incomeService: IncomeService) { };
+    constructor(private incomeService: IncomeService) {
+        setInterval(() => {
+            //this.getTotalCurrentIncomesMock();
+            this.getTotalCurrentIncomes();
+        }, 60000);
+    };
+
+
 
     ngOnInit(): void {
-        this.getTotalCurrentIncomes();
-        //this.getTotalCurrentIncomesMock();
+       //this.getTotalCurrentIncomesMock();
+         this.getTotalCurrentIncomes();
     }
+
+
 
     getTotalCurrentIncomes(): void {
         this.incomeService.getTotalCurrentIncomes()
             .subscribe(
             result => {
+
+                this.totals = new Array();
                 this.totals.push(result.totalDay);
                 this.totals.push(result.totalYesterday);
                 this.totals.push(result.totalWeek);
                 this.totals.push(result.totalMonth);
+                
+                this.panels = new Array<IPanel>();
                 this.panels.push(
                     {
                         id: 1,

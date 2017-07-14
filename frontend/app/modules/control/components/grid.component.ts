@@ -29,7 +29,7 @@ export class GridComponent implements OnInit {
         setInterval(() => {
             //this.getIncomesMock();
             this.getIncomes();
-        }, 10000);
+        }, 60000);
 
         // we pass an empty gridOptions in, so we can grab the api out
         this.gridOptions = <GridOptions>{
@@ -43,14 +43,21 @@ export class GridComponent implements OnInit {
 
             },
             getRowStyle: (params) => {
+                // WARNING
                 if (params.data.status === 'WA') {
                     return { 'background-color': '#f9f9a2' }
                 }
+                // ERROR
                 else if (params.data.status === 'ER') {
                     return { 'background-color': '#fc8080' }
                 }
+                // DANGER
                 else if (params.data.status === 'DA') {
                     return { 'background-color': '#f2b715' }
+                }
+                // TIMEOUT
+                else if (params.data.status === 'TI') {
+                    return { 'background-color': '#DDCBD7' }
                 }
                 else {
                     return { 'background-color': 'white' }
@@ -68,13 +75,13 @@ export class GridComponent implements OnInit {
 
         this.columnDefs = [
 
-            { headerName: "N-ICE", field: "machineId"/*, headerComponentFramework: MyHeaderComponent */ },
-            { headerName: "Day total", field: "totalCurrentDay" },
-            { headerName: "Yesterday total", field: "totalYesterDay" },
-            { headerName: "Week total", field: "totalCurrentWeek" },
-            { headerName: "Month total", field: "totalCurrentMonth" },
+            { headerName: "N-ICE", field: "machineId",  width:60, suppressSizeToFit:true/*, headerComponentFramework: MyHeaderComponent */ },
+            { headerName: "Day total (&euro;)", field: "totalCurrentDay" },
+            { headerName: "Yesterday total (&euro;)", field: "totalYesterDay" },
+            { headerName: "Week total (&euro;)", field: "totalCurrentWeek" },
+            { headerName: "Month total (&euro;)", field: "totalCurrentMonth" },
             { headerName: "Last error", field: "lastError" },
-            { headerName: "Reset", field: "value", cellRendererFramework: ResetBreakdownModalComponent }
+            { headerName: "Reset", field: "value", width:130, suppressSizeToFit:true, cellRendererFramework: ResetBreakdownModalComponent }
 
         ];
 
@@ -83,7 +90,7 @@ export class GridComponent implements OnInit {
 
     ngOnInit(): void {
        //this.getIncomesMock();
-            this.getIncomes();
+           this.getIncomes();
     };
 
     getIncomes(): void {
