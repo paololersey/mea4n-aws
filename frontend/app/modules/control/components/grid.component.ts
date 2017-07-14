@@ -75,13 +75,13 @@ export class GridComponent implements OnInit {
 
         this.columnDefs = [
 
-            { headerName: "N-ICE", field: "machineId",  width:60, suppressSizeToFit:true/*, headerComponentFramework: MyHeaderComponent */ },
+            { headerName: "N-ICE", field: "machineId"/*,  width:60, suppressSizeToFit:true, headerComponentFramework: MyHeaderComponent */ },
             { headerName: "Day total (&euro;)", field: "totalCurrentDay" },
             { headerName: "Yesterday total (&euro;)", field: "totalYesterDay" },
             { headerName: "Week total (&euro;)", field: "totalCurrentWeek" },
             { headerName: "Month total (&euro;)", field: "totalCurrentMonth" },
             { headerName: "Last error", field: "lastError" },
-            { headerName: "Reset", field: "value", width:130, suppressSizeToFit:true, cellRendererFramework: ResetBreakdownModalComponent }
+            { headerName: "Reset", field: "value"/*, width:130*/,  cellRendererFramework: ResetBreakdownModalComponent }
 
         ];
 
