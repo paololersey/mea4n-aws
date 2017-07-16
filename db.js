@@ -14,9 +14,16 @@ if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 
 // AWS connection string
 
-if (process.env.BITNAMI_ROOT) {
+// TEST
+if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('63927')!=-1) {
   connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com:27017/machine';
 }
+
+// PROD
+if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('62229')!=-1) {
+  connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-54-175-80-136.compute-1.amazonaws.com:27017/machine';
+}
+
 
 mongoose.connect(connectionString, function () {
   console.log('mongodb connected')
