@@ -20,8 +20,8 @@ if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('63927')!=-
 }
 
 // PROD
-if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('62229')!=-1) {
-  connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-54-175-80-136.compute-1.amazonaws.com:27017/machine';
+if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('57315')!=-1) {
+  connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-34-230-189-92.compute-1.amazonaws.com:27017/machine';
 }
 
 
