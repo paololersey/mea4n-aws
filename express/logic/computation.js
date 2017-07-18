@@ -16,7 +16,7 @@ exports.computeTotals = function (isTotalSplitPerMachine, arrayStartDates, array
        
         try {
             machineDao.findAllMachines((err, machineNumbers) => {
-                console.log("machineNumbers="+machineNumbers)
+                
                 try {
 
                     machineNumbers.sort(utils.sort_array_by('machineId', false, function (a) {
