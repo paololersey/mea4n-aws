@@ -25,7 +25,10 @@ exports.checkMachineBreakdown = function () {
                                 if (lastDate.isBefore(nowTwoHoursBefore)) {
                                     updateNocommunicationErrorPromises.push(machineDao.updateMachine(messages[k][0].machine, "TI"))
                                 } else {
-                                    updateStatusOkPromises.push(machineDao.updateMachine(messages[k][0].machine, "OK"))
+                                    if (!messages[k][0].errorCode) {
+                                        updateStatusOkPromises.push(machineDao.updateMachine(messages[k][0].machine, "OK"))
+                                    }
+
                                 }
                             }
                         }
