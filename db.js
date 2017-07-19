@@ -15,7 +15,7 @@ if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 // AWS connection string
 
 // TEST
-if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('63927')!=-1) {
+if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('172.31.8.42')!=-1) {
   connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com:27017/machine';
 }
 
