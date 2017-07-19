@@ -20,7 +20,8 @@ exports.checkMachineBreakdown = function () {
                         for (let k = 0; k < messages.length; k++) {
                             if (messages[k][0] && messages[k][0].date) {
                                 var lastDate = moment(messages[k][0].date);
-                                var nowTwoHoursBefore = moment().add('minutes', -12);
+                                //var nowTwoHoursBefore = moment().add('minutes', -12);
+                                var nowTwoHoursBefore = moment().add('hours', -2);
                                 var lastDateTwoHoursBefore = moment(messages[k][0].date)
                                 if (lastDate.isBefore(nowTwoHoursBefore)) {
                                     console.log("machine " + messages[k][0].machine + " is in timeout")
