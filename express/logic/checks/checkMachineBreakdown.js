@@ -23,9 +23,11 @@ exports.checkMachineBreakdown = function () {
                                 var nowTwoHoursBefore = moment().add('minutes', -12);
                                 var lastDateTwoHoursBefore = moment(messages[k][0].date)
                                 if (lastDate.isBefore(nowTwoHoursBefore)) {
+                                    console.log("machine " + messages[k][0].machineId + " is in timeout")
                                     updateNocommunicationErrorPromises.push(machineDao.updateMachine(messages[k][0].machine, "TI"))
                                 } else {
                                     if (!messages[k][0].errorCode) {
+                                        console.log("machine " + messages[k][0].machineId + " will pass from timeout to OK")
                                         updateStatusOkPromises.push(machineDao.updateMachine(messages[k][0].machine, "OK"))
                                     }
 
@@ -37,9 +39,9 @@ exports.checkMachineBreakdown = function () {
                         Promise.all(updateStatusOkPromises).then((result) => {
                                 if (updateNocommunicationErrorPromises.length > 0) {
                                     Promise.all(updateNocommunicationErrorPromises).then((result) => {
-                                            for (let k = 0; k < updateNocommunicationErrorPromises.length; k++) {
+                                            /*for (let k = 0; k < updateNocommunicationErrorPromises.length; k++) {
                                                 console.log("result" + result);
-                                            }
+                                            }*/
                                             resolve(result)
                                         },
                                         (err) => {
