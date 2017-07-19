@@ -24,7 +24,7 @@ var job = new CronJob('50 23 * * *', function () {
   console.log("job  has stopped")
 }, true, 'Europe/Rome');
 
-var job = new CronJob('200 * * * *', function () {
+var job = new CronJob('20 * * * *', function () {
   // console.log('running every 20 minutes');
   checkMachineBreakdown.checkMachineBreakdown().then((result) => {
    // NOP - store cron to database
