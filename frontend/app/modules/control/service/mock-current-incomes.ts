@@ -7,7 +7,7 @@ export const CURRENT_INCOMES: Income[] = [
         totalCurrentWeek: 0,
         totalCurrentMonth: 0,
         status: "OK",
-        lastError: "A"
+        lastError: ""
     },
     {
         machineId: "2",
@@ -52,7 +52,7 @@ export const CURRENT_INCOMES: Income[] = [
         totalCurrentWeek: 0,
         totalCurrentMonth: 0,
         status: "ER",
-        lastError: "F"
+        lastError: "B2,23:14,24/07/2017"
     },
     {
         machineId: "7",

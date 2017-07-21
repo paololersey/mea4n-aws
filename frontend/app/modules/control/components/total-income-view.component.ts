@@ -32,7 +32,7 @@ export class TotalIncomeView implements OnInit {
 
     ngOnInit(): void {
        //this.getTotalCurrentIncomesMock();
-         this.getTotalCurrentIncomes();
+       this.getTotalCurrentIncomes();
     }
 
 
