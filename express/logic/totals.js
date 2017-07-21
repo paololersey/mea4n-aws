@@ -78,9 +78,9 @@ exports.getTotals = (machineNumbers, matrixMachineTotalFrequency) => {
         totalMonth += parseFloat(machineTotalMonth);
     }
     return {
-        "totalDay": totalDay,
-        "totalYesterday": totalYesterday,
-        "totalWeek": totalWeek,
-        "totalMonth": totalMonth
+        "totalDay": Math.round(totalDay),
+        "totalYesterday": Math.round(totalYesterday),
+        "totalWeek": Math.round(totalWeek),
+        "totalMonth": Math.round(totalMonth)
     };
 }
