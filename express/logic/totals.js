@@ -34,10 +34,10 @@ exports.getTotalsSplitByMachine = (machineNumbers, matrixMachineTotalFrequency) 
                                 if (!totalCurrentMonth) totalCurrentMonth = 0
                                 tableRow = {
                                     'machineId': machines[k][0].machineId,
-                                    'totalCurrentDay': totalCurrentDay,
-                                    'totalYesterDay': totalYesterDay,
-                                    'totalCurrentWeek': totalCurrentWeek,
-                                    'totalCurrentMonth': totalCurrentMonth,
+                                    'totalCurrentDay': Math.round(totalCurrentDay),
+                                    'totalYesterDay': Math.round(totalYesterDay),
+                                    'totalCurrentWeek': Math.round(totalCurrentWeek),
+                                    'totalCurrentMonth': Math.round(totalCurrentMonth),
                                     'status': machines[k][0].status,
                                     'lastError': lastError
                                 }
