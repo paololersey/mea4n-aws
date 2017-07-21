@@ -80,7 +80,7 @@ export class GridComponent implements OnInit {
             { headerName: "Yesterday total (&euro;)", field: "totalYesterDay" },
             { headerName: "Week total (&euro;)", field: "totalCurrentWeek" },
             { headerName: "Month total (&euro;)", field: "totalCurrentMonth" },
-            { headerName: "Last error", field: "lastError", width:350},
+            { headerName: "Last error", field: "lastError", width:380},
             { headerName: "Reset", field: "value",  cellRendererFramework: ResetBreakdownModalComponent }
 
         ];
