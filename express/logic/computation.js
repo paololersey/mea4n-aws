@@ -139,8 +139,8 @@ exports.computeTotals = function (isTotalSplitPerMachine, arrayStartDates, array
 exports.computeAndSaveIncome = function (isTotalSplitPerMachine) {
 
     return new Promise((resolve, reject) => {
-        var arrayStartDates = dateUtils.prepareStartDates();
-        this.computeTotals(isTotalSplitPerMachine).then((income) => {
+        var dates = dateUtils.prepareDates();
+        this.computeTotals(isTotalSplitPerMachine, dates.arrayStartDates, dates.arrayEndDates).then((income) => {
             var incomeArrayToBeSaved = new Array();
             for (var k = 0; k < income.length; k++) {
                 var incomeToBesaved = new Income({
@@ -169,7 +169,7 @@ exports.computeAndSaveIncome = function (isTotalSplitPerMachine) {
                 })
         }, (err) => {
             //res.status(500).json(err);
-            reject(res)
+            reject(err)
             console.log(err);
         })
     })

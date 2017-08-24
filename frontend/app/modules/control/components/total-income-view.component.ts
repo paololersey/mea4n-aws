@@ -23,20 +23,20 @@ export class TotalIncomeView implements OnInit {
 
     constructor(private incomeService: IncomeService) {
         setInterval(() => {
-            //this.getTotalCurrentIncomesMock();
-            this.getTotalCurrentIncomes();
+            this.getTotalCurrentIncomesInvoke();
         }, 60000);
     };
 
-
-
     ngOnInit(): void {
-       //this.getTotalCurrentIncomesMock();
-       this.getTotalCurrentIncomes();
+        this.getTotalCurrentIncomesInvoke();
     }
 
+    getTotalCurrentIncomesInvoke(): void {
+        this.getTotalCurrentIncomesMock();
+        //this.getTotalCurrentIncomes();
+    }
 
-
+    
     getTotalCurrentIncomes(): void {
         this.incomeService.getTotalCurrentIncomes()
             .subscribe(
@@ -47,7 +47,7 @@ export class TotalIncomeView implements OnInit {
                 this.totals.push(result.totalYesterday);
                 this.totals.push(result.totalWeek);
                 this.totals.push(result.totalMonth);
-                
+
                 this.panels = new Array<IPanel>();
                 this.panels.push(
                     {

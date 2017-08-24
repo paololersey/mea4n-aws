@@ -9,7 +9,10 @@ import { GridComponent } from "./modules/control/components/grid.component";
 import { TotalIncomeView } from "./modules/control/components/total-income-view.component";
 import { FormPageComponent } from './modules/login/form-page.component';
 import { HomePageComponent }  from './home-page.component';
+import { ReportComponent }  from './modules/report/components/report.component';
 import { ResetBreakdownModalComponent } from "./modules/control/components/reset-breakdown-modal.component";
+import { NgbdButtonsCheckbox} from "./modules/common/ngbd-buttons-checkbox";
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule, JsonpModule } from "@angular/http";
 import { FormsModule } from '@angular/forms';
@@ -20,11 +23,11 @@ import { routing }        from './app.routing';
     imports: [
         BrowserModule,
         AgGridModule.withComponents([ResetBreakdownModalComponent]
-        ),
-        FormsModule,
+        ),     
         NgbModule.forRoot(),
         HttpModule,
         JsonpModule,
+        FormsModule,
         routing
     ],
     declarations: [
@@ -34,7 +37,9 @@ import { routing }        from './app.routing';
         TotalIncomeView,
         ResetBreakdownModalComponent,
         FormPageComponent,
-        HomePageComponent
+        HomePageComponent,
+        ReportComponent,
+        NgbdButtonsCheckbox
     ],
    // bootstrap: [HomePageComponent]
     bootstrap: [AppComponent]

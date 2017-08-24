@@ -20,3 +20,19 @@ exports.findAllIncomes = function (callback) {
 exports.removeAllIncomes = function (callback) {
     Income.remove(callback);
 }
+
+/**
+ * Method retrieveng all the incomes
+ * @param  {} startDate
+ * @param  {} endDate
+ * @param  {} callback
+ */
+exports.findIncomesByDates = function (startDate, endDate, callback) {
+    Income.find({
+            executionDate: {
+                $lte: endDate,
+                $gte: startDate
+            },
+        }).sort('-executionDate')
+        .exec(callback)
+}

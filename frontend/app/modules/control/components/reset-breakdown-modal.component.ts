@@ -21,7 +21,6 @@ export class ResetBreakdownModalComponent implements ICellRendererAngularComp {
     constructor(private modalService: NgbModal, private updateStatusMachineService: UpdateStatusMachineService) { }
 
     public open(content) {
-        console.log(this.params);
         let niceMachineId = this.params.rowIndex + 1;
         this.modalService.open(content).result.then((result) => {
             if (result == "Confirm") {

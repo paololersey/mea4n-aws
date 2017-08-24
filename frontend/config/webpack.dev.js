@@ -26,8 +26,7 @@ module.exports = {
     },
 
     module: {
-        loaders: [
-            {
+        loaders: [{
                 test: /\.ts$/,
                 exclude: path.resolve(__dirname, "node_modules"),
                 loaders: ['awesome-typescript-loader', 'angular2-template-loader']
@@ -52,7 +51,13 @@ module.exports = {
                 test: /\.css$/,
                 include: helpers.root('app'),
                 loader: 'raw'
-            }
+            },
+            {
+                test: /\.scss$/,
+                include: helpers.root('node_modules'),
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader') 
+            },
+
         ]
     },
 

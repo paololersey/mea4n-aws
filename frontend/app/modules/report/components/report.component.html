@@ -1,0 +1,44 @@
+<div>
+    <h3>Filter data </h3>
+    <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+        <div class="row">
+            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <ngbd-buttons-checkbox></ngbd-buttons-checkbox>
+            </div>
+
+            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                <label for="dateFrom">Date from</label>
+            </div>
+            <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3 form-group" [ngClass]="{ 'has-error': f.submitted && !dateFrom.valid }">
+                <div class="input-group">
+                    <input class="form-control" placeholder="dd-mm-yyyy" name="dp1" [(ngModel)]="model.dateFrom" ngbDatepicker #d1="ngbDatepicker"
+                        required>
+                    <div class="input-group-addon" (click)="d1.toggle()">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div *ngIf="f.submitted && !dateFrom.valid" class="help-block">"Date from" is required</div>
+            </div>
+            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                <label for="dateTo">Date to</label>
+            </div>
+            <div class="form-group col-xs-3 col-md-3 col-sm-3 col-lg-3" [ngClass]="{ 'has-error': f.submitted && !dateTo.valid }">
+
+                <div class="input-group">
+                    <input class="form-control" placeholder="dd-mm-yyyy" name="dp2" [(ngModel)]="model.dateTo" ngbDatepicker #d2="ngbDatepicker"
+                        required>
+                    <div class="input-group-addon" (click)="d2.toggle()">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div *ngIf="f.submitted && !dateTo.valid" class="help-block">"Date to" is required</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                <button type="button" (click)="triggerExcelReport()" class="btn btn-primary">Export</button>
+            </div>
+        </div>
+    </form>
+
+</div>

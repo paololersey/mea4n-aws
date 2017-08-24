@@ -20,6 +20,8 @@ export class GridComponent implements OnInit {
     private columnDefs: any[];
     private errorMessage: string;
 
+    
+
     constructor(private incomeService: IncomeService) {
 
         /*eventUpdate(event: object) {
@@ -27,8 +29,7 @@ export class GridComponent implements OnInit {
         }*/
 
         setInterval(() => {
-            //this.getIncomesMock();
-            this.getIncomes();
+            this.getIncomesInvoke();
         }, 60000);
 
         // we pass an empty gridOptions in, so we can grab the api out
@@ -89,9 +90,13 @@ export class GridComponent implements OnInit {
 
 
     ngOnInit(): void {
-       //this.getIncomesMock();
-       this.getIncomes();
-    };
+        this.getIncomesInvoke();
+     };
+
+    getIncomesInvoke(): void {
+         this.getIncomesMock();
+        //this.getIncomes();
+     }
 
     getIncomes(): void {
          this.incomeService.getIncomes()
