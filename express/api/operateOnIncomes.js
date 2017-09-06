@@ -46,27 +46,25 @@ router.post('/api/computeAndSaveIncomePerMachine',
 
 router.post('/api/getIncomesByFilter',
     function (req, res, next) {
-        var dateFrom = req.body.dateFrom;
-        var dateTo = req.body.dateTo;
-        var groupByDay = req.body.groupByDay;
 
-        incomeDao.findIncomesByDates(dateFrom, dateTo, (err, incomes) => {
-            if (err) {
-                return next(err)
-            }
-            var workbook=excelUtils.configureExcel();
-            workbook = excel.createExcel(workbook, incomes);
-            /*var workbook = new Excel.Workbook();
-            var sheet = workbook.addWorksheet("My Sheet");
-            res.setHeader('Content-Type', 'application/vnd.openxmlformats');
-            res.setHeader("Content-Disposition", "attachment; filename=" + "Report.xlsx");
-            
-            res.end();*/
+        var reportSearch = {};
+        reportSearch.dateFrom = req.body.dateFrom;
+        reportSearch.dateTo = req.body.dateTo;
+        reportSearch.machineIds = req.body.machineIds
 
-           // res.status(200).json(incomes)
-           workbook.write('ExcelFile.xlsx', res);
+        if (req.body.groupByDay) {
+            incomeDao.findIncomesByFilter(reportSearch, (err, incomes) => {
+                if (err) {
+                    return next(err)
+                }
+                var workbook = excelUtils.configureExcel();
+                workbook = excel.createExcel(workbook, incomes);
+                //res.status(200).json(incomes)
+                workbook.write('ExcelFile.xlsx', res);
 
-        });
+            });
+        }
+
     });
 
 module.exports = router

@@ -13,9 +13,14 @@ exports.configureExcel = () => {
             color: '#FF0800',
             size: 12
         },
-        numberFormat: '$#,##0.00; ($#,##0.00); -'
+        numberFormat: '$#,##0.00; ($#,##0.00); -',
+        dateFormat: 'm/d/yy'
     });
 
     
     return workbook;
+}
+
+exports.writeNewColumnCondition = (lastExecutionDate, execDateDDMMYYYY) => { 
+    return (lastExecutionDate==null || lastExecutionDate.toISOString().substring(0,10)!=execDateDDMMYYYY);
 }

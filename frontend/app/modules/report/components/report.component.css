@@ -1,3 +1,6 @@
-.datePickerWidth {
-    width: 50%;
+.contains-error{
+    border-color: red;
+}
+.ok{
+    border-color: #8ACFA8;
 }

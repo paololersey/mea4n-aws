@@ -27,12 +27,33 @@ exports.removeAllIncomes = function (callback) {
  * @param  {} endDate
  * @param  {} callback
  */
-exports.findIncomesByDates = function (startDate, endDate, callback) {
-    Income.find({
+exports.findIncomesByFilter = function (reportSearch, callback) {
+    var findAllMachines=true;
+    if (!reportSearch.dateTo) reportSearch.dateTo = new Date();
+    if (!reportSearch.dateFrom) reportSearch.dateFrom = new Date('2017-01-01');
+    if (reportSearch.machineIds && reportSearch.machineIds.length>0)  findAllMachines=false;
+    if(!findAllMachines){
+        Income.find({
             executionDate: {
-                $lte: endDate,
-                $gte: startDate
+                $lte: reportSearch.dateTo,
+                $gte: reportSearch.dateFrom
             },
-        }).sort('-executionDate')
+            machineId : { $in : reportSearch.machineIds }
+        }).sort({
+            executionDate: 'asc', machineId : 'asc'
+        })
         .exec(callback)
+    }
+    else{
+        Income.find({
+            executionDate: {
+                $lte: reportSearch.dateTo,
+                $gte: reportSearch.dateFrom
+            }
+        }).sort({
+            executionDate: 'asc'
+        })
+        .exec(callback)
+    }
+    
 }

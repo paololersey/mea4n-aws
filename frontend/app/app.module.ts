@@ -12,7 +12,7 @@ import { HomePageComponent }  from './home-page.component';
 import { ReportComponent }  from './modules/report/components/report.component';
 import { ResetBreakdownModalComponent } from "./modules/control/components/reset-breakdown-modal.component";
 import { NgbdButtonsCheckbox} from "./modules/common/ngbd-buttons-checkbox";
-
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule, JsonpModule } from "@angular/http";
 import { FormsModule } from '@angular/forms';
@@ -28,6 +28,7 @@ import { routing }        from './app.routing';
         HttpModule,
         JsonpModule,
         FormsModule,
+        MultiselectDropdownModule,
         routing
     ],
     declarations: [
