@@ -94,8 +94,8 @@ export class GridComponent implements OnInit {
      };
 
     getIncomesInvoke(): void {
-         this.getIncomesMock();
-        //this.getIncomes();
+         //this.getIncomesMock();
+        this.getIncomes();
      }
 
     getIncomes(): void {

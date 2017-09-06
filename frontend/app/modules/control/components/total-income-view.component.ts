@@ -32,8 +32,8 @@ export class TotalIncomeView implements OnInit {
     }
 
     getTotalCurrentIncomesInvoke(): void {
-        this.getTotalCurrentIncomesMock();
-        //this.getTotalCurrentIncomes();
+        //this.getTotalCurrentIncomesMock();
+        this.getTotalCurrentIncomes();
     }
 
     
