@@ -4,6 +4,7 @@ var incomeDao = require('../dao/incomeDao')
 var compute = require('../logic/computation')
 var excelUtils = require('../logic/utils/excelUtils')
 var excel = require('../logic/excel')
+var moment = require('moment');
 
 // get all messages
 router.get('/api/getAllIncomes',
@@ -48,8 +49,8 @@ router.post('/api/getIncomesByFilter',
     function (req, res, next) {
 
         var reportSearch = {};
-        reportSearch.dateFrom = req.body.dateFrom;
-        reportSearch.dateTo = req.body.dateTo;
+        reportSearch.dateFrom = moment(req.body.dateFrom).startOf('day')
+        reportSearch.dateTo = moment(req.body.dateTo).endOf('day')
         reportSearch.machineIds = req.body.machineIds
 
         if (req.body.groupByDay) {
@@ -57,8 +58,8 @@ router.post('/api/getIncomesByFilter',
                 if (err) {
                     return next(err)
                 }
-                var workbook = excelUtils.configureExcel();
-                workbook = excel.createExcel(workbook, incomes);
+                
+                var workbook = excel.createExcel(incomes);
                 //res.status(200).json(incomes)
                 workbook.write('ExcelFile.xlsx', res);
 

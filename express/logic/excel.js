@@ -2,55 +2,76 @@
 var excel = require('excel4node');
 var excelUtils = require('../logic/utils/excelUtils');
 
-exports.createExcel = (workbook, incomes) => {
+
+exports.createExcel = (incomes) => {
+
+    var workbook = new excel.Workbook();
+    // Create a reusable style
+    var style = workbook.createStyle({
+        font: {
+            color: '#FF0800',
+            size: 12
+        },
+        numberFormat: '$#,##0.00; ($#,##0.00); -'
+    });
+
+    var num = workbook.createStyle({
+        numberFormat: '0.00'
+    });
+
 
     // Add Worksheets to the workbook
     var worksheet = workbook.addWorksheet('Sheet 1');
 
-    var columnDateCount = 1;
-    var lastExecutionDate = null;
-    var lastMachineId = null;
+    var ROW_START_OFFSET = excelUtils.returnStartOffsetRowColumn()[0];
+    var COLUMN_START_OFFSET = excelUtils.returnStartOffsetRowColumn()[1];
+
+    var rowIndex = ROW_START_OFFSET
+    var columnIndex = COLUMN_START_OFFSET
+    var lastExecutionDate = null
+
     incomes.map((income) => {
-        // write machine number
-        let machineId=1 + Number(income.machineId)
-        worksheet.cell(machineId, 1).string("N-ICE"+income.machineId);
+
+
         var execDateDDMMYYYY = income.executionDate.toISOString().substring(0, 10);
-        
-        if (excelUtils.writeNewColumnCondition(lastExecutionDate, execDateDDMMYYYY)) {           
-            columnDateCount++;
-            worksheet.cell(1, columnDateCount).date(execDateDDMMYYYY);
+
+        if (excelUtils.writeNewColumnCondition(lastExecutionDate, execDateDDMMYYYY)) {
+            // write total per column 
+            if (lastExecutionDate != null) {
+                // write TOTALS PER DAY, i.e. sum of the day income for all the machines
+                worksheet.cell(rowIndex + 1, columnIndex).formula(excelUtils.sumRowsPerSingleColumnFormula(excel, ROW_START_OFFSET, rowIndex, columnIndex)).style(num);
+                rowIndex = ROW_START_OFFSET;
+            }
+            columnIndex++;
+            worksheet.cell(COLUMN_START_OFFSET, columnIndex).date(execDateDDMMYYYY).style({
+                numberFormat: 'dd/mm/yyyy'
+            });
         }
-        worksheet.cell(machineId, columnDateCount).number(income.totalCurrentDay);
-        
-        // per avere TOTAL: for per ogni macchina, fissato columnDateCount+1 
- 
-        
+        rowIndex++;
+        // write machine number
+        worksheet.cell(rowIndex, COLUMN_START_OFFSET).string("N-ICE" + income.machineId)
+        //write total per day
+        worksheet.cell(rowIndex, columnIndex).number(income.totalCurrentDay).style(num)
         lastExecutionDate = income.executionDate
-        lastMachineId = machineId
     })
-    worksheet.cell(1, columnDateCount+1).string("TOTAL");
-     // Write total
-     worksheet.cell(lastMachineId, columnDateCount+1).formula("SOMMA(B"+lastMachineId+":C"+lastMachineId+")")
-    
-    // Set value of cell A1 to 100 as a number type styled with paramaters of style
-    //worksheet.cell(1, 1).number(100).style(style);
 
-    // Set value of cell B1 to 300 as a number type styled with paramaters of style
-    //worksheet.cell(1, 2).number(200).style(style);
+    // write sum for the last column
+    for (let i = 0; i < incomes.length; i++) {
+        if (i === incomes.length - 1) {
+            worksheet.cell(rowIndex + 1, columnIndex).formula(excelUtils.sumRowsPerSingleColumnFormula(excel, ROW_START_OFFSET, rowIndex, columnIndex)).style(num);
+        }
+    }
 
-    // Set value of cell C1 to a formula styled with paramaters of style
-    //worksheet.cell(1, 3).formula('A1 + B1').style(style);
+    // write TOTALS PER MACHINE, i.e. sum of the machines income in a period
+    for (let i = 0; i < rowIndex; i++) {
+        if (i == 0) continue;
+        worksheet.cell(ROW_START_OFFSET + i, columnIndex + 1).formula(excelUtils.sumColumnsPerSingleRowFormula(excel, COLUMN_START_OFFSET, ROW_START_OFFSET + i, columnIndex)).style(num);
 
-    // Set value of cell A2 to 'string' styled with paramaters of style
-    //worksheet.cell(2, 1).string('string').style(style);
-
-    // Set value of cell A3 to true as a boolean type styled with paramaters of style but with an adjustment to the font size.
-    /*  worksheet.cell(1, 5).bool(true).style(style).style({
-          font: {
-              size: 14
-          }
-      });*/
+    }
+    worksheet.cell(1, columnIndex + 1).string("TOTAL");
+    worksheet.cell(rowIndex + 1, COLUMN_START_OFFSET).string("TOTAL");
+  
     return workbook;
-   // workbook.write('Excel.xlsx');
+    // workbook.write('Excel.xlsx');
 
 }
