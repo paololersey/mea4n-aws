@@ -13,4 +13,5 @@ import 'ag-grid/dist/styles/theme-fresh.css';
 import 'ag-grid/dist/styles/theme-blue.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import 'ag-grid-angular/main'
+import 'ag-grid-angular/main';
+import 'font-awesome/css/font-awesome.css';

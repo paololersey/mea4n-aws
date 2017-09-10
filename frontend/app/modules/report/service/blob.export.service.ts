@@ -15,7 +15,9 @@ export class AngularBlobService {
     }
 
 
-    download(model: ReportSearch) { //get file from service
+    download(model: ReportSearch) { 
+       /* var model2 = new ReportSearch();
+        model2.groupByDay=true;*///get file from service
         this.http.post(this.triggerReportIncomesByFilterUrl, model, {
             method: RequestMethod.Post,
             responseType: ResponseContentType.Blob,

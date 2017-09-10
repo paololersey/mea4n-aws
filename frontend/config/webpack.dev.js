@@ -36,8 +36,28 @@ module.exports = {
                 loader: 'html'
             },
             {
-                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                loader: 'file?name=[path]/[name].[ext]'
+                test: /\.(png|jpe?g|gif|ico)$/,
+                loader: 'file-loader?name=assets/[name].[hash].[ext]'
+            },
+            {
+                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+            },
+            {
+                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file-loader'
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
             },
             {
                 // site wide css (excluding all css under the app dir)
@@ -55,7 +75,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 include: helpers.root('node_modules'),
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader') 
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             },
 
         ]

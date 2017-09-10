@@ -8,22 +8,23 @@ import { NavigatorComponent } from "./modules/navigator/components/navigator.com
 import { GridComponent } from "./modules/control/components/grid.component";
 import { TotalIncomeView } from "./modules/control/components/total-income-view.component";
 import { FormPageComponent } from './modules/login/form-page.component';
-import { HomePageComponent }  from './home-page.component';
-import { ReportComponent }  from './modules/report/components/report.component';
+import { HomePageComponent } from './home-page.component';
+import { ReportComponent } from './modules/report/components/report.component';
 import { ResetBreakdownModalComponent } from "./modules/control/components/reset-breakdown-modal.component";
-import { NgbdButtonsCheckbox} from "./modules/common/ngbd-buttons-checkbox";
+import { NgbdButtonsCheckbox } from "./modules/common/ngbd-buttons-checkbox";
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DatepickerPopupComponent } from './modules/common/datepicker-popup.component';
 import { HttpModule, JsonpModule } from "@angular/http";
 import { FormsModule } from '@angular/forms';
-import { routing }        from './app.routing';
+import { routing } from './app.routing';
 
 
 @NgModule({
     imports: [
         BrowserModule,
         AgGridModule.withComponents([ResetBreakdownModalComponent]
-        ),     
+        ),
         NgbModule.forRoot(),
         HttpModule,
         JsonpModule,
@@ -40,9 +41,10 @@ import { routing }        from './app.routing';
         FormPageComponent,
         HomePageComponent,
         ReportComponent,
-        NgbdButtonsCheckbox
+        NgbdButtonsCheckbox,
+        DatepickerPopupComponent
     ],
-   // bootstrap: [HomePageComponent]
+    // bootstrap: [HomePageComponent]
     bootstrap: [AppComponent]
 })
 export class AppModule {

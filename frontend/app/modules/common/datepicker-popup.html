@@ -1,0 +1,6 @@
+<div class="input-group">
+    <input class="form-control" placeholder="dd-mm-yyyy" name="dp" [(ngModel)]="model"  (blur)="updateModel()" ngbDatepicker #d="ngbDatepicker" required>
+    <div class="input-group-addon" (click)="d.toggle();updateModel()" >
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+    </div>
+</div>
