@@ -11,27 +11,30 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { MACHINE_NICE, YEARS, MONTHS } from '../service/constants.service';
 import { DatepickerPopupComponent } from '../../common/datepicker-popup.component';
+import { MachineService } from '../../common/service/machine.service';
+import { Machine } from '../../common/model/machine';
 
 @Component({
     selector: 'report',
     templateUrl: 'report.component.html',
     styleUrls: ['./report.component.css'],
-    providers: [AngularBlobService, ReportService, NgbDatepickerConfig]
+    providers: [AngularBlobService, ReportService, MachineService, NgbDatepickerConfig]
 })
 export class ReportComponent implements OnInit {
 
-
-
     model: ReportSearch;
     modelSentToServer: ReportSearch;
+    machineList: IMultiSelectOption[];
     showMessagesFilters: Boolean;
     errorMessage: any = {};
     optionsModel: number[];
     myOptions: IMultiSelectOption[];
+
     yearsOptions: IMultiSelectOption[];
 
     constructor(private reportService: ReportService,
         private angularBlobService: AngularBlobService,
+        private machineService: MachineService,
         config: NgbDatepickerConfig) {
         this.model = new ReportSearch();
         this.model.groupByDay = true
@@ -57,13 +60,30 @@ export class ReportComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.myOptions = MACHINE_NICE
+        this.getMachineInvoke();
         this.yearsOptions = YEARS
     }
 
     groupByDayChange(groupByDay): any {
         groupByDay = !groupByDay
         this.showMessagesFilters = !this.showMessagesFilters
+    }
+
+    getMachineInvoke(): void {
+        //this.getMachinesMock();
+        this.getMachines();
+    }
+
+    getMachinesMock(): void {
+        this.myOptions = MACHINE_NICE
+    }
+
+    getMachines(): void {
+        this.machineService.getMachines()
+            .subscribe(
+            machineList => this.myOptions = machineList,
+            error => this.errorMessage = <any>error)
+
     }
 
 }

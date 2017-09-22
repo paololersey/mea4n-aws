@@ -8,10 +8,17 @@ var checkMachineBreakdown = require('../logic/checks/checkMachineBreakdown')
 router.get('/api/getMachines',
     function (req, res, next) {
         machineDao.findAllMachines((err, machines) => {
+            var arrayMachines = new Array();
+            machines.map((machine) => {
+                var machineIdName = {};
+                machineIdName.id = machine.machineId;
+                machineIdName.name = "N-ICE " + machine.machineId;
+                arrayMachines.push(machineIdName);
+            })
             if (err) {
                 return next(err)
             }
-            res.status(200).json(machines)
+            res.status(200).json(arrayMachines)
         });
     });
 
@@ -22,7 +29,7 @@ router.post('/api/statusUpd',
         let statusNew = req.body.status;
 
         machineDao.updateMachine(machineId, statusNew).then(
-            (machine) => {           
+            (machine) => {
                 res.status(200).json(machine)
             },
             err => {
@@ -30,7 +37,7 @@ router.post('/api/statusUpd',
             });
     })
 
-router.get('/api/checkMachineNoComm',function (req, res, next) {
+router.get('/api/checkMachineNoComm', function (req, res, next) {
     checkMachineBreakdown.checkMachineBreakdown().then((result) => {
         res.status(200).json(result)
     });

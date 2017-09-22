@@ -8,7 +8,7 @@ import { Headers, RequestOptions } from '@angular/http';
 import { CURRENT_INCOMES } from './mock-current-incomes';
 import { TOTAL_CURRENT_INCOMES } from './mock-total-current-incomes';
 import { Income } from '../model/Income';
-import { Machine } from '../model/Machine';
+import { Machine } from '../../common/model/machine';
 
 
 @Injectable()

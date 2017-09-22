@@ -16,8 +16,8 @@ var transporter = nodemailer.createTransport({
     }*/
     service: 'Yahoo',
       auth: {
-          user: 'paolo_spadoni',
-          pass: 'kersey128D1',
+          user: 'nicenotifier',
+          pass: 'abc591ed6d',
       }
     /*service: 'Gmail',
     auth: {
@@ -46,9 +46,9 @@ exports.sendMail = (errorCode, machine, date ) => {
             textMail = "INFO"
         }
         let mailOptions = {
-            from: 'paolo_spadoni@yahoo.it', // sender address
+            from: 'nicenotifier@yahoo.com', // sender address
             to: 'macchine@n-ice.it, paolo_spadoni@yahoo.it, michele.romanin.jacur@n-ice.it, ludovica.fante@n-ice.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
-            //to: 'paolo_spadoni@yahoo.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
+            //to: 'paolo_spadoni@yahoo.it, macchine@n-ice.it', // paolospadoni1980@gmail.com //'michele.romanin.jacur@n-ice.it', // list of receivers
             subject: "N-ICE " + machine + "-" + errorCode + " date:" + date, // Subject line
             text: textMail, // plain text body
             html: "<b>The machine </b>" + machine + "<b> has thrown a code </b>" + errorCode // html body
@@ -69,7 +69,7 @@ exports.sendMail = (errorCode, machine, date ) => {
                 transporter.close();
                 reject(Error(error))
             }
-            if(info.accepted){
+            else if(info.accepted){
                 info.accepted.map(destination =>{
                      console.log('Message to %s sent', destination);
                 })

@@ -7,12 +7,16 @@ exports.writeNewColumnCondition = (lastExecutionDate, execDateDDMMYYYY) => {
 }
 
 exports.returnStartOffsetRowColumn = () => {
-    let rowOffset = 2;
-    let columnOffset = 1;
+    let rowDataOffset = 6;
+    let columnDataOffset = 1;
+    let rowFilterOffset = 1;
+    let columnFilterOffset = 2;
     let offsets=new Array();
-    offsets.push(rowOffset);
-    offsets.push(columnOffset);
-    
+    offsets.push(rowDataOffset);
+    offsets.push(columnDataOffset);
+    offsets.push(rowFilterOffset);
+    offsets.push(columnFilterOffset);
+
     return offsets
 }
 

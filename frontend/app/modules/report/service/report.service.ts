@@ -21,7 +21,7 @@ export class ReportService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     
-    //return new Observable<Machine>();
+    
     return this.http.post(this.triggerReportIncomesByFilterUrl, { reportSearch }, options)
       .map(this.extractData)
       .catch(this.handleError);

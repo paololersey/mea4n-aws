@@ -5,6 +5,7 @@ var compute = require('../logic/computation')
 var excelUtils = require('../logic/utils/excelUtils')
 var excel = require('../logic/excel')
 var moment = require('moment');
+var machineDao = require('../dao/machineDao')
 
 // get all messages
 router.get('/api/getAllIncomes',
@@ -51,17 +52,27 @@ router.post('/api/getIncomesByFilter',
         var reportSearch = {};
         reportSearch.dateFrom = moment(req.body.dateFrom).startOf('day')
         reportSearch.dateTo = moment(req.body.dateTo).endOf('day')
+        reportSearch.groupByDay = req.body.groupByDay 
         reportSearch.machineIds = req.body.machineIds
+
+        reportSearch.groupByDay = 'N';
+        if(req.body.groupByDay) reportSearch.groupByDay = 'Y';
 
         if (req.body.groupByDay) {
             incomeDao.findIncomesByFilter(reportSearch, (err, incomes) => {
                 if (err) {
                     return next(err)
                 }
+                machineDao.findAllMachines((err, result) => {
+                    if (err) {
+                        return next(err)
+                    }
+                    var workbook = excel.createExcel(reportSearch,incomes, result.length);
+                    workbook.write('ExcelFile.xlsx', res);                  
+                })
                 
-                var workbook = excel.createExcel(incomes);
                 //res.status(200).json(incomes)
-                workbook.write('ExcelFile.xlsx', res);
+                
 
             });
         }
