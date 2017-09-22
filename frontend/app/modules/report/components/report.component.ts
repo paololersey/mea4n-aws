@@ -8,17 +8,19 @@ import { ReportService } from '../service/report.service';
 import { CustomBrowserXhr } from '../service/custom.browser.xhr';
 import { BrowserXhr } from '@angular/http';
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-import { NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig, NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { MACHINE_NICE, YEARS, MONTHS } from '../service/constants.service';
 import { DatepickerPopupComponent } from '../../common/datepicker-popup.component';
 import { MachineService } from '../../common/service/machine.service';
 import { Machine } from '../../common/model/machine';
+import { NgbDateITParserFormatter } from "../../common/ngb-date-it-parser-formatter"
 
 @Component({
     selector: 'report',
     templateUrl: 'report.component.html',
     styleUrls: ['./report.component.css'],
-    providers: [AngularBlobService, ReportService, MachineService, NgbDatepickerConfig]
+    providers: [AngularBlobService, ReportService, MachineService, NgbDatepickerConfig,
+        {provide: NgbDateParserFormatter, useClass: NgbDateITParserFormatter}]
 })
 export class ReportComponent implements OnInit {
 
@@ -35,7 +37,8 @@ export class ReportComponent implements OnInit {
     constructor(private reportService: ReportService,
         private angularBlobService: AngularBlobService,
         private machineService: MachineService,
-        config: NgbDatepickerConfig) {
+        config: NgbDatepickerConfig,
+        ngbDateParserFormatter: NgbDateParserFormatter) {
         this.model = new ReportSearch();
         this.model.groupByDay = true
         config.minDate = { year: 2017, month: 1, day: 1 };

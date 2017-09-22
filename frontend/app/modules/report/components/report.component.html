@@ -16,7 +16,7 @@
             <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2 form-group">
                 <!--<datepicker-popup [(model)]="model.dateFrom" (modelChange)="model.dateFrom = $event" [required]="true" id="dateFrom"></datepicker-popup>-->
                 <div class="input-group">
-                    <input class="form-control " [ngClass]="{'contains-error':  dp1.dirty && dp1.invalid  }" placeholder="yyyy-mm-dd" name="dp1"
+                    <input class="form-control "  [ngClass]="{'contains-error':  dp1.dirty && dp1.invalid  }" placeholder="gg/mm/aaaa" name="dp1"
                         [(ngModel)]="model.dateFrom" ngbDatepicker #d1="ngbDatepicker" #dp1="ngModel" required minlength="10">
                     <div class="input-group-addon" (click)="d1.toggle()">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -32,7 +32,7 @@
                 <!--<datepicker-popup [(model)]="model.dateTo" (modelChange)="model.dateTo = $event" [required]="true" id="dateTo"></datepicker-popup>-->
 
                 <div class="input-group">
-                    <input class="form-control" [ngClass]="{'contains-error':  dp2.dirty && dp2.invalid  }" placeholder="yyyy-mm-dd" name="dp2"
+                    <input class="form-control" [ngClass]="{'contains-error':  dp2.dirty && dp2.invalid  }" placeholder="gg/mm/aaaa" name="dp2"
                         [(ngModel)]="model.dateTo" ngbDatepicker #d2="ngbDatepicker" #dp2="ngModel" required minlength="10" >
                     <div class="input-group-addon" (click)="d2.toggle()">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
