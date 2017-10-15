@@ -1,0 +1,1 @@
+db.machines.insert({"machineId" : "30", "machineCurrentNumber" : "3338756271","startDate" : null,"status":"OK"});

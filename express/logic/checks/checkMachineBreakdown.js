@@ -8,7 +8,7 @@ exports.checkMachineBreakdown = function () {
     return new Promise((resolve, reject) => {
         try {
             machineDao.findAllMachines((err, machineNumbers) => {
-                console.log("find all machines done")
+ 
                 var lastMessagePromises = new Array()
                 for (let k = 0; k < machineNumbers.length; k++) {
                     lastMessagePromises.push(messageDao.findLastMessageParsed(machineNumbers[k].machineId));

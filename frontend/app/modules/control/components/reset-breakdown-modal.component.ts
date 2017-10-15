@@ -1,24 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { ICellRendererAngularComp } from "ag-grid-angular/main";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UpdateStatusMachineService } from '../service/update-status-machine.service'
+import { EmitService } from '../service/emit.service'
 
 
 @Component({
     selector: 'reset-breakdown-modal',
     templateUrl: './reset-breakdown-modal.component.html',
     styleUrls: ['./reset-breakdown-modal.component.css'],
-    providers: [UpdateStatusMachineService]
+    providers: [UpdateStatusMachineService, EmitService]
+
 })
 export class ResetBreakdownModalComponent implements ICellRendererAngularComp {
     closeResult: string;
     errorMessage: string;
     public params: any;
 
+    @Output('statusChange')
+    updateStatusChange: EventEmitter<any> = new EventEmitter();
+
+
     agInit(params: any): void {
         this.params = params;
     }
-    constructor(private modalService: NgbModal, private updateStatusMachineService: UpdateStatusMachineService) { }
+    
+    constructor(private modalService: NgbModal, private updateStatusMachineService: UpdateStatusMachineService,
+        private emitService: EmitService) { }
 
     public open(content) {
         let niceMachineId = this.params.rowIndex + 1;
@@ -26,11 +34,15 @@ export class ResetBreakdownModalComponent implements ICellRendererAngularComp {
             if (result == "Confirm") {
                 this.updateStatusMachineService.updateStatus("OK", niceMachineId)
                     .subscribe(
-                    result => result,
+                    result => {
+                        this.updateStatusChange.emit(result)
+                    },
                     error => this.errorMessage = <any>error);
             }
             else {
                 this.closeResult = `Closed with: ${result}`;
+                //this.emitService.myEvent.emit(result)
+                this.updateStatusChange.emit(result)
             }
 
         }, (reason) => {

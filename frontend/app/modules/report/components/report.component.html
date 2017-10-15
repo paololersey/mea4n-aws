@@ -1,6 +1,13 @@
 <div>
     <div>&nbsp;</div>
-    <h3>Filter data </h3>
+    <div class="row">
+        <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+            <h4 *ngIf="!showMessagesFilters">Incomes data filter</h4>
+            <h4 *ngIf="showMessagesFilters">Messages data filter</h4>
+        </div>
+    </div>
+    <div> &nbsp;</div>
+    <hr>
     <div> &nbsp;</div>
     <form name="form" (ngSubmit)="f.valid" #f="ngForm" novalidate>
         <div class="row lineheight35">
@@ -13,10 +20,13 @@
             <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1">
                 <label for="dateFrom">Date from</label>
             </div>
+
+            <!-- datepicker 1 -->
+
             <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2 form-group">
                 <!--<datepicker-popup [(model)]="model.dateFrom" (modelChange)="model.dateFrom = $event" [required]="true" id="dateFrom"></datepicker-popup>-->
                 <div class="input-group">
-                    <input class="form-control "  [ngClass]="{'contains-error':  dp1.dirty && dp1.invalid  }" placeholder="gg/mm/aaaa" name="dp1"
+                    <input class="form-control " [ngClass]="{'contains-error':  dp1.dirty && dp1.invalid  }" placeholder="gg/mm/aaaa" name="dp1"
                         [(ngModel)]="model.dateFrom" ngbDatepicker #d1="ngbDatepicker" #dp1="ngModel" required minlength="10">
                     <div class="input-group-addon" (click)="d1.toggle()">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -28,35 +38,111 @@
             <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1">
                 <label for="dateTo">Date to</label>
             </div>
+
+            <!-- datepicker 2 -->
+
             <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
                 <!--<datepicker-popup [(model)]="model.dateTo" (modelChange)="model.dateTo = $event" [required]="true" id="dateTo"></datepicker-popup>-->
 
                 <div class="input-group">
                     <input class="form-control" [ngClass]="{'contains-error':  dp2.dirty && dp2.invalid  }" placeholder="gg/mm/aaaa" name="dp2"
-                        [(ngModel)]="model.dateTo" ngbDatepicker #d2="ngbDatepicker" #dp2="ngModel" required minlength="10" >
+                        [(ngModel)]="model.dateTo" ngbDatepicker #d2="ngbDatepicker" #dp2="ngModel" required minlength="10">
                     <div class="input-group-addon" (click)="d2.toggle()">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                     </div>
                 </div>
                 <!-- <div *ngIf="f.submitted && !dateTo.valid" class="help-block">"Date to" is required</div>-->
             </div>
+
+            <!-- machines 2 -->
             <div class="form-group col-xs-1 col-md-1 col-sm-1 col-lg-1">
                 <label for="machineNice">N-ICE:</label>
             </div>
+
             <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <ss-multiselect-dropdown name="dropdownMachines" [options]="myOptions" [(ngModel)]="model.machineIds" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+                <!-- <ss-multiselect-dropdown name="dropdownMachines" [options]="myOptions" [(ngModel)]="model.machineIds" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>-->
+                <multiselect [dropdownList]="machineList" (selectedOptions)="model.machineIds = $event"></multiselect>
             </div>
         </div>
+
+
+        <!-- REPORT ON MESSAGES SECTION -->
+        <div> &nbsp;</div>
+        <hr>
+        <div> &nbsp;</div>
+        <div *ngIf="showMessagesFilters">
+            <div class="row">
+
+                <div class="form-group col-xs-3 col-md-3 col-sm-3 col-lg-3">
+                    &nbsp;
+                </div>
+                <div class="form-group col-xs-1 col-md-1 col-sm-1 col-lg-1">
+                    <label>Month days:</label>
+                </div>
+                <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <multiselect [dropdownList]="monthDaysList" (selectedOptions)="model.monthDays "></multiselect>
+                </div>
+                <div class="form-group col-xs-1 col-md-1 col-sm-1 col-lg-1">
+                    <label>Months:</label>
+                </div>
+                <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <multiselect [dropdownList]="monthsList" (selectedOptions)="model.months = $event"></multiselect>
+                </div>
+                <div class="form-group col-xs-1 col-md-1 col-sm-1 col-lg-1">
+                    <label>Years:</label>
+                </div>
+                <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <multiselect [dropdownList]="yearsList" (selectedOptions)="model.years = $event"></multiselect>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-3 col-md-3 col-sm-3 col-lg-3">
+                    &nbsp;
+                </div>
+                <div class="form-group col-xs-1 col-md-1 col-sm-1 col-lg-1">
+                    <label>Week days:</label>
+                </div>
+                <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <multiselect [dropdownList]="weekDaysList" (selectedOptions)="model.weekDays = $event"></multiselect>
+                </div>
+                <div class="form-group col-xs-1 col-md-1 col-sm-1 col-lg-1">
+                    <label>Hours:</label>
+                </div>
+                <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <multiselect [dropdownList]="hoursList" (selectedOptions)="model.hours = $event"></multiselect>
+                </div>
+            </div>
+            <div> &nbsp;</div>
+            <div class="row">
+                <div class="form-group col-xs-3 col-md-3 col-sm-3 col-lg-3">
+                    &nbsp;
+                </div>
+                <div class="form-group col-xs-1 col-md-1 col-sm-1 col-lg-1">
+                    <label for="machineNice">Errors:</label>
+                </div>
+                <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
+                    <multiselect [dropdownList]="errorList" (selectedOptions)="model.errors = $event"></multiselect>
+                </div>
+            </div>
+            <div>&nbsp; </div>
+            <hr>
+        </div>
+
 
         <div class="row">
             <div class="form-group col-xs-3 col-md-3 col-sm-3 col-lg-3">
                 &nbsp;
             </div>
-
         </div>
+
         <div class="row">
-            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-                <button type="button" (click)="triggerExcelReport()" [disabled]="!f.valid" class="btn btn-primary">Export</button>
+            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2" *ngIf="showMessagesFilters">
+                <button type="button" (click)="triggerExcelReport()" [disabled]="!f.valid" class="btn btn-primary">Export messages</button>
+            </div>
+            <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2" *ngIf="!showMessagesFilters">
+                <button type="button" (click)="triggerExcelReport()" [disabled]="true" class="btn btn-primary">Export incomes</button>
             </div>
         </div>
     </form>

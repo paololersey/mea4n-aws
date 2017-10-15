@@ -76,10 +76,11 @@ exports.findLastMessagebyMachineidInErrorCallback = function (machineId, callbac
 
 
 /**
- * Method retrieving all the messages of the day specified
+ * Method retrieving all the messages within a period
  * @param  {} machineNumber
- * @param  {} dateMsg
- * @param  {} callback
+ * @param  {} startDate
+ * @param  {} endDate
+ * 
  */
 exports.findPeriodMessagebyMachineNumber = function (machineNumber, startDate, endDate) {
     return Message.find({
@@ -91,6 +92,29 @@ exports.findPeriodMessagebyMachineNumber = function (machineNumber, startDate, e
         },
         status: "PA"
     }).sort('-date').exec() // returns a promise. if .exec() not present, query is parseable with .then();
+}
+
+/**
+ * Method retrieving all the messages with specified filters
+ * @param  {} reportSearch
+ * @param  {} callback
+ */
+exports.findPeriodMessagebyFilter = function (reportSearch, callback) {
+    return Message.find({
+        //  $where  : "this.machine == '"+machineNumber+"'"
+        machine: { $in :reportSearch.machineNumber},
+        date: {
+            $lte: reportSearch.endDate,
+            $gte: reportSearch.startDate
+        },
+        dayOfMonth : { $in :reportSearch.dayOfMonth}, 
+        month : { $in :reportSearch.month }, 
+        year : { $in :reportSearch.year}, 
+        hour : { $in :reportSearch.hour}, 
+        weekDay: { $in :reportSearch.weekDay}, 
+        errorCode : { $in :reportSearch.errors}, 
+        status: "PA"
+    }).sort('-date').exec(callback)
 }
 
 

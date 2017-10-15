@@ -15,6 +15,7 @@ import { NgbdButtonsCheckbox } from "./modules/common/ngbd-buttons-checkbox";
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerPopupComponent } from './modules/common/datepicker-popup.component';
+import { MultiSelectComponent } from './modules/common/ss-multiselect-dropdown.component';
 import { HttpModule, JsonpModule } from "@angular/http";
 import { FormsModule } from '@angular/forms';
 import { routing } from './app.routing';
@@ -42,7 +43,8 @@ import { routing } from './app.routing';
         HomePageComponent,
         ReportComponent,
         NgbdButtonsCheckbox,
-        DatepickerPopupComponent
+        DatepickerPopupComponent,
+        MultiSelectComponent
     ],
     // bootstrap: [HomePageComponent]
     bootstrap: [AppComponent]

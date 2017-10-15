@@ -1,32 +1,39 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { GridOptions } from "ag-grid/main";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Income } from '../model/income';
 import { IncomeService } from '../service/incomes.service';
-import { OnInit } from '@angular/core'
+import { OnInit, OnChanges } from '@angular/core'
 import { TotalIncomeView } from '../components/total-income-view.component'
 import { ResetBreakdownModalComponent } from '../components/reset-breakdown-modal.component'
-
+import { EmitService }  from '../service/emit.service';
 @Component({
     selector: 'ag-grid',
     templateUrl: 'grid.component.html',
     styleUrls: ['./grid.component.css'],
-    providers: [IncomeService]
+    providers: [IncomeService, EmitService],
+    inputs: ['statusChange']
 })
-export class GridComponent implements OnInit {
+export class GridComponent implements OnInit, OnChanges {
     private gridOptions: GridOptions;
     public rowData: Income[];
     private columnDefs: any[];
     private errorMessage: string;
 
+    @Input()
+    statusChange : string;
+
     
+   
+    constructor(private incomeService: IncomeService, private emitService: EmitService) {
 
-    constructor(private incomeService: IncomeService) {
-
+       
         /*eventUpdate(event: object) {
             this.counterValue = event.count;
         }*/
+
+        
 
         setInterval(() => {
             this.getIncomesInvoke();
@@ -93,8 +100,14 @@ export class GridComponent implements OnInit {
         this.getIncomesInvoke();
      };
 
+     ngOnChanges(event) : void{
+        if(event['statusChange']){
+           //console.log('aio!')
+        }
+     }
+
     getIncomesInvoke(): void {
-         //this.getIncomesMock();
+        // this.getIncomesMock();
         this.getIncomes();
      }
 
@@ -109,6 +122,10 @@ export class GridComponent implements OnInit {
         this.incomeService.getIncomesMock().then((result) => {
             this.rowData = result;
         });
+    }
+
+    updateStatus() :any {
+        console.log("ciao!!")
     }
 }
 

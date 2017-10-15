@@ -1,0 +1,3 @@
+db.machines.update({"machineId":"24"},{$set:{"machineCurrentNumber":"3338756249"}});
+db.machines.update({"machineId":"11"},{$set:{"machineCurrentNumber":"3398496397"}});
+db.machines.update({"machineId":"4"} ,{$set:{"machineCurrentNumber":"0000000000"}});

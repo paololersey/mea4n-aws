@@ -22,6 +22,16 @@ router.get('/api/getMachines',
         });
     });
 
+router.get('/api/getAllMachines',
+    function (req, res, next) {
+        machineDao.findAllMachines((err, machines) => {
+            if (err) {
+                return next(err)
+            }
+            res.status(200).json(machines)
+        });
+    });
+
 
 router.post('/api/statusUpd',
     function (req, res, next) {

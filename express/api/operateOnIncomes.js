@@ -6,6 +6,7 @@ var excelUtils = require('../logic/utils/excelUtils')
 var excel = require('../logic/excel')
 var moment = require('moment');
 var machineDao = require('../dao/machineDao')
+var messageDao = require('../dao/messageDao')
 
 // get all messages
 router.get('/api/getAllIncomes',
@@ -52,31 +53,45 @@ router.post('/api/getIncomesByFilter',
         var reportSearch = {};
         reportSearch.dateFrom = moment(req.body.dateFrom).startOf('day')
         reportSearch.dateTo = moment(req.body.dateTo).endOf('day')
-        reportSearch.groupByDay = req.body.groupByDay 
-        reportSearch.machineIds = req.body.machineIds
+        reportSearch = req.body
+
 
         reportSearch.groupByDay = 'N';
-        if(req.body.groupByDay) reportSearch.groupByDay = 'Y';
+        if (req.body.groupByDay) reportSearch.groupByDay = 'Y';
 
-        if (req.body.groupByDay) {
+        // find incomes
+        if (req.body.groupByDay !== 'N') {
             incomeDao.findIncomesByFilter(reportSearch, (err, incomes) => {
                 if (err) {
                     return next(err)
                 }
+                /*incomes.sort(function(a,b) {              
+                    return (a.machineId.setMilliseconds(0)).getTime() - new Date(b).getTime() 
+                });*/
                 machineDao.findAllMachines((err, result) => {
-                    if (err) {
-                        return next(err)
-                    }
-                    var workbook = excel.createExcel(reportSearch,incomes, result.length);
-                    workbook.write('ExcelFile.xlsx', res);                  
+                    if (err) return next(err)
+                   
+                    var workbook = excel.createExcelIncome(reportSearch, incomes, result.length);
+                    workbook.write('ExcelFile.xlsx', res);
                 })
-                
+
                 //res.status(200).json(incomes)
-                
+
 
             });
         }
 
+        // find messages
+        else {
+            messageDao.findPeriodMessagebyFilter(reportSearch, (err, messages) => {
+                machineDao.findAllMachines((err, result) => {
+                    if (err) return next(err)
+                    var workbook = excel.createExcelMessages(reportSearch, messages, result.length);
+                    workbook.write('ExcelFile.xlsx', res);
+                })
+
+            })
+        }
     });
 
 module.exports = router

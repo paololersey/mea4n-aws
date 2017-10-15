@@ -140,6 +140,12 @@ exports.computeAndSaveIncome = function (isTotalSplitPerMachine) {
 
     return new Promise((resolve, reject) => {
         var dates = dateUtils.prepareDates();
+        var executionDate = new Date();
+        executionDate.setHours(12)
+        executionDate.setMinutes(0)
+        executionDate.setSeconds(0)
+        executionDate.setMilliseconds(0)
+        
         this.computeTotals(isTotalSplitPerMachine, dates.arrayStartDates, dates.arrayEndDates).then((income) => {
             var incomeArrayToBeSaved = new Array();
             for (var k = 0; k < income.length; k++) {
@@ -149,7 +155,7 @@ exports.computeAndSaveIncome = function (isTotalSplitPerMachine) {
                     "totalYesterday": income[k].totalYesterDay,
                     "totalCurrentWeek": income[k].totalCurrentWeek,
                     "totalCurrentMonth": income[k].totalCurrentMonth,
-                    "executionDate": new Date(),
+                    "executionDate": executionDate,
                     "weekDay": new Date().getDay(),
                     "year": new Date().getFullYear(),
                     "month": new Date().getMonth(),
