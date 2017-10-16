@@ -31,6 +31,7 @@ exports.findIncomesByFilter = function (reportSearch, callback) {
     var findAllMachines=true;
     if (!reportSearch.dateTo) reportSearch.dateTo = new Date();
     if (!reportSearch.dateFrom) reportSearch.dateFrom = new Date('2017-01-01');
+    console.log("reportSearch.machineIds " + reportSearch.machineIds)
     if (reportSearch.machineIds && reportSearch.machineIds.length>0)  findAllMachines=false;
     if(!findAllMachines){
         Income.find({
@@ -45,6 +46,7 @@ exports.findIncomesByFilter = function (reportSearch, callback) {
         .exec(callback)
     }
     else{
+        console.log("reportSearch.machineIds " + reportSearch.machineIds)
         Income.find({
             executionDate: {
                 $lte: reportSearch.dateTo,
