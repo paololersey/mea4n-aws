@@ -40,7 +40,7 @@ exports.findIncomesByFilter = function (reportSearch, callback) {
             },
             machineId : { $in : reportSearch.machineIds }
         }).sort({
-            executionDate: 'asc', machineId : 'asc'
+            executionDate: 'asc'
         })
         .exec(callback)
     }
@@ -51,7 +51,7 @@ exports.findIncomesByFilter = function (reportSearch, callback) {
                 $gte: reportSearch.dateFrom
             }
         }).sort({
-            executionDate: 'asc', machineId : 'asc'
+            executionDate: 'asc'
         })
         .exec(callback)
     }

@@ -48,6 +48,7 @@ exports.parsingMessage = function (body) {
     }
 
     if (date) {
+        
         year = date.substring(0, 4)
         month = date.substring(5, 7)
         dayOfMonth = date.substring(8, 10)
@@ -55,6 +56,10 @@ exports.parsingMessage = function (body) {
         minutes = date.substring(14, 16)
         var dateObject = new Date(date)
         if (dateObject) weekDay = dateObject.getDay()
+        /*if(moment(dateObject).isDST()){
+            console.log("date is dst");           
+        }*/
+        
 
     }
     if (!date || !code) {

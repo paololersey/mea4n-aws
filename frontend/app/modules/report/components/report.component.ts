@@ -87,8 +87,8 @@ export class ReportComponent implements OnInit {
 
     // machines
     getMachineInvoke(): void {
-        //this.getMachinesMock();
-        this.getMachines();
+        this.getMachinesMock();
+        //this.getMachines();
     }
 
     getMachinesMock(): void {

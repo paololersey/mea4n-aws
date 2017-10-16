@@ -1,0 +1,10 @@
+db.incomes.update({"executionDate":{ $gte: ISODate("2017-10-12T21:00:00.000Z"), $lt:  ISODate("2017-10-13T21:00:00.000Z")}}, {$set:{"executionDate":"2017-10-12T21:50:00.000Z"}} );
+db.incomes.update({"executionDate":{ $gte: ISODate("2017-10-13T21:00:00.000Z"), $lt:  ISODate("2017-10-14T21:00:00.000Z")}}, {$set:{"executionDate":"2017-10-13T21:50:00.000Z"}} );
+db.incomes.find({"executionDate":{ $gte: ISODate("2017-10-13T21:00:00.000Z"), $lt:  ISODate("2017-10-14T21:00:00.000Z")}} );
+
+//db.incomes.find({"executionDate":{ $gte: ISODate("2017-09-28T21:00:00.000Z"), $lt:  ISODate("2017-09-29T21:00:00.000Z")}});
+//db.incomes.find({"ObjectId":"59e1350caec27f4cf6fbb787"},  {$set:{"executionDate":"2017-10-13T21:50:00.000Z"}})
+db.incomes.update({"executionDate":{ $gte: ISODate("2017-09-28T21:00:00.000Z"), $lt:  ISODate("2017-09-29T21:00:00.000Z")}}, {$set:{"executionDate":ISODate("2017-09-28T21:50:00.000Z")}} , {multi: true});
+db.incomes.update({"executionDate":{ $gte: ISODate("2017-09-29T21:00:00.000Z"), $lt:  ISODate("2017-09-30T21:00:00.000Z")}}, {$set:{"executionDate":ISODate("2017-09-29T21:50:00.000Z")}} , {multi: true});
+db.incomes.update({"executionDate":{ $gte: ISODate("2017-09-30T21:00:00.000Z"), $lt:  ISODate("2017-10-01T21:00:00.000Z")}}, {$set:{"executionDate":ISODate("2017-09-30T21:50:00.000Z")}} , {multi: true});
+

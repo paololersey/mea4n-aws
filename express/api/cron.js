@@ -9,7 +9,7 @@ var moment = require('moment')
 //router.get('/api/startCron',
 //(req, res, next) => {
 
-var job = new CronJob('50 23 * * *', function () {
+var job = new CronJob('50 00 * * *', function () {
   // console.log('running a task every minute');
   //computation.computeTotals();
   var isTotalSplitPerMachine = true;

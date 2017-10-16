@@ -28,7 +28,8 @@ export const MACHINE_NICE: any = [
     { id: 26, name: 'N-ICE 26' },
     { id: 27, name: 'N-ICE 27' },
     { id: 28, name: 'N-ICE 28' },
-    { id: 29, name: 'N-ICE 29' }
+    { id: 29, name: 'N-ICE 29' },
+    { id: 30, name: 'N-ICE 30' }
 ];
 
 export const ERRORS_NICE: any = [
