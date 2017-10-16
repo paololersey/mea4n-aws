@@ -63,7 +63,6 @@ router.post('/api/getIncomesByFilter',
         if (req.body.groupByDay !== 'N') {
             incomeDao.findIncomesByFilter(reportSearch, (err, incomes) => {
                 if (err) {
-                    console.log("error found on findIncomesByFilter")
                     return next(err)
                 }
                 /*incomes.sort(function(a,b) {              
@@ -71,11 +70,8 @@ router.post('/api/getIncomesByFilter',
                 });*/
                 machineDao.findAllMachines((err, result) => {
                     if (err) {
-                        console.log("error found on findAllMachines")
                         return next(err)
                     }
-                    console.log("incomes.length " + incomes.length)
-                    console.log("reportSearch.incomes\n " + incomes)
                     var workbook = excel.createExcelIncome(reportSearch, incomes, result.length);
                     workbook.write('ExcelFile.xlsx', res);
                 })

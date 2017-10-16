@@ -1,6 +1,6 @@
 var db = require('../../db')
 var Income = db.model('Income',  {
-    machineId: { type: Number, required: true },
+    machineId: { type: String, required: true },
     totalCurrentDay : { type: Number, required: true },
     executionDate: { type: Date, required: true },
     creationDate: { type: Date, required: true },
