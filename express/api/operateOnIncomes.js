@@ -3,10 +3,12 @@ var Income = require('../models/income')
 var incomeDao = require('../dao/incomeDao')
 var compute = require('../logic/computation')
 var excelUtils = require('../logic/utils/excelUtils')
+var dateUtils = require('../logic/utils/dateUtils')
 var excel = require('../logic/excel')
 var moment = require('moment');
 var machineDao = require('../dao/machineDao')
 var messageDao = require('../dao/messageDao')
+
 
 // get all messages
 router.get('/api/getAllIncomes',
@@ -72,7 +74,8 @@ router.post('/api/getIncomesByFilter',
                     if (err) {
                         return next(err)
                     }
-                    var workbook = excel.createExcelIncome(reportSearch, incomes, result.length);
+                    var diffDays = dateUtils.getDiffDaysFromDates(reportSearch.dateFrom, reportSearch.dateTo);
+                    var workbook = excel.createExcelIncome(reportSearch, incomes, result.length, diffDays);
                     workbook.write('ExcelFile.xlsx', res);
                 })
 
@@ -95,4 +98,7 @@ router.post('/api/getIncomesByFilter',
         }
     });
 
+    function daydiff(first, second) {
+        return Math.round((second-first)/(1000*60*60*24));
+    }
 module.exports = router

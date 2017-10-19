@@ -20,7 +20,7 @@ exports.getTotalsSplitByMachine = (machineNumbers, matrixMachineTotalFrequency) 
                                 var lastError = "";
                                 if (machines[k][0].status !== 'OK' && messages[k][0]) {
                                     var minutes = messages[k][0].minutes.toString();
-                                    if(messages[k][0].minutes.length==1) minutes="0"+messages[k][0].minutes.toString();
+                                    if(minutes.length==1) minutes="0"+messages[k][0].minutes.toString();
                                     var date = messages[k][0].hour + ":" + minutes +","+ messages[k][0].dayOfMonth + "/" + messages[k][0].month + "/" + messages[k][0].year
                                     lastError = messages[k][0].errorCode + "," + date
                                 }

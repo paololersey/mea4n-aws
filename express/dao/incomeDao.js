@@ -45,7 +45,7 @@ exports.findIncomesByFilter = function (reportSearch, callback) {
         .exec(callback)
     }
     else{
-        console.log("reportSearch.machineIds " + reportSearch.machineIds)
+        
         Income.find({
             executionDate: {
                 $lte: reportSearch.dateTo,

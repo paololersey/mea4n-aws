@@ -23,3 +23,12 @@ exports.prepareDates = () => {
     return dates;
 
 }
+
+exports.getDiffDaysFromDates = (dateFrom, dateTo) => {
+    var oneDay = 24*60*60*1000;
+    var second = new Date(new Date(dateTo).getFullYear(), new Date(dateTo).getMonth(),new Date(dateTo).getDate());
+    var first = new Date(new Date(dateFrom).getFullYear(), new Date(dateFrom).getMonth(),new Date(dateFrom).getDate());
+    var diffDays = Math.round(Math.abs(first.getTime() - second.getTime())/(oneDay));
+    return diffDays
+}  
+
