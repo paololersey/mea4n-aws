@@ -20,7 +20,7 @@ exports.createExcelIncome = (reportSearch, incomes, machineLength, timerangeLeng
     // Add Worksheets to the workbook
     var worksheet = workbook.addWorksheet('Results')
 
-    
+
     var lastExecutionDate = null
     var areYouFilteringMachines = false
     if (reportSearch.machineIds && reportSearch.machineIds.length > 0) areYouFilteringMachines = true
@@ -32,9 +32,9 @@ exports.createExcelIncome = (reportSearch, incomes, machineLength, timerangeLeng
     var COLUMN_DATA_SPAN = timerangeLength + 1
 
     setExcelHeaderInputParameters(worksheet, reportSearch)
-    var rowIndex = ROW_DATA_START_OFFSET
     var columnIndex = COLUMN_DATA_START_OFFSET
-
+    var rowIndex = ROW_DATA_START_OFFSET + 1
+     
     incomes.map((income) => {
 
         worksheet.cell(ROW_FILTER_START_OFFSET, columnIndex).style(headerStyle)
@@ -44,30 +44,35 @@ exports.createExcelIncome = (reportSearch, incomes, machineLength, timerangeLeng
 
         // here we change column after one column of incomes of the same day
         if (excelUtils.writeNewColumnCondition(lastExecutionDate, execDateDDMMYYYY)) {
-            // write total per column 
-            if (lastExecutionDate != null) {
-                rowIndex = ROW_DATA_START_OFFSET;
-            }
             columnIndex++;
+            if (lastExecutionDate != null) {
+                rowIndex = ROW_DATA_START_OFFSET + 1
+            }
             // write dates on a row
             worksheet.cell(ROW_DATA_START_OFFSET - 1, columnIndex).date(execDateDDMMYYYY).style(dateStyle);
         }
-        if(areYouFilteringMachines) worksheet.cell(rowIndex + 1, COLUMN_DATA_START_OFFSET).string('N-ICE' + income.machineId)
-        rowIndex++;
+        if (areYouFilteringMachines) {
+            worksheet.cell(rowIndex, COLUMN_DATA_START_OFFSET).string('N-ICE' + income.machineId)
+            //write total per day
+            worksheet.cell(rowIndex, columnIndex).number(income.totalCurrentDay).style(numStyle)
+        } else {
+            worksheet.cell(ROW_DATA_START_OFFSET + parseFloat(income.machineId), COLUMN_DATA_START_OFFSET).string('N-ICE' + income.machineId)
+            //write total per day
+            worksheet.cell(ROW_DATA_START_OFFSET + parseFloat(income.machineId), columnIndex).number(income.totalCurrentDay).style(numStyle)
+        }
 
-        //write total per day
-        worksheet.cell(rowIndex, columnIndex).number(income.totalCurrentDay).style(numStyle)
         lastExecutionDate = income.executionDate
+        rowIndex++
     })
 
 
     // write machine number
-    if(!areYouFilteringMachines){
+    if (!areYouFilteringMachines) {
         for (let i = 1; i <= machineLength; i++) {
             worksheet.cell(ROW_DATA_START_OFFSET + i, COLUMN_DATA_START_OFFSET).string('N-ICE' + i)
         }
     }
-    
+
     // write TOTALS PER MACHINE, i.e. sum of the machines income in a period
     worksheet.cell(ROW_DATA_START_OFFSET - 1, COLUMN_DATA_START_OFFSET + COLUMN_DATA_SPAN).string("TOTAL");
     for (let i = ROW_DATA_START_OFFSET + 1; i <= ROW_DATA_START_OFFSET + ROW_DATA_SPAN; i++) {
@@ -81,7 +86,7 @@ exports.createExcelIncome = (reportSearch, incomes, machineLength, timerangeLeng
     for (let i = COLUMN_DATA_START_OFFSET + 1; i <= COLUMN_DATA_SPAN; i++) {
         worksheet.cell(ROW_DATA_START_OFFSET + ROW_DATA_SPAN, i).formula(excelUtils.sumRowsPerSingleColumnFormula(excel, ROW_DATA_START_OFFSET, ROW_DATA_START_OFFSET + ROW_DATA_SPAN - 1, i)).style(numStyle);
     }
-    
+
 
 
     return workbook;
