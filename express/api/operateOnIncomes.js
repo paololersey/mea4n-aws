@@ -4,6 +4,7 @@ var incomeDao = require('../dao/incomeDao')
 var compute = require('../logic/computation')
 var excelUtils = require('../logic/utils/excelUtils')
 var dateUtils = require('../logic/utils/dateUtils')
+var utils = require('../logic/utils/utils')
 var excel = require('../logic/excel')
 var moment = require('moment');
 var machineDao = require('../dao/machineDao')
@@ -52,10 +53,13 @@ router.post('/api/computeAndSaveIncomePerMachine',
 router.post('/api/getIncomesByFilter',
     function (req, res, next) {
 
-        var reportSearch = {};
-        reportSearch.dateFrom = moment(req.body.dateFrom).startOf('day')
-        reportSearch.dateTo = moment(req.body.dateTo).endOf('day')
-        reportSearch = req.body
+        var reportSearch = req.body;
+        reportSearch.dateFrom = moment(req.body.dateFrom).startOf('day').add(1, 'hours');
+        reportSearch.dateTo = moment(req.body.dateTo).endOf('day').add(1, 'hours');
+
+        if (reportSearch.machineIds && reportSearch.machineIds.length > 0) {
+            reportSearch.machineIds = utils.integerSort(reportSearch.machineIds); 
+        }
 
 
         reportSearch.groupByDay = 'N';
@@ -67,9 +71,7 @@ router.post('/api/getIncomesByFilter',
                 if (err) {
                     return next(err)
                 }
-                /*incomes.sort(function(a,b) {              
-                    return (a.machineId.setMilliseconds(0)).getTime() - new Date(b).getTime() 
-                });*/
+                
                 machineDao.findAllMachines((err, result) => {
                     if (err) {
                         return next(err)
@@ -98,7 +100,7 @@ router.post('/api/getIncomesByFilter',
         }
     });
 
-    function daydiff(first, second) {
-        return Math.round((second-first)/(1000*60*60*24));
-    }
+function daydiff(first, second) {
+    return Math.round((second - first) / (1000 * 60 * 60 * 24));
+}
 module.exports = router

@@ -10,7 +10,7 @@ exports.Create2DArray = function (rows) {
     return arr;
 }
 
-exports.sort_array_by= function(field, reverse, pr) {
+exports.sort_array_by = function (field, reverse, pr) {
     reverse = (reverse) ? -1 : 1;
     return function (a, b) {
         a = a[field];
@@ -23,4 +23,10 @@ exports.sort_array_by= function(field, reverse, pr) {
         if (a > b) return reverse * 1;
         return 0;
     }
+}
+
+exports.integerSort = (array) => {
+    return array.sort(function (a, b) {
+        return a - b;
+    })
 }

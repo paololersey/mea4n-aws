@@ -34,7 +34,7 @@ exports.createExcelIncome = (reportSearch, incomes, machineLength, timerangeLeng
     setExcelHeaderInputParameters(worksheet, reportSearch)
     var columnIndex = COLUMN_DATA_START_OFFSET
     var rowIndex = ROW_DATA_START_OFFSET + 1
-     
+
     incomes.map((income) => {
 
         worksheet.cell(ROW_FILTER_START_OFFSET, columnIndex).style(headerStyle)
@@ -52,9 +52,15 @@ exports.createExcelIncome = (reportSearch, incomes, machineLength, timerangeLeng
             worksheet.cell(ROW_DATA_START_OFFSET - 1, columnIndex).date(execDateDDMMYYYY).style(dateStyle);
         }
         if (areYouFilteringMachines) {
-            worksheet.cell(rowIndex, COLUMN_DATA_START_OFFSET).string('N-ICE' + income.machineId)
-            //write total per day
-            worksheet.cell(rowIndex, columnIndex).number(income.totalCurrentDay).style(numStyle)
+            for (let i = 0; i < reportSearch.machineIds.length; i++) {
+                let valueChosen = reportSearch.machineIds[i]
+                if (valueChosen.toString() === income.machineId) {
+                    worksheet.cell(ROW_DATA_START_OFFSET + i + 1, COLUMN_DATA_START_OFFSET).string('N-ICE' + income.machineId)
+                    //write total per day
+                    worksheet.cell(ROW_DATA_START_OFFSET + i + 1, columnIndex).number(income.totalCurrentDay).style(numStyle)
+                    break;
+                }
+            }
         } else {
             worksheet.cell(ROW_DATA_START_OFFSET + parseFloat(income.machineId), COLUMN_DATA_START_OFFSET).string('N-ICE' + income.machineId)
             //write total per day
