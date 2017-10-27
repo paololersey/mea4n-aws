@@ -48,7 +48,7 @@ exports.createExcelMessages = (reportSearch, messages, machineLength) => {
         let month = ""
         if (message.month) month = dayMonthYearsUtils.translateMonth(message.month);
         let weekDay = ""
-        if (message.weekDay) weekDay = dayMonthYearsUtils.translateWeekDay(message.weekDay);
+        if (message.weekDay || message.weekDay==0) weekDay = dayMonthYearsUtils.translateWeekDay(message.weekDay);
 
 
         worksheet.cell(rowIndex, COLUMN_DATA_START_OFFSET).string('N-ICE' + message.machine)

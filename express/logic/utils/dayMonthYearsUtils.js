@@ -19,6 +19,8 @@ exports.translateMonths = (months) => {
 
 exports.translateWeekDay = (weekDay) => {
     switch (weekDay) {
+        case 0:
+            return 'Sunday'
         case 1:
             return 'Monday'
         case 2:
@@ -31,8 +33,7 @@ exports.translateWeekDay = (weekDay) => {
             return 'Friday'
         case 6:
             return 'Saturday'
-        case 0:
-            return 'Sunday'
+
     }
 }
 
