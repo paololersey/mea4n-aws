@@ -21,19 +21,19 @@ import { NgbDateITParserFormatter } from "../../common/ngb-date-it-parser-format
     templateUrl: 'report.component.html',
     styleUrls: ['./report.component.css'],
     providers: [AngularBlobService, ReportService, MachineService, ErrorMapService, NgbDatepickerConfig,
-        {provide: NgbDateParserFormatter, useClass: NgbDateITParserFormatter}]
+        { provide: NgbDateParserFormatter, useClass: NgbDateITParserFormatter }]
 })
 export class ReportComponent implements OnInit {
 
     model: ReportSearch;
     modelSentToServer: ReportSearch
     machineList: IMultiSelectOption[]
-    errorList : IMultiSelectOption[]
-    yearsList : IMultiSelectOption[]
-    monthsList : IMultiSelectOption[]
-    monthDaysList : IMultiSelectOption[]
-    weekDaysList : IMultiSelectOption[]
-    hoursList : IMultiSelectOption[]
+    errorList: IMultiSelectOption[]
+    yearsList: IMultiSelectOption[]
+    monthsList: IMultiSelectOption[]
+    monthDaysList: IMultiSelectOption[]
+    weekDaysList: IMultiSelectOption[]
+    hoursList: IMultiSelectOption[]
     showMessagesFilters: Boolean
     errorMessage: any = {}
 
@@ -82,6 +82,7 @@ export class ReportComponent implements OnInit {
 
     groupByDayChange(groupByDay): any {
         groupByDay = !groupByDay
+        this.model.groupByDay = !this.model.groupByDay
         this.showMessagesFilters = !this.showMessagesFilters
     }
 
@@ -102,7 +103,7 @@ export class ReportComponent implements OnInit {
             error => this.errorMessage = <any>error)
     }
 
-    
+
     // errors
     getErrorsInvoke(): void {
         //this.getErrorsMock();
@@ -120,6 +121,6 @@ export class ReportComponent implements OnInit {
             error => this.errorMessage = <any>error)
     }
 
-    
+
 
 }

@@ -2,10 +2,11 @@ var router = require('express').Router()
 var Income = require('../models/income')
 var incomeDao = require('../dao/incomeDao')
 var compute = require('../logic/computation')
-var excelUtils = require('../logic/utils/excelUtils')
+var excelUtils = require('../logic/excel/utils/excelUtils')
 var dateUtils = require('../logic/utils/dateUtils')
 var utils = require('../logic/utils/utils')
-var excel = require('../logic/excel')
+var excelIncome = require('../logic/excel/excelIncome')
+var excelMessages = require('../logic/excel/excelMessages')
 var moment = require('moment');
 var machineDao = require('../dao/machineDao')
 var messageDao = require('../dao/messageDao')
@@ -52,8 +53,7 @@ router.post('/api/computeAndSaveIncomePerMachine',
 
 router.post('/api/getIncomesByFilter',
     function (req, res, next) {
-
-        var reportSearch = req.body;
+        let reportSearch = Object.assign({}, req.body)
         reportSearch.dateFrom = moment(req.body.dateFrom).startOf('day').add(1, 'hours');
         reportSearch.dateTo = moment(req.body.dateTo).endOf('day').add(1, 'hours');
 
@@ -64,9 +64,9 @@ router.post('/api/getIncomesByFilter',
 
         reportSearch.groupByDay = 'N';
         if (req.body.groupByDay) reportSearch.groupByDay = 'Y';
-
+        
         // find incomes
-        if (req.body.groupByDay !== 'N') {
+        if (reportSearch.groupByDay !== 'N') {
             incomeDao.findIncomesByFilter(reportSearch, (err, incomes) => {
                 if (err) {
                     return next(err)
@@ -77,7 +77,7 @@ router.post('/api/getIncomesByFilter',
                         return next(err)
                     }
                     var diffDays = dateUtils.getDiffDaysFromDates(reportSearch.dateFrom, reportSearch.dateTo);
-                    var workbook = excel.createExcelIncome(reportSearch, incomes, result.length, diffDays);
+                    var workbook = excelIncome.createExcelIncome(reportSearch, incomes, result.length, diffDays);
                     workbook.write('ExcelFile.xlsx', res);
                 })
 
@@ -92,7 +92,7 @@ router.post('/api/getIncomesByFilter',
             messageDao.findPeriodMessagebyFilter(reportSearch, (err, messages) => {
                 machineDao.findAllMachines((err, result) => {
                     if (err) return next(err)
-                    var workbook = excel.createExcelMessages(reportSearch, messages, result.length);
+                    var workbook = excelMessages.createExcelMessages(reportSearch, messages, result.length);
                     workbook.write('ExcelFile.xlsx', res);
                 })
 
@@ -100,7 +100,4 @@ router.post('/api/getIncomesByFilter',
         }
     });
 
-function daydiff(first, second) {
-    return Math.round((second - first) / (1000 * 60 * 60 * 24));
-}
 module.exports = router

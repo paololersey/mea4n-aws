@@ -43,11 +43,13 @@ exports.findLastMessagebyMachineidInError = function (machineId) {
     return Message.find({
             "machine": machineId,
             "status": "PA",
-            "errorCode" :{
-                $not : { $type : 10 },// $type operator selects documents where value is a BSON type (10 is "null")
-                $exists : true
+            "errorCode": {
+                $not: {
+                    $type: 10
+                }, // $type operator selects documents where value is a BSON type (10 is "null")
+                $exists: true
             }
-           
+
         }).sort('-date').limit(1)
         .exec()
 }
@@ -65,11 +67,13 @@ exports.findLastMessagebyMachineidInErrorCallback = function (machineId, callbac
     return Message.find({
             "machine": machineId,
             "status": "PA",
-            "errorCode" :{
-                $not : { $type : 10 },// $type operator selects documents where value is a BSON type (10 is "null")
-                $exists : true
+            "errorCode": {
+                $not: {
+                    $type: 10
+                }, // $type operator selects documents where value is a BSON type (10 is "null")
+                $exists: true
             }
-           
+
         }).sort('-date').limit(1)
         .exec(callback)
 }
@@ -100,21 +104,89 @@ exports.findPeriodMessagebyMachineNumber = function (machineNumber, startDate, e
  * @param  {} callback
  */
 exports.findPeriodMessagebyFilter = function (reportSearch, callback) {
-    return Message.find({
-        //  $where  : "this.machine == '"+machineNumber+"'"
-        machine: { $in :reportSearch.machineNumber},
-        date: {
-            $lte: reportSearch.endDate,
-            $gte: reportSearch.startDate
-        },
-        dayOfMonth : { $in :reportSearch.dayOfMonth}, 
-        month : { $in :reportSearch.month }, 
-        year : { $in :reportSearch.year}, 
-        hour : { $in :reportSearch.hour}, 
-        weekDay: { $in :reportSearch.weekDay}, 
-        errorCode : { $in :reportSearch.errors}, 
-        status: "PA"
-    }).sort('-date').exec(callback)
+    // if no filter just simple query
+    var query
+    let filterCondition = (reportSearch.monthDays && reportSearch.monthDays.length > 0) ||
+        (reportSearch.months && reportSearch.months.length > 0) || (reportSearch.years && reportSearch.years.length > 0) ||
+        (reportSearch.weekDays && reportSearch.weekDays.length > 0) ||
+        (reportSearch.hours && reportSearch.hours.length > 0) || (reportSearch.errors && reportSearch.errors.length > 0) ||
+        (reportSearch.machineIds && reportSearch.machineIds.length > 0)
+
+    if (filterCondition) {
+        query = {
+            date: {
+                $lte: reportSearch.dateTo,
+                $gte: reportSearch.dateFrom
+            },
+            status: "PA",
+            $and: []
+        };
+    } else {
+        query = {
+            date: {
+                $lte: reportSearch.dateTo,
+                $gte: reportSearch.dateFrom
+            },
+            status: "PA"
+        };
+    }
+
+
+   
+
+    if (reportSearch.monthDays && reportSearch.monthDays.length > 0) {
+        query.$and.push({
+            dayOfMonth: {
+                $in: reportSearch.monthDays
+            }
+        });
+    }
+    if (reportSearch.months && reportSearch.months.length > 0) {
+        query.$and.push({
+            month: {
+                $in: reportSearch.months
+            }
+        });
+    }
+    if (reportSearch.years && reportSearch.years.length > 0) {
+        query.$and.push({
+            year: {
+                $in: reportSearch.years
+            }
+        });
+    }
+    if (reportSearch.weekDays && reportSearch.weekDays.length > 0) {
+        query.$and.push({
+            weekDay: {
+                $in: reportSearch.weekDays
+            }
+        });
+    }
+    if (reportSearch.hours && reportSearch.hours.length > 0) {
+        query.$and.push({
+            hour: {
+                $in: reportSearch.hours
+            }
+        });
+    }
+    if (reportSearch.errors && reportSearch.errors.length > 0) {
+        query.$and.push({
+            errorCode: {
+                $in: reportSearch.errors
+            }
+        });
+    }
+
+    if (reportSearch.machineIds && reportSearch.machineIds.length > 0) {
+        query.$and.push({
+            machine: {
+                $in: reportSearch.machineIds
+            }
+        });
+    }
+
+    return Message.find(query).sort('-date').exec(callback);
+
 }
 
 
