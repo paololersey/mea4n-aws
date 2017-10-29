@@ -49,16 +49,19 @@ exports.parsingMessage = function (body) {
 
     if (date) {
         
+        var dateObject = new Date(date)
+        // if not DST - i.e. winter time - time is shifted by 1 hour
+        if(!moment(dateObject).isDST()){
+            date = moment(dateObject).add(-1, 'hours').format('YYYY/MM/DD HH:mm');
+        }
+
         year = date.substring(0, 4)
         month = date.substring(5, 7)
         dayOfMonth = date.substring(8, 10)
         hour = date.substring(11, 13)
         minutes = date.substring(14, 16)
         var dateObject = new Date(date)
-        if (dateObject) weekDay = dateObject.getDay()
-        /*if(moment(dateObject).isDST()){
-            console.log("date is dst");           
-        }*/
+        if (dateObject) weekDay = new Date(date).getDay()
         
 
     }
