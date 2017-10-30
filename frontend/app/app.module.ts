@@ -14,6 +14,7 @@ import { ResetBreakdownModalComponent } from "./modules/control/components/reset
 import { NgbdButtonsCheckbox } from "./modules/common/ngbd-buttons-checkbox";
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DialogModalComponent } from './modules/common/components/dialog-modal.component';
 import { DatepickerPopupComponent } from './modules/common/datepicker-popup.component';
 import { MultiSelectComponent } from './modules/common/ss-multiselect-dropdown.component';
 import { HttpModule, JsonpModule } from "@angular/http";
@@ -44,7 +45,8 @@ import { routing } from './app.routing';
         ReportComponent,
         NgbdButtonsCheckbox,
         DatepickerPopupComponent,
-        MultiSelectComponent
+        MultiSelectComponent,
+        DialogModalComponent
     ],
     // bootstrap: [HomePageComponent]
     bootstrap: [AppComponent]

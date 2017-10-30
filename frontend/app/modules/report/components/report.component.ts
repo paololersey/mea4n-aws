@@ -36,6 +36,10 @@ export class ReportComponent implements OnInit {
     hoursList: IMultiSelectOption[]
     showMessagesFilters: Boolean
     errorMessage: any = {}
+    content : any = {}
+    //messageToDialog : String 
+
+    @Output() messageToDialog = new EventEmitter();
 
     constructor(private reportService: ReportService,
         private angularBlobService: AngularBlobService,
@@ -55,19 +59,27 @@ export class ReportComponent implements OnInit {
         // VALIDATION: 
         // - dateFrom and dateTo always mandatory; 
 
-        /*if (!this.model.groupByDay && (!this.model.errors || !this.model.weekDays || !this.model.monthDays || !this.model.months || !this.model.years || !this.model.hours)) {
-            alert('when groupByDay false, at least one of the field in the section must be chosen: please check!')
-        }*/
         this.modelSentToServer = JSON.parse(JSON.stringify(this.model))
         this.modelSentToServer.dateFrom = this.reportService.transformDate(this.model.dateFrom);
         this.modelSentToServer.dateTo = this.reportService.transformDate(this.model.dateTo);
         if (this.modelSentToServer.dateFrom.valueOf() > this.modelSentToServer.dateTo.valueOf()) {
             alert('"Date from" is after "Date to": please check!')
         }
-
-        this.angularBlobService.download(this.modelSentToServer);
+        this.reportService.getExceedingMessages(this.modelSentToServer).toPromise().then((message) => {
+        //this.reportService.getExceedingMessagesMock(this.modelSentToServer).then((message) => {
+            if (message && message === 'OK') {
+                this.angularBlobService.download(this.modelSentToServer);
+            }
+            else{
+                //this.messageToDialog = 'Excel too large: ' + message
+                //this.messageToDialog.emit('Excel too large: ' + message)
+                alert('Excel too large: ' + message)
+            }
+            
+        });
 
     }
+    
 
     ngOnInit(): void {
         this.getMachineInvoke()

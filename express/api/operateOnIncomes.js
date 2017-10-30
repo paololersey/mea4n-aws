@@ -58,20 +58,17 @@ router.post('/api/getIncomesByFilter',
         reportSearch.dateTo = moment(req.body.dateTo).endOf('day').add(1, 'hours');
 
         if (reportSearch.machineIds && reportSearch.machineIds.length > 0) {
-            reportSearch.machineIds = utils.integerSort(reportSearch.machineIds); 
+            reportSearch.machineIds = utils.integerSort(reportSearch.machineIds);
         }
 
 
         reportSearch.groupByDay = 'N';
         if (req.body.groupByDay) reportSearch.groupByDay = 'Y';
-        
+
         // find incomes
         if (reportSearch.groupByDay !== 'N') {
             incomeDao.findIncomesByFilter(reportSearch, (err, incomes) => {
-                if (err) {
-                    return next(err)
-                }
-                
+                if (err) return next(err)           
                 machineDao.findAllMachines((err, result) => {
                     if (err) {
                         return next(err)
@@ -90,6 +87,7 @@ router.post('/api/getIncomesByFilter',
         // find messages
         else {
             messageDao.findPeriodMessagebyFilter(reportSearch, (err, messages) => {
+                if (err) return next(err) 
                 machineDao.findAllMachines((err, result) => {
                     if (err) return next(err)
                     var workbook = excelMessages.createExcelMessages(reportSearch, messages, result.length);

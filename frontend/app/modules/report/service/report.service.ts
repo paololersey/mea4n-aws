@@ -11,6 +11,7 @@ import { ReportSearch } from '../model/reportSearch';
 export class ReportService {
 
   private triggerReportIncomesByFilterUrl = 'api/getIncomesByFilter';
+  private messagesCountUrl = '/api/messagesCount';
   reportSearch: ReportSearch
   dateStruct: any = {};
 
@@ -21,7 +22,6 @@ export class ReportService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     
-    
     return this.http.post(this.triggerReportIncomesByFilterUrl, { reportSearch }, options)
       .map(this.extractData)
       .catch(this.handleError);
@@ -31,7 +31,17 @@ export class ReportService {
     return new Date(dateStruct.year, dateStruct.month-1, dateStruct.day);
   }
 
+  getExceedingMessages(reportSearch: ReportSearch): Observable<String> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.messagesCountUrl, {reportSearch}, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
 
+  getExceedingMessagesMock(reportSearch: ReportSearch): Promise<String> {
+    return Promise.resolve("KO");
+  }
 
   /* utility methods */
 
