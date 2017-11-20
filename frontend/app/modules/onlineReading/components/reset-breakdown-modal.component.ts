@@ -1,15 +1,15 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { ICellRendererAngularComp } from "ag-grid-angular/main";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { UpdateStatusMachineService } from '../service/update-status-machine.service'
-import { EmitService } from '../service/emit.service'
+import { MachineService } from '../../common/service/machine.service'
+import { EmitService } from '../../common/service/emit.service'
 
 
 @Component({
     selector: 'reset-breakdown-modal',
     templateUrl: './reset-breakdown-modal.component.html',
     styleUrls: ['./reset-breakdown-modal.component.css'],
-    providers: [UpdateStatusMachineService, EmitService]
+    providers: [ EmitService]
 
 })
 export class ResetBreakdownModalComponent implements ICellRendererAngularComp {
@@ -25,14 +25,14 @@ export class ResetBreakdownModalComponent implements ICellRendererAngularComp {
         this.params = params;
     }
     
-    constructor(private modalService: NgbModal, private updateStatusMachineService: UpdateStatusMachineService,
+    constructor(private modalService: NgbModal, private machineService: MachineService,
         private emitService: EmitService) { }
 
     public open(content) {
         let niceMachineId = this.params.rowIndex + 1;
         this.modalService.open(content).result.then((result) => {
             if (result == "Confirm") {
-                this.updateStatusMachineService.updateStatus("OK", niceMachineId)
+                this.machineService.updateStatus("OK", niceMachineId)
                     .subscribe(
                     result => {
                         this.updateStatusChange.emit(result)

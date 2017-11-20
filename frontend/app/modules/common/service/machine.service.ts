@@ -12,6 +12,8 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 export class MachineService {
 
   private machineRetrievalUrl = 'api/getMachines';
+  private updateStatusMachineUrl = 'api/statusUpd';
+
   machine: Machine
   dateStruct: any = {};
 
@@ -20,6 +22,16 @@ export class MachineService {
 
   getMachines(): Observable<IMultiSelectOption[]> {
     return this.http.get(this.machineRetrievalUrl)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  updateStatus(status: String, machineId: String): Observable<Machine> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    
+    //return new Observable<Machine>();
+    return this.http.post(this.updateStatusMachineUrl, { status, machineId }, options)
       .map(this.extractData)
       .catch(this.handleError);
   }

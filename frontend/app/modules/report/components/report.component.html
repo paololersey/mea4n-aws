@@ -144,7 +144,7 @@
         </div>
     </form>
     
-    <ng-template>
-        <modaldialog [content]="messageToDialog"></modaldialog>
-    </ng-template>
+    <div *ngIf="showDialog">
+        <modaldialog></modaldialog>
+    </div>
 </div>

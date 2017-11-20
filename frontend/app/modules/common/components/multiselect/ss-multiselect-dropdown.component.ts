@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from "@angular/core";
 import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
-import { MachineService } from './service/machine.service';
+import { MachineService } from './../../service/machine.service';
 
 @Component({
     selector: 'multiselect',

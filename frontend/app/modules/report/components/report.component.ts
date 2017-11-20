@@ -3,9 +3,8 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OnInit } from '@angular/core';
 import { ReportSearch } from '../model/reportSearch';
-import { AngularBlobService } from '../service/blob.export.service';
+import { AngularBlobService } from '../service/angular-blob.service';
 import { ReportService } from '../service/report.service';
-import { CustomBrowserXhr } from '../service/custom.browser.xhr';
 import { BrowserXhr } from '@angular/http';
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { NgbDatepickerConfig, NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
@@ -13,6 +12,9 @@ import { MACHINE_NICE, ERRORS_NICE, YEARS, MONTHS, MONTHDAYS, WEEKDAYS, HOURS } 
 import { DatepickerPopupComponent } from '../../common/datepicker-popup.component';
 import { MachineService } from '../../common/service/machine.service';
 import { ErrorMapService } from '../../common/service/error-map.service';
+import { DialogModalService } from '../../common/service/dialog-modal.service'
+
+
 import { Machine } from '../../common/model/machine';
 import { NgbDateITParserFormatter } from "../../common/ngb-date-it-parser-formatter"
 
@@ -20,7 +22,7 @@ import { NgbDateITParserFormatter } from "../../common/ngb-date-it-parser-format
     selector: 'report',
     templateUrl: 'report.component.html',
     styleUrls: ['./report.component.css'],
-    providers: [AngularBlobService, ReportService, MachineService, ErrorMapService, NgbDatepickerConfig,
+    providers: [NgbDatepickerConfig,
         { provide: NgbDateParserFormatter, useClass: NgbDateITParserFormatter }]
 })
 export class ReportComponent implements OnInit {
@@ -35,8 +37,9 @@ export class ReportComponent implements OnInit {
     weekDaysList: IMultiSelectOption[]
     hoursList: IMultiSelectOption[]
     showMessagesFilters: Boolean
+    showDialog: Boolean
     errorMessage: any = {}
-    content : any = {}
+    content: any = {}
     //messageToDialog : String 
 
     @Output() messageToDialog = new EventEmitter();
@@ -45,6 +48,7 @@ export class ReportComponent implements OnInit {
         private angularBlobService: AngularBlobService,
         private machineService: MachineService,
         private errorService: ErrorMapService,
+        private dialogModalService: DialogModalService,
         config: NgbDatepickerConfig,
         ngbDateParserFormatter: NgbDateParserFormatter) {
         this.model = new ReportSearch();
@@ -65,21 +69,23 @@ export class ReportComponent implements OnInit {
         if (this.modelSentToServer.dateFrom.valueOf() > this.modelSentToServer.dateTo.valueOf()) {
             alert('"Date from" is after "Date to": please check!')
         }
-        this.reportService.getExceedingMessages(this.modelSentToServer).toPromise().then((message) => {
-        //this.reportService.getExceedingMessagesMock(this.modelSentToServer).then((message) => {
+        //this.reportService.getExceedingMessages(this.modelSentToServer).toPromise().then((message) => {
+        this.reportService.getExceedingMessagesMock(this.modelSentToServer).then((message) => {
             if (message && message === 'OK') {
                 this.angularBlobService.download(this.modelSentToServer);
             }
-            else{
+            else {
                 //this.messageToDialog = 'Excel too large: ' + message
-                //this.messageToDialog.emit('Excel too large: ' + message)
-                alert('Excel too large: ' + message)
+                //this.showDialog = true
+                this.messageToDialog.emit('Excel too large: ' + message)
+                //this.dialogModalService.open('excel is toto large')
+                //  alert('Excel too large: ' + message)
             }
-            
+
         });
 
     }
-    
+
 
     ngOnInit(): void {
         this.getMachineInvoke()
@@ -89,6 +95,7 @@ export class ReportComponent implements OnInit {
         this.monthDaysList = MONTHDAYS
         this.weekDaysList = WEEKDAYS
         this.hoursList = HOURS
+        this.showDialog = false
     }
 
 

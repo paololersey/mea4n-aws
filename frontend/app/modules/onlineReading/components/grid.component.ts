@@ -5,14 +5,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Income } from '../model/income';
 import { IncomeService } from '../service/incomes.service';
 import { OnInit, OnChanges } from '@angular/core'
-import { TotalIncomeView } from '../components/total-income-view.component'
+import { TotalIncomeViewComponent } from '../components/total-income-view.component'
 import { ResetBreakdownModalComponent } from '../components/reset-breakdown-modal.component'
-import { EmitService }  from '../service/emit.service';
+
 @Component({
     selector: 'ag-grid',
     templateUrl: 'grid.component.html',
     styleUrls: ['./grid.component.css'],
-    providers: [IncomeService, EmitService],
     inputs: ['statusChange']
 })
 export class GridComponent implements OnInit, OnChanges {
@@ -26,7 +25,7 @@ export class GridComponent implements OnInit, OnChanges {
 
     
    
-    constructor(private incomeService: IncomeService, private emitService: EmitService) {
+    constructor(private incomeService: IncomeService) {
 
        
         /*eventUpdate(event: object) {

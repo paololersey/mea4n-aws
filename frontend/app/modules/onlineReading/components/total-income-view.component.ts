@@ -13,7 +13,7 @@ import { Input } from '@angular/core'
     styleUrls: ['./total-income-view.component.css'],
     providers: [IncomeService]
 })
-export class TotalIncomeView implements OnInit {
+export class TotalIncomeViewComponent implements OnInit {
 
     private errorMessage: string;;
     public totals: Array<Number> = [];
