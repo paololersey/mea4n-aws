@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OnInit } from '@angular/core'
 import { Input } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router';
+import { Router} from '@angular/router';
 import { Login } from './model/login';
 import { FormsModule } from '@angular/forms';
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     returnUrl: string;
 
-    constructor() { 
+    constructor(private router: Router) { 
             this.model = new Login(); 
     }
 
@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
     }
 
     login(): void {
-        console.log("ijsjc")
+        // ustente loggato
+        this.router.navigate(['/application']);
     }
 
     clear(): void {
