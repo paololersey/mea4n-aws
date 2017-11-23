@@ -6,9 +6,13 @@ import { Income } from './modules/onlineReading/model/income';
 import { OnInit } from '@angular/core'
 
 @Component({
-    selector: 'my-app',
+   // selector: 'my-app',
     templateUrl: 'app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+    ngOnInit(): void {
+        console.log("cioa")
+    }
 }

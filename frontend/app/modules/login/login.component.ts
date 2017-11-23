@@ -7,11 +7,11 @@ import { Login } from './model/login';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'form-page',
-    templateUrl: 'form-page.component.html',
-    styleUrls: ['./form-page.component.css']
+    selector: 'login',
+    templateUrl: 'login.component.html',
+    styleUrls: ['./login.component.css']
 })
-export class FormPageComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
     model: any = {};
     loading = false;
@@ -29,7 +29,7 @@ export class FormPageComponent implements OnInit {
         console.log("ijsjc")
     }
 
-     clear(): void {
+    clear(): void {
         this.model = new Login(); 
     }
 

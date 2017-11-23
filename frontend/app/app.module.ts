@@ -9,12 +9,13 @@ import { CoreModule } from './modules/core/core.module';
 import { OnlineReadingModule } from './modules/onlineReading/online-reading.module';
 import { ReportModule } from './modules/report/report.module';
 import { NavigatorModule } from './modules/navigator/navigator.module';
+import { LoginModule } from './modules/login/login.module';
+import { MainModule } from './modules/main/main.module';
 
 // application
 import { AppComponent } from "./app.component";
-import { FormPageComponent } from './modules/login/form-page.component';
-import { HomePageComponent } from './home-page.component';
-import { routing } from './app.routing';
+import { RootComponent } from './root.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -22,20 +23,21 @@ import { routing } from './app.routing';
         BrowserModule,
         SharedModule,
         CoreModule,
-        routing,
+        AppRoutingModule,
 
         //features modules
         NavigatorModule,
+        LoginModule,
+        MainModule,
         OnlineReadingModule,
         ReportModule
     ],
     declarations: [
-        AppComponent,
-        FormPageComponent,
-        HomePageComponent
+        RootComponent,
+        AppComponent
     ],
-    // bootstrap: [HomePageComponent]
-    bootstrap: [AppComponent]
+    bootstrap: [RootComponent]
+    //// bootstrap: [AppComponent]
 })
 export class AppModule {
 }

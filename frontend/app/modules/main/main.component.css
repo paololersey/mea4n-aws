@@ -1,0 +1,38 @@
+body {
+      font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+
+
+
+.card .card-header {
+    background-color: #5B9BD5 !important;
+}
+
+
+/* Extra small devices (phones, up to 767px) */
+
+@media (max-width: 767px) and (min-width: 200px) {
+
+    
+}
+
+
+/* Small devices (tablets, 768px and up) */
+
+@media (min-width: 768px) and (max-width: 991px) {
+   
+}
+
+
+/* tablets/desktops and up ----------- */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  
+}
+
+
+/* large desktops and up ----------- */
+
+@media screen and (min-width: 1200px) {
+    
+}
