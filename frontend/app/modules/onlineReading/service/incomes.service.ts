@@ -6,8 +6,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { CURRENT_INCOMES } from './mock-current-incomes';
 import { TOTAL_CURRENT_INCOMES } from './mock-total-current-incomes';
-import { Income } from '../model/Income';
-import { TotalIncome } from '../model/total-Income';
+import { Income } from '../model/income';
+import { TotalIncome } from '../model/total-income';
 
 
 @Injectable()
