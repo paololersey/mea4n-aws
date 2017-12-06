@@ -69,8 +69,8 @@ export class ReportComponent implements OnInit {
         if (this.modelSentToServer.dateFrom.valueOf() > this.modelSentToServer.dateTo.valueOf()) {
             alert('"Date from" is after "Date to": please check!')
         }
-        //this.reportService.getExceedingMessages(this.modelSentToServer).toPromise().then((message) => {
-        this.reportService.getExceedingMessagesMock(this.modelSentToServer).then((message) => {
+        this.reportService.getExceedingMessages(this.modelSentToServer).toPromise().then((message) => {
+        //this.reportService.getExceedingMessagesMock(this.modelSentToServer).then((message) => {
             if (message && message === 'OK') {
                 this.angularBlobService.download(this.modelSentToServer);
             }
