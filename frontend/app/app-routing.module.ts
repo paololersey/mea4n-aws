@@ -5,9 +5,9 @@ import { NavigatorComponent} from './modules/navigator/components/navigator.comp
 import { NgModule }             from '@angular/core';
 
 const appRoutes: Routes = [
-    { path: '', component: LoginComponent /*, canActivate: [AuthGuard] */},
-    { path: 'application?token=NiCpqU9yV59x4m8yFvL4X01OthtxCEh6', component: MainComponent/*, loadChildren: 'modules/main/main.module#MainModule',*//*, canActivate: [AuthGuard] */},
-    
+  { path: '',loadChildren: './modules/login/login.module#LoginModule', /*, canActivate: [AuthGuard] */},
+  { path: 'application?token=NiCpqU9yV59x4m8yFvL4X01OthtxCEh6', component: MainComponent},/*loadChildren: './modules/main/main.module#MainModule' }, ///*, canActivate: [AuthGuard] */
+
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
@@ -18,7 +18,7 @@ const appRoutes: Routes = [
       appRoutes,
       {
         enableTracing: true // <-- debugging purposes only
-       // preloadingStrategy: SelectivePreloadingStrategy,
+       //cd fro preloadingStrategy: SelectivePreloadingStrategy,
       }
     )
   ],

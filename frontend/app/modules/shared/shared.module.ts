@@ -1,9 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-// ag-grid
-import { AgGridModule } from "ag-grid-angular/main";
 // applicatio
-import { ResetBreakdownModalComponent } from "../../modules/onlineReading/components/reset-breakdown-modal.component";
 
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,8 +11,6 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
     imports: [
         CommonModule,
-        AgGridModule.withComponents([ResetBreakdownModalComponent]
-        ),
         NgbModule.forRoot(),
         HttpModule,
         JsonpModule,
@@ -24,7 +19,6 @@ import { FormsModule } from '@angular/forms';
     ],
     exports: [
         CommonModule, 
-        AgGridModule,
         HttpModule,
         JsonpModule,
         FormsModule,

@@ -36,7 +36,7 @@ module.exports = {
             {
                 test: /\.ts$/,
                 exclude: path.resolve(__dirname, "node_modules"),
-                loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+                loaders: ['awesome-typescript-loader', 'angular2-template-loader', 'angular2-router-loader']
             },
             {
                 test: /\.html$/,
