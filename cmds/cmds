@@ -46,5 +46,10 @@ sudo mongorestore --host 52.50.66.116 --port 27017 --authenticationDatabase admi
 
 
 ssh -i todoalcoholic.pem bitnami@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com
+
+cd /home/paolo/Documenti/Paolo/Lavoro/N-ICE/keys/Prod;
 ssh -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaws.com
+
+-- rockmongo
+ssh -N -L 8888:127.0.0.1:80 -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaws.com
  
