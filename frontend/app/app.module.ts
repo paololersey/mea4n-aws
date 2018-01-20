@@ -24,11 +24,12 @@ import { RootComponent } from './root.component';
         BrowserModule,
         SharedModule,
         CoreModule,
+        NavigatorModule,
         AppRoutingModule,
+        
+        /* login is on-demand */ 
 
         /* features modules */
-        NavigatorModule,
-        LoginModule,
         MainModule,
         OnlineReadingModule,
         ReportModule

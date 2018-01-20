@@ -53,7 +53,7 @@ export class ReportComponent implements OnInit {
         ngbDateParserFormatter: NgbDateParserFormatter) {
         this.model = new ReportSearch();
         this.model.groupByDay = true
-        config.minDate = { year: 2017, month: 1, day: 1 };
+        config.minDate = { year: 2010, month: 1, day: 1 };
         config.maxDate = { year: (new Date()).getFullYear(), month: (new Date()).getMonth() + 1, day: (new Date()).getDate() };
     }
 
@@ -69,21 +69,25 @@ export class ReportComponent implements OnInit {
         if (this.modelSentToServer.dateFrom.valueOf() > this.modelSentToServer.dateTo.valueOf()) {
             alert('"Date from" is after "Date to": please check!')
         }
-        this.reportService.getExceedingMessages(this.modelSentToServer).toPromise().then((message) => {
-        //this.reportService.getExceedingMessagesMock(this.modelSentToServer).then((message) => {
-            if (message && message === 'OK') {
-                this.angularBlobService.download(this.modelSentToServer);
-            }
-            else {
-                //this.messageToDialog = 'Excel too large: ' + message
-                //this.showDialog = true
-                this.messageToDialog.emit('Excel too large: ' + message)
-                //this.dialogModalService.open('excel is toto large')
-                //  alert('Excel too large: ' + message)
-            }
-
-        });
-
+        if(!this.modelSentToServer.groupByDay){
+            this.reportService.getExceedingMessages(this.modelSentToServer).toPromise().then((message) => {
+                //this.reportService.getExceedingMessagesMock(this.modelSentToServer).then((message) => {
+                    if (message && message === 'OK') {
+                        this.angularBlobService.download(this.modelSentToServer);
+                    }
+                    else {
+                        //this.messageToDialog = 'Excel too large: ' + message
+                        //this.showDialog = true
+                        //this.messageToDialog.emit('Excel too large: ' + message)
+                        //this.dialogModalService.open('excel is toto large')
+                        alert('Excel too large: ' + message)
+                    }
+        
+                });
+        }
+        else{
+            this.angularBlobService.download(this.modelSentToServer);
+        }
     }
 
 
