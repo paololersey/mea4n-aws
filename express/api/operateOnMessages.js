@@ -24,6 +24,8 @@ router.get('/api/getDayMessage/:machineId',
         let promise = messageDao.findPeriodMessagebyMachineNumber(machineId, startDate, endDate);
         promise.then((messages) => {
             res.status(200).json(messages);
+        }, (err) =>{
+            res.status(500).json(err);
         });
 
     });

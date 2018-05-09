@@ -41,8 +41,6 @@ db.createUser({
 
 sudo bash ctlscript.sh restart mongodb
 sudo mongo admin --username paolokersey --password kersey11
-sudo mongodump --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
-sudo mongorestore --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
 
 
 ssh -i todoalcoholic.pem bitnami@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com
@@ -53,3 +51,13 @@ ssh -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaw
 -- rockmongo
 ssh -N -L 8888:127.0.0.1:80 -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaws.com
  
+-- backup / mail
+sudo mongodump --host 34.230.189.92 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
+        -- restore local
+        sudo mongorestore -d machine --archive="./backups/log.$(date +%Y%m%d)" --gzip
+        -- restore test
+        sudo mongorestore --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
+        
+        echo "Mongodump" | mutt -a "./backups/log.20180427" -s "Mongodump 20180427" -- paolospadoni1980@gmail.com
+
+
