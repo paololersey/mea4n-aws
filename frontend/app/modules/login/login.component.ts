@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         // utente loggato 
         if (this.model.username === 'nice' && this.model.password === 'nice') {
             this.token = "?token=NiCpqU9yV59x4m8yFvL4X01OthtxCEh6";
-            this.router.navigate(['/application' + this.token]);
+        this.router.navigate(['/application'  /*+this.token*/]);
 
             return;
         }

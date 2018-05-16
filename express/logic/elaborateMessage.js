@@ -25,15 +25,14 @@ exports.findAndSaveMessage = (sender, message, next) => {
                                     if (message.moneyFromLastSms > 0) console.log("money is not the same as last message, so moneyFromLastSms=" + message.moneyFromLastSms)
                                     if (!message.moneyFromLastSms || message.moneyFromLastSms < 0) {
                                         message.moneyFromLastSms = message.money;
-                                        mail.sendMail("INCOME ERROR", message.machine, message.date).then(
+                                        /*mail.sendMail("INCOME ERROR", message.machine, message.date).then(
                                             (infoMessage) => {
                                                 resolve(infoMessage)
                                             },
                                             (error) => {
                                                 reject(Error(error))
                                             }
-                                        )
-
+                                        )*/
                                     }
                                 } else {
                                     message.money = 0

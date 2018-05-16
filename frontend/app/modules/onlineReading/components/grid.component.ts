@@ -32,11 +32,6 @@ export class GridComponent implements OnInit, OnChanges {
             this.counterValue = event.count;
         }*/
 
-        
-
-        setInterval(() => {
-            this.getIncomesInvoke();
-        }, 60000);
 
         // we pass an empty gridOptions in, so we can grab the api out
         this.gridOptions = <GridOptions>{
