@@ -22,9 +22,6 @@ export class TotalIncomeViewComponent implements OnInit {
     public panels: Array<IPanel> = [];
 
     constructor(private incomeService: IncomeService) {
-        setInterval(() => {
-            this.getTotalCurrentIncomesInvoke();
-        }, 60000);
     };
 
     ngOnInit(): void {
