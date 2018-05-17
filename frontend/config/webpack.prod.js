@@ -44,7 +44,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|ico)$/,
-                loader: 'file-loader?name=assets/[name].[hash].[ext]'
+                loader: 'file-loader?name=images/[name].[ext]'
             },
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
