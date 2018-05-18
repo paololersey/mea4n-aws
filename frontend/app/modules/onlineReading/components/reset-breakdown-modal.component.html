@@ -1,4 +1,6 @@
-<div align="center"><button class="btn btn-primary reset-btn" (click)="open(content)" type="button">Reset</button></div>
+<div align="center">
+  <i class="fa fa-eraser pointer" (click)="open(content)" aria-hidden="true"></i>
+</div>
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Confirmation reset</h4>

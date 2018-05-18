@@ -1,3 +1,6 @@
 .has-error{
     border-color: red;
 }
+.pointer {
+    cursor:pointer
+}

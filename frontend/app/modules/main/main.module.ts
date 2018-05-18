@@ -4,7 +4,7 @@ import { SharedComponentModule } from './../shared/shared-component.module';
 import { MainRoutingModule } from './main.routing';
 import { OnlineReadingModule } from './../onlineReading/online-reading.module';
 import { ReportModule } from './../report/report.module'
-import { VendingMachineModule } from './../anagrafica/vending-machine.module';;
+import { VendingMachineModule } from './../vending-machine/vending-machine.module';;
 import { MainComponent } from './main.component';
 import { MultiSelectComponent } from '../common/components/multiselect/ss-multiselect-dropdown.component'
 

@@ -1,3 +1,3 @@
-db.machines.update({"errorCode" : "A6"},{$set:{"emailToSend":"N"}});
-db.machines.update({"errorCode" : "B6"},{$set:{"emailToSend":"N"}});
-db.machines.update({"errorCode" : "IC"},{$set:{"emailToSend":"N"}});
+db.errormaps.update({"errorCode" : "A6"},{$set:{"emailToSend":"N"}});
+db.errormaps.update({"errorCode" : "B6"},{$set:{"emailToSend":"N"}});
+db.errormaps.update({"errorCode" : "IC"},{$set:{"emailToSend":"N"}});

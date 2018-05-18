@@ -8,7 +8,7 @@ import { ReportService } from '../service/report.service';
 import { BrowserXhr } from '@angular/http';
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { NgbDatepickerConfig, NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-import { MACHINE_NICE, ERRORS_NICE, YEARS, MONTHS, MONTHDAYS, WEEKDAYS, HOURS } from '../service/constants.service';
+import { MACHINE_NICE, ERRORS_NICE, YEARS, MONTHS, MONTHDAYS, WEEKDAYS, HOURS } from '../../common/service/constants.service';
 import { DatepickerPopupComponent } from '../../common/datepicker-popup.component';
 import { MachineService } from '../../common/service/machine.service';
 import { ErrorMapService } from '../../common/service/error-map.service';
