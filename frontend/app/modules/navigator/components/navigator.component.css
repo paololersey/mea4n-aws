@@ -4,5 +4,11 @@
 }
 
 .card-block{
-    background-color: #5B9BD5;
+    background-color: #2EB5E5;
+}
+
+.img {
+    max-width: 30%;
+    max-height: 30%;
+    float: right;
 }

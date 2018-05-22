@@ -1,13 +1,18 @@
 
 
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+
 
 @Injectable()
 export class EmitService {
 
-    myEvent: EventEmitter<any>;
+    public flagSearch: EventEmitter<Boolean>;
+
     constructor() {
-        this.myEvent = new EventEmitter();
+        this.flagSearch = new EventEmitter();
     }
 
+    public startSearch(boo: Boolean ): void {
+        this.flagSearch.emit(boo);
+    }
 }

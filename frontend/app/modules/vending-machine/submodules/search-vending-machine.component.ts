@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { VendingMachineSearch} from './../model/vendingMachineSearch';
+import { EmitService} from './../../../modules/common/service/emit.service';
 import { MACHINE_NICE, ERRORS_NICE, YEARS, MONTHS, MONTHDAYS, WEEKDAYS, HOURS } from '../../common/service/constants.service';
 
 
@@ -20,6 +21,10 @@ export class SearchVendingMachineComponent implements OnInit{
     machineList: IMultiSelectOption[];
     model: VendingMachineSearch;
 
+    constructor(private emitService: EmitService) {
+        //emitService.flagSearch.subscribe(item => console.log(item));    
+    }
+
     ngOnInit(): void {
         this.getMachineInvoke();
         this.model = new VendingMachineSearch()
@@ -27,8 +32,8 @@ export class SearchVendingMachineComponent implements OnInit{
     }      
     
 
-    search(): void {
-      this.searchFlag = true;
+    find(): void {
+      this.emitService.startSearch(true);
     }
 
     // machines
