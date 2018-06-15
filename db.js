@@ -13,6 +13,11 @@ if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     process.env.OPENSHIFT_APP_NAME;
 }
 
+// HEROKU string
+if (process.env.MONGODB_URI) {
+    connectionString = process.env.MONGODB_URI;
+}
+
 // AWS connection string
 
 // TEST
