@@ -5,8 +5,8 @@ import { NavigatorComponent } from './modules/navigator/components/navigator.com
 import { NgModule } from '@angular/core';
 
 const appRoutes: Routes = [
-  { path: 'login', loadChildren: './modules/login/login.module#LoginModule', /*, canActivate: [AuthGuard] */ },
-  { path: '', loadChildren: './modules/main/main.module#MainModule' }, ///*, canActivate: [AuthGuard] */
+  { path: '', loadChildren: './modules/login/login.module#LoginModule', /*, canActivate: [AuthGuard] */ },
+  { path: 'application', loadChildren: './modules/main/main.module#MainModule' }, ///*, canActivate: [AuthGuard] */
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
