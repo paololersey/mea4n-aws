@@ -51,6 +51,9 @@ ssh -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaw
 
 -- rockmongo
 ssh -N -L 8888:127.0.0.1:80 -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaws.com
+
+-- mLab sandbox on heroku 
+mongo ds261440.mlab.com:61440/heroku_27t7rq4b -u heroku_27t7rq4b  -p kersey128D1
  
 -- backup / mail
 sudo mongodump --host 34.230.189.92 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
