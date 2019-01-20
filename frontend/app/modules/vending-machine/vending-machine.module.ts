@@ -8,10 +8,12 @@ import { VendingMachineRoutingModule } from './vending-machine.routing';
 import { VendingMachineComponent } from './vending-machine.component';
 
 import { MultiSelectComponent } from '../common/components/multiselect/ss-multiselect-dropdown.component'
+import { MachineDialogModule } from './submodules/machine-dialog/machine-dialog.module';
 
 @NgModule({
-    imports: [SharedModule, SharedComponentModule, VendingMachineRoutingModule ,SearchVendingMachineModule, GridVendingMachineModule],
-    declarations: [ VendingMachineComponent ],
-    exports: [ SearchVendingMachineModule, GridVendingMachineModule, VendingMachineComponent]
+    imports: [SharedModule, SharedComponentModule, VendingMachineRoutingModule,
+        MachineDialogModule, SearchVendingMachineModule, GridVendingMachineModule],
+    declarations: [VendingMachineComponent],
+    exports: [SearchVendingMachineModule, GridVendingMachineModule, MachineDialogModule, VendingMachineComponent]
 })
-export class  VendingMachineModule { }
+export class VendingMachineModule { }

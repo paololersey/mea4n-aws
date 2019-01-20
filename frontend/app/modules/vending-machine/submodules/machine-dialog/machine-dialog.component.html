@@ -1,0 +1,26 @@
+<div align="center" *ngIf="!createFlag">
+  <i class="fa fa-pencil pointer" (click)="open(content)" aria-hidden="true"></i>
+</div>
+<button *ngIf="createFlag" type="button" (click)="open(content)" class="btn btn-primary" style="cursor:pointer">Create</button>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Insert/Edit vending machine</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>All the inputs here</p>
+  </div>
+  <div class="modal-footer">
+    <div class="col-xs-3 col-sm-3 col-md-3">
+      <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">&nbsp;</div>
+    <div class="col-xs-3 col-sm-3 col-md-3">
+      <button type="button" class="btn btn-primary" (click)="c('Confirm')">Confirm</button>
+    </div>
+
+  </div>
+</ng-template>

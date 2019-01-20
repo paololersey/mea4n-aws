@@ -1,0 +1,50 @@
+.custom-ag {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.ag-blue .ag-header {
+    color: #34A8E9
+}
+
+/* small devices (phones, up to 480px) */
+
+@media (max-width: 767px) and (min-width: 200px) {
+    .custom-ag {
+        width: 100%;
+        height: 800px;
+        font-size: 22px;
+    }
+}
+
+
+/* Small devices (tablets, 768px and up) */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .custom-ag {
+        width: 99%;
+        height: 800px;
+        font-size: 22px;
+    }
+}
+
+
+/* tablets/desktops and up ----------- */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .custom-ag {
+        width: 99%;
+        height: 800px;
+        font-size: 20px;
+    }
+}
+
+
+/* large desktops and up ----------- */
+
+@media screen and (min-width: 1200px) {
+    .custom-ag {
+        width: 100%;
+        height: 800px;
+        font-size: 18px;
+    }
+}

@@ -19,6 +19,7 @@ export class SearchVendingMachineComponent implements OnInit{
 
     searchFlag: any;
     machineList: IMultiSelectOption[];
+    statusList: IMultiSelectOption[];
     model: VendingMachineSearch;
 
     constructor(private emitService: EmitService) {

@@ -1,8 +1,10 @@
 <div>&nbsp;</div>
 <div class="row">
-    <div class="form-group col-xs-1 col-md-1 col-sm-1 col-lg-1">
+    <div class="form-group col-xs-4 col-md-4 col-sm-4 col-lg-4">
         <multiselect [dropdownList]="machineList" (selectedOptions)="model.machineIds = $event"></multiselect>
-
+    </div>
+    <div class="form-group col-xs-4 col-md-4 col-sm-4 col-lg-4">
+        <multiselect [dropdownList]="statusList" (selectedOptions)="model.status = $event"></multiselect>
     </div>
     <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
         <button type="button" (click)="find()" class="btn btn-primary" style="cursor:pointer">Find</button>

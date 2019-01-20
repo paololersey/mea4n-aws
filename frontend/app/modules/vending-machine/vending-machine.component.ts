@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { VendingMachineSearch} from './model/vendingMachineSearch';
+import { MachineDialogComponent } from "./submodules/machine-dialog/machine-dialog.component";
 
 @Component({
     selector: 'vending-machine',
