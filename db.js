@@ -1,8 +1,8 @@
 var mongoose = require('mongoose')
 //mongoose.set('debug', true);
 
-//var connectionString = 'mongodb://localhost/nice';
-var connectionString = 'mongodb://localhost/machine'; //as the production db
+var connectionString = 'mongodb://localhost/nice';
+//var connectionString = 'mongodb://localhost/machine'; //as the production db
 
 // OPENSHIFT RED HAT connection string
 if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {

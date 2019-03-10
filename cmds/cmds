@@ -65,3 +65,18 @@ sudo mongodump --host 34.230.189.92 --port 27017 --authenticationDatabase admin 
         echo "Mongodump" | mutt -a "./backups/log.20180427" -s "Mongodump 20180427" -- paolospadoni1980@gmail.com
 
 
+-- Logs:
+Once connected to 
+>ssh -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaws.com
+>forever logs
+>vi /home/bitnami/.forever/H1av.log
+
+1) VI
+  - exit: q!
+  - save: wq
+  - insert: i
+  - go to end of file: G$
+
+2) Nano:
+  - exit: Ctrl+x;
+  - save: Y afer exit;
