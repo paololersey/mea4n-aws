@@ -28,6 +28,8 @@ export class GridVendingMachineComponent implements OnInit {
 
     constructor(private emitService: EmitService,
         private machineService: MachineService) {
+
+            
         emitService.flagSearch.subscribe(item => {
             console.log(item);
             this.searchEnded = true;
@@ -43,7 +45,7 @@ export class GridVendingMachineComponent implements OnInit {
 
         this.gridOptions = <GridOptions>{
             onGridReady: () => {
-                this.gridOptions.api.refreshView();
+                // this.gridOptions.api.refreshView();
                 //this.gridOptions.api.sizeColumnsToFit();
                 this.gridOptions.enableColResize = true;
                 //var mq = window.matchMedia("(min-width: 500px)");

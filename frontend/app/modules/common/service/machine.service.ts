@@ -18,7 +18,11 @@ export class MachineService {
   machine: Machine
   dateStruct: any = {};
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    if(process.env.NODE_ENV==='development'){
+      this.machineAllRetrievalUrl = 'http://localhost:4200/getAllMachines'; 
+    }
+   }
 
 
   getMachines(): Observable<IMultiSelectOption[]> {
