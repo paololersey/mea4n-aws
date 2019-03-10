@@ -1,13 +1,20 @@
 <div>&nbsp;</div>
 <div class="row">
-    <div class="form-group col-xs-4 col-md-4 col-sm-4 col-lg-4">
+    <div class="form-group col-4">
+        <label for="machineNice">N-ICE:</label>
+    </div>
+    <div class="form-group col-4">
         <multiselect [dropdownList]="machineList" (selectedOptions)="model.machineIds = $event"></multiselect>
     </div>
-    <div class="form-group col-xs-4 col-md-4 col-sm-4 col-lg-4">
+</div>
+<div class="row">
+    <div class="form-group col-4">
+        <label for="machineNice">Status:</label>
+    </div>
+    <div class="form-group col-4">
         <multiselect [dropdownList]="statusList" (selectedOptions)="model.status = $event"></multiselect>
     </div>
-    <div class="form-group col-xs-2 col-md-2 col-sm-2 col-lg-2">
+    <div class="form-group col-4">
         <button type="button" (click)="find()" class="btn btn-primary" style="cursor:pointer">Find</button>
-
     </div>
 </div>

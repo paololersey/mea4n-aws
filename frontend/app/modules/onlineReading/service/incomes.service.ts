@@ -9,14 +9,18 @@ import { TOTAL_CURRENT_INCOMES } from './mock-total-current-incomes';
 import { Income } from '../model/income';
 import { TotalIncome } from '../model/total-income';
 
-
 @Injectable()
 export class IncomeService {
 
   private getTableUrl = 'api/getTable';  // URL to web API
   private getTotalMoneyUrl = 'api/getTotalMoney';  // URL to web API
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    if(process.env.NODE_ENV==='development'){
+      this.getTableUrl = 'http://localhost:4200/getTable'; 
+      this.getTotalMoneyUrl = 'http://localhost:4200/getTotalMoney'; 
+    }
+   }
 
   getIncomes(): Observable<Income[]> {
     return this.http.get(this.getTableUrl)

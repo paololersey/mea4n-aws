@@ -9,6 +9,7 @@ import { EmitService } from './../../../../modules/common/service/emit.service';
 import { GridOptions } from "ag-grid/main";
 import { Machine } from "../../../common/model/machine";
 import { MachineDialogComponent } from "../machine-dialog/machine-dialog.component";
+import { MachineService } from "../../../common/service/machine.service";
 
 @Component({
     selector: 'grid-vending-machine',
@@ -22,12 +23,22 @@ export class GridVendingMachineComponent implements OnInit {
 
     private gridOptions: GridOptions;
     public rowData: Machine[];
+    errorMessage: any = {}
     private columnDefs: any[];
 
-    constructor(private emitService: EmitService) {
+    constructor(private emitService: EmitService,
+        private machineService: MachineService) {
         emitService.flagSearch.subscribe(item => {
             console.log(item);
             this.searchEnded = true;
+            this.machineService.getAllMachines()
+                .subscribe(
+                    machines => {
+                        console.log(machines);
+                        this.rowData = machines;
+                    },
+                    error => this.errorMessage = <any>error
+                )
         })
 
         this.gridOptions = <GridOptions>{

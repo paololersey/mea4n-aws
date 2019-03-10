@@ -1,7 +1,9 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { ICellRendererAngularComp } from "ag-grid-angular/main";
+import { Component, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { ICellRendererAngularComp, Ng2FrameworkComponentWrapper } from "ag-grid-angular/main";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MachineService } from '../../../common/service/machine.service'
+import { Machine } from '../../../common/model/machine';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -17,9 +19,10 @@ export class MachineDialogComponent implements ICellRendererAngularComp {
     errorMessage: string;
     public params: any;
 
-    @Output('statusChange')
-    updateStatusChange: EventEmitter<any> = new EventEmitter();
+    @ViewChild('f') machineForm: NgForm;
+
     niceMachineId: string;
+    model: Machine;
 
     @Input() createFlag: boolean;
 
@@ -27,27 +30,44 @@ export class MachineDialogComponent implements ICellRendererAngularComp {
         this.params = params;
     }
 
+
     constructor(private modalService: NgbModal,
-        private machineService: MachineService) { }
+        private machineService: MachineService) {
+        this.model = new Machine();
+    }
 
     public open(content) {
+
         if (this.params) {
-            this.niceMachineId = this.params.rowIndex + 1;
+            this.model.machineId = this.params.rowIndex + 1;
+        }
+        else{
+            this.machineService.getAllMachines()
+                .subscribe(
+                    machines => {
+                        this.model.machineId = (Number(machines.length) + Number(1)).toString();
+                    },
+                    error => this.errorMessage = <any>error
+                )
         }
 
         this.modalService.open(content).result.then((result) => {
             if (result == "Confirm") {
+                if (this.machineForm.valid) {
+                    // rest service insert
+                    console.log(this.model);
+                }
                 this.machineService.updateStatus("OK", this.niceMachineId)
                     .subscribe(
                         result => {
-                            this.updateStatusChange.emit(result)
+                            // this.updateStatusChange.emit(result)
                         },
                         error => this.errorMessage = <any>error);
             }
             else {
                 this.closeResult = `Closed with: ${result}`;
                 //this.emitService.myEvent.emit(result)
-                this.updateStatusChange.emit(result)
+                // this.updateStatusChange.emit(result)
             }
 
         }, (reason) => {
