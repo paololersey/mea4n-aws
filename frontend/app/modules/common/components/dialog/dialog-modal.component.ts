@@ -1,37 +1,26 @@
-import { Component, Input, EventEmitter, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { DialogModalService } from '../../service/dialog-modal.service'
+import { Component} from '@angular/core';
+import { DialogModalState } from './dialog-modal-state.service';
 
 
 @Component({
-    selector: 'modaldialog',
-    templateUrl: './dialog-modal.html',
-    //styleUrls: ['./reset-breakdown-modal.component.css']
-
+    selector: 'dialog-modal-component',
+    templateUrl: './dialog-modal.html'
 })
-export class DialogModalComponent  implements OnInit {
-    closeResult: string;
+export class DialogModalComponent{
 
-  //  @Input()
-    public content: any = {};
+    options: DialogModalOptions;
 
-    constructor(private dialogModalService: DialogModalService, private modalService:NgbModal) { }
-    
-    ngOnInit(): void {
-        this.content="MESSAGGIO"
-        this.modalService.open(this.content).result.then((result) => {
-            if (result == "Confirm") {
-               
-            }
-            else {
-               
-            }
-
-        }, (reason) => {
-           
-        });
-        //this.dialogModalService.open(this.content);
-        
+    constructor(private state: DialogModalState) {
+        this.options = state.options;
     }
-    
+
+    yes() {
+        this.state.modal.close('confirmed');
+    }
+
+    no() {
+        this.state.modal.dismiss('not confirmed');
+    }
+
+
 }

@@ -12,7 +12,6 @@ import { MACHINE_NICE, ERRORS_NICE, YEARS, MONTHS, MONTHDAYS, WEEKDAYS, HOURS } 
 import { DatepickerPopupComponent } from '../../common/datepicker-popup.component';
 import { MachineService } from '../../common/service/machine.service';
 import { ErrorMapService } from '../../common/service/error-map.service';
-import { DialogModalService } from '../../common/service/dialog-modal.service'
 
 
 import { Machine } from '../../common/model/machine';
@@ -48,7 +47,6 @@ export class ReportComponent implements OnInit {
         private angularBlobService: AngularBlobService,
         private machineService: MachineService,
         private errorService: ErrorMapService,
-        private dialogModalService: DialogModalService,
         config: NgbDatepickerConfig,
         ngbDateParserFormatter: NgbDateParserFormatter) {
         this.model = new ReportSearch();

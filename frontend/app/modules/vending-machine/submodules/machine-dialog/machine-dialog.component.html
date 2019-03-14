@@ -19,8 +19,8 @@
           <label for="machineNice">N-ICE:</label>
         </div>
         <div class="form-group col-8">
-          <input type="text" disabled="disabled" lass="form-control" [(ngModel)]="model.machineId" name="number" [minLength]="1"
-            [maxLength]="2">
+          <input type="text" disabled="disabled" class="form-control" [(ngModel)]="model.machineId" name="machineId"
+            minLength="10" maxlength="10" required>
         </div>
       </div>
       <div class="row">
@@ -28,7 +28,10 @@
           <label for="machineNice">Status:</label>
         </div>
         <div class="form-group col-8">
-          <multiselect [dropdownList]="statusList" (selectedOptions)="niceMachineId"></multiselect>
+          <select class="form-control" name="status" [(ngModel)]="model.status" required>
+            <option></option>
+            <option class="form-control" [ngValue]="item.id" *ngFor="let item of statusList">{{item.name}}</option>
+          </select>
         </div>
       </div>
       <div class="row">
@@ -36,21 +39,32 @@
           <label for="machineNice">Cell. number:</label>
         </div>
         <div class="form-group col-8">
-          <input type="text" class="form-control" [(ngModel)]="model.machineCurrentNumber" name="cellNumber"
-            [maxLength]="10" [minLength]="10">
+          <input type="text" pattern="[0-9]*" minlength="10" maxlength="10" class="form-control" [(ngModel)]="model.machineCurrentNumber"
+            name="machineCurrentNumber" required>
         </div>
       </div>
+
+      <ng-template confirm>
+        <dialog-modal-component></dialog-modal-component>
+      </ng-template>
+      
     </div>
-    
+
     <div class="modal-footer">
       <div class="col-xs-3 col-sm-3 col-md-3">
         <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
       </div>
       <div class="col-xs-6 col-sm-6 col-md-6">&nbsp;</div>
       <div class="col-xs-3 col-sm-3 col-md-3">
-        <button type="submit" class="btn btn-primary" (click)="c('Confirm')">Confirm</button>
+        <button type="submit" class="btn btn-primary" [disabled]="disableConfirmButton(f)" (click)="c('Confirm', f)">Confirm</button>
       </div>
-
     </div>
+
+
+
   </form>
+  <!--<div >
+    <dialog-modal-component title="Confirm" message="Are you sure want to confirm? This operation will add/edit a machine. Please be careful"
+      type="Confirm"></dialog-modal-component>
+  </div>-->
 </ng-template>

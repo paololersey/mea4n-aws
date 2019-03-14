@@ -12,6 +12,8 @@ To start frontend for local dev:
  - npm start
  - use json server mock
 
+ The app is served on 8084 port
+
 ## Full stack
 
 To build frontend for full stack dev:

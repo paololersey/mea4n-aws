@@ -1,18 +1,17 @@
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">Alert</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="no()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">{{ options.title}}</h4>
+</div>
+<div class="modal-body">
+    <p>{{ options.message }}</p>
+</div>
+<div class="modal-footer">
+    <div *ngIf="options.type==='Confirm'">
+        <button type="button" class="btn btn-primary pull-right" (click)="yes()">Yes</button>
     </div>
-    <div class="modal-body">
-        <p>Message</p>
+    <div>
+        <button type="button" class="btn btn-warning pull-left" (click)="no()">Cancel</button>
     </div>
-    <div class="modal-footer">
-        <div class="col-xs-9 col-sm-9 col-md-9">&nbsp;</div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
-            <button type="button" class="btn btn-primary" (click)="c('Confirm')">OK</button>
-        </div>
-
-    </div>
-</ng-template>
+</div>
