@@ -9,7 +9,10 @@ grep "ERROR" /home/bitnami/.forever/f_mj.log
 --MONGO
 
 bitnami
-YJDSqMEaseY0
+YJDSqMEaseY0 --prd
+
+bitnami
+Zlixhwwp1hMy --tst
 
 db.createUser(
     {
@@ -44,7 +47,8 @@ sudo bash ctlscript.sh restart mongodb
 sudo mongo admin --username paolokersey --password kersey11
 sudo service mongod start
 
-ssh -i todoalcoholic.pem bitnami@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com
+ssh -i todoalcoholic.pem bitnami@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com --prd
+ssh -i nice-amministrazione-test.pem bitnami@ec2-54-166-41-171.compute-1.amazonaws.com --tst
 
 cd /home/paolo/Documenti/Paolo/Lavoro/N-ICE/keys/Prod;
 ssh -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaws.com
