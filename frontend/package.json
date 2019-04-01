@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config config/webpack.dev.js --progress --open --inline --port 8084",
+    "start": "webpack-dev-server --config config/webpack.dev.js --progress --open --inline --port 8084 -H 0.0.0.0",
     "build": "webpack --config config/webpack.prod.js --progress --profile --bail"
   },
   "author": "",
