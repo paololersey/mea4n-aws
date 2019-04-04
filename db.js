@@ -37,6 +37,6 @@ if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('172.31.37.
 
 
 mongoose.connect(connectionString, function () {
-  console.log('mongodb connected')
+  console.log('mongodb connected with string = ' + connectionString);
 })
 module.exports = mongoose
