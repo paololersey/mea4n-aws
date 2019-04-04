@@ -26,4 +26,3 @@ db.machines.insert({"machineId" : "25", "machineCurrentNumber" : "3318385657","s
 db.machines.insert({"machineId" : "26", "machineCurrentNumber" : "3318385650","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "27", "machineCurrentNumber" : "3318385659","startDate" : null,"status":"OK"});
 db.machines.insert({"machineId" : "28", "machineCurrentNumber" : "3398825181","startDate" : null,"status":"OK"});
-db.machines.insert({"machineId" : "1000", "machineCurrentNumber" : "3939393939","startDate" : null,"status":"OK"});

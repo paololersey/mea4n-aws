@@ -44,7 +44,8 @@ db.createUser({
 
 -- Linux
 sudo bash ctlscript.sh restart mongodb
-sudo mongo admin --username paolokersey --password kersey11
+sudo mongo admin --username paolokersey --password kersey11 --prd / --tst
+sudo mongo admin --username root --password  Zlixhwwp1hMy --tst
 sudo service mongod start
 
 ssh -i todoalcoholic.pem bitnami@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com --prd

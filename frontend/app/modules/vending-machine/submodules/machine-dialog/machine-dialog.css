@@ -8,8 +8,8 @@
     font-size: 18px;
     background-color: #2EB5E5;
 }
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active{
-    background-color: blue;
+.btn-primary{
+    background-color: #2EB5E5;
 }
 .pointer {
     cursor:pointer
