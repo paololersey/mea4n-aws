@@ -9,7 +9,10 @@ grep "ERROR" /home/bitnami/.forever/f_mj.log
 --MONGO
 
 bitnami
-YJDSqMEaseY0
+YJDSqMEaseY0 --prd
+
+bitnami
+Zlixhwwp1hMy --tst
 
 db.createUser(
     {
@@ -41,10 +44,12 @@ db.createUser({
 
 -- Linux
 sudo bash ctlscript.sh restart mongodb
-sudo mongo admin --username paolokersey --password kersey11
+sudo mongo admin --username paolokersey --password kersey11 --prd / --tst
+sudo mongo admin --username root --password  Zlixhwwp1hMy --tst
 sudo service mongod start
 
-ssh -i todoalcoholic.pem bitnami@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com
+ssh -i todoalcoholic.pem bitnami@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com --prd
+ssh -i nice-amministrazione-test.pem bitnami@ec2-54-166-41-171.compute-1.amazonaws.com --tst
 
 cd /home/paolo/Documenti/Paolo/Lavoro/N-ICE/keys/Prod;
 ssh -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaws.com
@@ -58,10 +63,25 @@ mongo ds261440.mlab.com:61440/heroku_27t7rq4b -u heroku_27t7rq4b  -p kersey128D1
 -- backup / mail
 sudo mongodump --host 34.230.189.92 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
         -- restore local
-        sudo mongorestore -d machine --archive="./backups/log.$(date +%Y%m%d)" --gzip
+sudo mongorestore --host 54.166.41.171 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive="./backups/log.$(date +%Y%m%d)" --gzip
         -- restore test
         sudo mongorestore --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
         
         echo "Mongodump" | mutt -a "./backups/log.20180427" -s "Mongodump 20180427" -- paolospadoni1980@gmail.com
 
 
+-- Logs:
+Once connected to 
+>ssh -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaws.com
+>forever logs
+>vi /home/bitnami/.forever/H1av.log
+
+1) VI
+  - exit: q!
+  - save: wq
+  - insert: i
+  - go to end of file: G$
+
+2) Nano:
+  - exit: Ctrl+x;
+  - save: Y afer exit;

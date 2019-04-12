@@ -7,6 +7,7 @@ export const CURRENT_INCOMES: Income[] = [
         totalCurrentWeek: 0,
         totalCurrentMonth: 0,
         status: "OK",
+        connectionStatus: "OK",
         lastError: ""
     },
     {
@@ -16,6 +17,7 @@ export const CURRENT_INCOMES: Income[] = [
         totalCurrentWeek: 0,
         totalCurrentMonth: 0,
         status: "OK",
+        connectionStatus: "OK",
         lastError: "B"
     },
     {
@@ -25,6 +27,7 @@ export const CURRENT_INCOMES: Income[] = [
         totalCurrentWeek: 0,
         totalCurrentMonth: 0,
         status: "OK",
+        connectionStatus: "OK",
         lastError: "C"
     },
     {
@@ -34,6 +37,7 @@ export const CURRENT_INCOMES: Income[] = [
         totalCurrentWeek: 195,
         totalCurrentMonth: 276,
         status: "WA",
+        connectionStatus: "OK",
         lastError: "D"
     },
     {
@@ -43,6 +47,7 @@ export const CURRENT_INCOMES: Income[] = [
         totalCurrentWeek: 36,
         totalCurrentMonth: 117,
         status: "OK",
+        connectionStatus: "OK",
         lastError: "E"
     },
     {
@@ -52,6 +57,7 @@ export const CURRENT_INCOMES: Income[] = [
         totalCurrentWeek: 0,
         totalCurrentMonth: 0,
         status: "ER",
+        connectionStatus: "OK",
         lastError: "B2,23:14,24/07/2017"
     },
     {
@@ -61,6 +67,7 @@ export const CURRENT_INCOMES: Income[] = [
         totalCurrentWeek: 0,
         totalCurrentMonth: 0,
         status: "OK",
+        connectionStatus: "OK",
         lastError: "G"
     }
 ];

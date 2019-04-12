@@ -39,6 +39,7 @@ exports.getTotalsSplitByMachine = (machineNumbers, matrixMachineTotalFrequency) 
                                     'totalCurrentWeek': Math.round(totalCurrentWeek),
                                     'totalCurrentMonth': Math.round(totalCurrentMonth),
                                     'status': machines[k][0].status,
+                                    'connectionStatus': machines[k][0].connectionStatus,
                                     'lastError': lastError
                                 }
                                 income.push(tableRow)

@@ -12,7 +12,6 @@ import { MACHINE_NICE, ERRORS_NICE, YEARS, MONTHS, MONTHDAYS, WEEKDAYS, HOURS } 
 import { DatepickerPopupComponent } from '../../common/datepicker-popup.component';
 import { MachineService } from '../../common/service/machine.service';
 import { ErrorMapService } from '../../common/service/error-map.service';
-import { DialogModalService } from '../../common/service/dialog-modal.service'
 
 
 import { Machine } from '../../common/model/machine';
@@ -48,7 +47,6 @@ export class ReportComponent implements OnInit {
         private angularBlobService: AngularBlobService,
         private machineService: MachineService,
         private errorService: ErrorMapService,
-        private dialogModalService: DialogModalService,
         config: NgbDatepickerConfig,
         ngbDateParserFormatter: NgbDateParserFormatter) {
         this.model = new ReportSearch();
@@ -69,23 +67,23 @@ export class ReportComponent implements OnInit {
         if (this.modelSentToServer.dateFrom.valueOf() > this.modelSentToServer.dateTo.valueOf()) {
             alert('"Date from" is after "Date to": please check!')
         }
-        if(!this.modelSentToServer.groupByDay){
+        if (!this.modelSentToServer.groupByDay) {
             this.reportService.getExceedingMessages(this.modelSentToServer).toPromise().then((message) => {
                 //this.reportService.getExceedingMessagesMock(this.modelSentToServer).then((message) => {
-                    if (message && message === 'OK') {
-                        this.angularBlobService.download(this.modelSentToServer);
-                    }
-                    else {
-                        //this.messageToDialog = 'Excel too large: ' + message
-                        //this.showDialog = true
-                        //this.messageToDialog.emit('Excel too large: ' + message)
-                        //this.dialogModalService.open('excel is toto large')
-                        alert('Excel too large: ' + message)
-                    }
-        
-                });
+                if (message && message === 'OK') {
+                    this.angularBlobService.download(this.modelSentToServer);
+                }
+                else {
+                    //this.messageToDialog = 'Excel too large: ' + message
+                    //this.showDialog = true
+                    //this.messageToDialog.emit('Excel too large: ' + message)
+                    //this.dialogModalService.open('excel is toto large')
+                    alert('Excel too large: ' + message)
+                }
+
+            });
         }
-        else{
+        else {
             this.angularBlobService.download(this.modelSentToServer);
         }
     }
@@ -111,8 +109,8 @@ export class ReportComponent implements OnInit {
 
     // machines
     getMachineInvoke(): void {
-        this.getMachinesMock();
-        //this.getMachines();
+        // this.getMachinesMock();
+        this.getMachines();
     }
 
     getMachinesMock(): void {
@@ -120,10 +118,15 @@ export class ReportComponent implements OnInit {
     }
 
     getMachines(): void {
-        this.machineService.getMachines()
+        this.machineService.getAllMachines()
             .subscribe(
-            machines => this.machineList = machines,
-            error => this.errorMessage = <any>error)
+                machines => {
+                    this.machineList = [];
+                    machines.forEach(element => {
+                        this.machineList.push({ id: element.machineId, name: 'N-ICE ' + element.machineId })
+                    })
+                },
+                error => this.errorMessage = <any>error)
     }
 
 
@@ -140,8 +143,8 @@ export class ReportComponent implements OnInit {
     getErrors(): void {
         this.errorService.getErrorMaps()
             .subscribe(
-            errorsFromBackend => this.errorList = errorsFromBackend,
-            error => this.errorMessage = <any>error)
+                errorsFromBackend => this.errorList = errorsFromBackend,
+                error => this.errorMessage = <any>error)
     }
 
 

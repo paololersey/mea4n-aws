@@ -1,0 +1,1 @@
+/home/paolo/.npm-global/bin/json-server --watch db.json --port=4200

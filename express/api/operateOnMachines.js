@@ -47,6 +47,19 @@ router.post('/api/statusUpd',
             });
     })
 
+router.post('/api/insertUpdateMachine',
+    function (req, res, next) {
+        let machine = req.body.machine;
+        let insertFlag = req.body.insertFlag;
+        machineDao.insertUpdateMachine(machine, insertFlag).then(
+            (machine) => {
+                res.status(200).json(machine)
+            },
+            err => {
+                res.status(500).json(err)
+            });
+    })
+
 router.get('/api/checkMachineNoComm', function (req, res, next) {
     checkMachineBreakdown.checkMachineBreakdown().then((result) => {
         res.status(200).json(result)

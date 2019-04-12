@@ -4,23 +4,67 @@
 <button *ngIf="createFlag" type="button" (click)="open(content)" class="btn btn-primary" style="cursor:pointer">Create</button>
 
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Insert/Edit vending machine</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>All the inputs here</p>
-  </div>
-  <div class="modal-footer">
-    <div class="col-xs-3 col-sm-3 col-md-3">
-      <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title" *ngIf="createFlag">Insert vending machine</h4>
+      <h4 class="modal-title" *ngIf="!createFlag">Edit vending machine</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6">&nbsp;</div>
-    <div class="col-xs-3 col-sm-3 col-md-3">
-      <button type="button" class="btn btn-primary" (click)="c('Confirm')">Confirm</button>
+    <div class="modal-body">
+      <!-- machines -->
+      <div class="row">
+        <div class="form-group col-4">
+          <label for="machineNice">N-ICE:</label>
+        </div>
+        <div class="form-group col-8">
+          <input type="text" disabled="disabled" class="form-control" [(ngModel)]="model.machineId" name="machineId"
+            minLength="10" maxlength="10" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-4">
+          <label for="machineNice">Status:</label>
+        </div>
+        <div class="form-group col-8">
+          <select class="form-control" name="connectionStatus" [(ngModel)]="model.connectionStatus" required>
+            <option></option>
+            <option class="form-control" [ngValue]="item.id" *ngFor="let item of statusList">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-4">
+          <label for="machineNice">Cell. number:</label>
+        </div>
+        <div class="form-group col-8">
+          <input type="text" pattern="[0-9]*" minlength="10" maxlength="10" class="form-control" [(ngModel)]="model.machineCurrentNumber"
+            name="machineCurrentNumber" required>
+        </div>
+      </div>
+
+      <ng-template confirm>
+        <dialog-modal-component></dialog-modal-component>
+      </ng-template>
+      
     </div>
 
-  </div>
+    <div class="modal-footer">
+      <div class="col-xs-3 col-sm-3 col-md-3">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6">&nbsp;</div>
+      <div class="col-xs-3 col-sm-3 col-md-3">
+        <button type="submit" class="btn btn-primary" [disabled]="disableConfirmButton(f)" (click)="c('Confirm', f)">Confirm</button>
+      </div>
+    </div>
+
+
+
+  </form>
+  <!--<div >
+    <dialog-modal-component title="Confirm" message="Are you sure want to confirm? This operation will add/edit a machine. Please be careful"
+      type="Confirm"></dialog-modal-component>
+  </div>-->
 </ng-template>

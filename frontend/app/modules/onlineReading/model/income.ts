@@ -5,5 +5,6 @@ export class Income {
     totalCurrentWeek: number;
     totalCurrentMonth: number;
     status: String;
+    connectionStatus: String;
     lastError: String;
 }

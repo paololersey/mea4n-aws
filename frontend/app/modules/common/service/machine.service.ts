@@ -12,16 +12,29 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 export class MachineService {
 
   private machineRetrievalUrl = 'api/getMachines';
+  private machineAllRetrievalUrl = 'api/getAllMachines';
   private updateStatusMachineUrl = 'api/statusUpd';
+  private insertUpdateMachineUrl = 'api/insertUpdateMachine';
 
   machine: Machine
   dateStruct: any = {};
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    if(process.env.NODE_ENV==='development'){
+      this.machineAllRetrievalUrl = 'http://localhost:4200/getAllMachines'; 
+      this.insertUpdateMachineUrl = 'http://localhost:4200/insertUpdateMachine';
+    }
+   }
 
 
   getMachines(): Observable<IMultiSelectOption[]> {
     return this.http.get(this.machineRetrievalUrl)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getAllMachines(): Observable<Machine[]> {
+    return this.http.get(this.machineAllRetrievalUrl)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -34,6 +47,14 @@ export class MachineService {
     return this.http.post(this.updateStatusMachineUrl, { status, machineId }, options)
       .map(this.extractData)
       .catch(this.handleError);
+  }
+
+  insertUpdateMachine(machine: Machine, insertFlag: Boolean){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.insertUpdateMachineUrl, { machine, insertFlag }, options)
+    .map(this.extractData)
+    .catch(this.handleError);
   }
   /* utility methods */
 

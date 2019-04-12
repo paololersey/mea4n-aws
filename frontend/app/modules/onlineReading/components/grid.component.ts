@@ -21,13 +21,13 @@ export class GridComponent implements OnInit, OnChanges {
     private errorMessage: string;
 
     @Input()
-    statusChange : string;
+    statusChange: string;
 
-    
-   
+
+
     constructor(private incomeService: IncomeService) {
 
-       
+
         /*eventUpdate(event: object) {
             this.counterValue = event.count;
         }*/
@@ -77,13 +77,13 @@ export class GridComponent implements OnInit, OnChanges {
 
         this.columnDefs = [
 
-            { headerName: "N-ICE", field: "machineId", width:110,/*, suppressSizeToFit:true, headerComponentFramework: MyHeaderComponent */ },
+            { headerName: "N-ICE", field: "machineId", width: 110,/*, suppressSizeToFit:true, headerComponentFramework: MyHeaderComponent */ },
             { headerName: "Day total (&euro;)", field: "totalCurrentDay" },
             { headerName: "Yesterday total (&euro;)", field: "totalYesterDay" },
             { headerName: "Week total (&euro;)", field: "totalCurrentWeek" },
             { headerName: "Month total (&euro;)", field: "totalCurrentMonth" },
-            { headerName: "Last error", field: "lastError", width:380},
-            { headerName: "Reset", field: "value",  cellRendererFramework: ResetBreakdownModalComponent }
+            { headerName: "Last error", field: "lastError", width: 380 },
+            { headerName: "Reset", field: "value", cellRendererFramework: ResetBreakdownModalComponent }
 
         ];
 
@@ -92,24 +92,27 @@ export class GridComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.getIncomesInvoke();
-     };
+    };
 
-     ngOnChanges(event) : void{
-        if(event['statusChange']){
-           //console.log('aio!')
+    ngOnChanges(event): void {
+        if (event['statusChange']) {
+            //console.log('aio!')
         }
-     }
+    }
 
     getIncomesInvoke(): void {
         // this.getIncomesMock();
         this.getIncomes();
-     }
+    }
 
     getIncomes(): void {
-         this.incomeService.getIncomes()
+        this.incomeService.getIncomes()
             .subscribe(
-            result => this.rowData = result,
-            error => this.errorMessage = <any>error)
+                result => {
+                    this.rowData = result.filter(element =>
+                        element.connectionStatus !== 'INACTIVE')
+                },
+                error => this.errorMessage = <any>error)
     }
 
     getIncomesMock(): void {
@@ -118,7 +121,7 @@ export class GridComponent implements OnInit, OnChanges {
         });
     }
 
-    updateStatus() :any {
+    updateStatus(): any {
         console.log("ciao!!")
     }
 }
@@ -131,7 +134,7 @@ MyHeaderComponent.prototype.init = function (agParams){
     this.eGui = document.createElement('div');
     this.eGui.innerHTML = ''+
         '<div style="background-color: black"></div>'
-     
+
 };
 
 MyHeaderComponent.prototype.getGui = function (){

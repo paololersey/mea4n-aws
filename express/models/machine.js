@@ -7,6 +7,7 @@ var messageSchema = mongoose.Schema({
     startDate: {type: Date, default: Date.now},
     endDate: {type: Date},
     status : { type: String},
+    connectionStatus : { type: String},
     matricola: { type: String}
 });
 

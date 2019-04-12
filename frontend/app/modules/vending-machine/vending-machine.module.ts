@@ -6,8 +6,6 @@ import { SearchVendingMachineModule } from './submodules/search-vending-machine.
 import { GridVendingMachineModule } from './submodules/grid/grid-vending-machine.module';
 import { VendingMachineRoutingModule } from './vending-machine.routing';
 import { VendingMachineComponent } from './vending-machine.component';
-
-import { MultiSelectComponent } from '../common/components/multiselect/ss-multiselect-dropdown.component'
 import { MachineDialogModule } from './submodules/machine-dialog/machine-dialog.module';
 
 @NgModule({

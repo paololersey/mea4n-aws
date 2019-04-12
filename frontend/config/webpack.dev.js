@@ -4,6 +4,7 @@ var path = require('path');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const ENV = process.env.NODE_ENV = process.env.ENV = 'development';
 
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
@@ -16,7 +17,7 @@ module.exports = {
 
     output: {
         path: helpers.root('dist'),
-        publicPath: 'http://localhost:8080/',
+        publicPath: 'http://localhost:8084/',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },
@@ -90,11 +91,17 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: 'config/index.html'
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development'),
+            'process.env.APP_VERSION': JSON.stringify(process.env.npm_package_version),
+
         })
     ],
 
     devServer: {
         historyApiFallback: true,
-        stats: 'minimal'
+        stats: 'minimal',
+
     }
 };

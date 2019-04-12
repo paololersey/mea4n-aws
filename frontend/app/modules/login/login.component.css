@@ -4,3 +4,7 @@
 .pointer {
     cursor:pointer
 }
+.btn-primary{
+    background-color: #2EB5E5;
+    border-color: #2EB5E5;
+}
