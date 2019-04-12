@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter } from "@angular/core";
+import { Component, Input, Output, OnInit, EventEmitter, OnChanges } from "@angular/core";
 import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 import { MachineService } from './../../service/machine.service';
 
@@ -9,13 +9,12 @@ import { MachineService } from './../../service/machine.service';
     providers: [  MachineService ]
 })
 
-export class MultiSelectComponent implements OnInit {
+export class MultiSelectComponent implements OnInit, OnChanges {
 
     @Input()
     dropdownList: IMultiSelectOption[];
 
     optionsSelected : IMultiSelectOption[];
-    myOptions: IMultiSelectOption[];
     
     mySettings: IMultiSelectSettings = {
         enableSearch: false,
@@ -34,7 +33,6 @@ export class MultiSelectComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.myOptions = this.dropdownList;
        this.myTexts= {
             checkAll: 'Select all',
             uncheckAll: 'Unselect all',
@@ -44,6 +42,12 @@ export class MultiSelectComponent implements OnInit {
             defaultTitle: 'Select',
             allSelected: 'All selected',
         };
+    }
+
+    ngOnChanges(eventChange){
+        if(eventChange.dropdownList && eventChange.dropdownList.currentValue){
+            this.dropdownList = eventChange.dropdownList.currentValue
+        }
     }
 
     onChange(){

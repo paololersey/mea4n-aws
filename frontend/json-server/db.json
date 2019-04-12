@@ -243,183 +243,243 @@
     "getAllMachines": [{
         "_id": "5a229287f1da16389505d66f",
         "machineId": "1",
-        "machineCurrentNumber": "3396430759",
+        "machineCurrentNumber": "3206415821",
         "status": "OK",
-        "startDate": "2013-09-04T22:00:00.000Z"
+        "endDate": null,
+        "matricola": null,
+        "connectionStatus": "ACTIVE",
+        "startDate": null
     }, {
         "_id": "5a229287f1da16389505d670",
         "machineId": "2",
-        "machineCurrentNumber": "3392776709",
+        "machineCurrentNumber": "3392776700",
         "status": "OK",
+        "endDate": null,
+        "matricola": null,
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d671",
         "machineId": "3",
         "machineCurrentNumber": "3398496384",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d672",
         "machineId": "4",
         "machineCurrentNumber": "0000000000",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d673",
         "machineId": "5",
         "machineCurrentNumber": "3398496387",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d674",
         "machineId": "6",
         "machineCurrentNumber": "3398823439",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d675",
         "machineId": "7",
         "machineCurrentNumber": "3398823255",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d676",
         "machineId": "8",
         "machineCurrentNumber": "3338820590",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d677",
         "machineId": "9",
         "machineCurrentNumber": "3338820507",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d678",
         "machineId": "10",
         "machineCurrentNumber": "3338820643",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d679",
         "machineId": "11",
         "machineCurrentNumber": "3398496397",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d67a",
         "machineId": "12",
         "machineCurrentNumber": "3397354709",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d67b",
         "machineId": "13",
         "machineCurrentNumber": "3338161987",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d67c",
         "machineId": "14",
         "machineCurrentNumber": "3338162146",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d67d",
         "machineId": "15",
         "machineCurrentNumber": "3338162357",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d67e",
         "machineId": "16",
         "machineCurrentNumber": "3338162155",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d67f",
         "machineId": "17",
         "machineCurrentNumber": "3338161458",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d680",
         "machineId": "18",
         "machineCurrentNumber": "3338161993",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d681",
         "machineId": "19",
         "machineCurrentNumber": "3338171469",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d682",
         "machineId": "20",
         "machineCurrentNumber": "3338161456",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d683",
         "machineId": "21",
         "machineCurrentNumber": "3338162343",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d684",
         "machineId": "22",
         "machineCurrentNumber": "3318385645",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d685",
         "machineId": "23",
         "machineCurrentNumber": "3318385666",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d686",
         "machineId": "24",
         "machineCurrentNumber": "3338756249",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d687",
         "machineId": "25",
         "machineCurrentNumber": "3318385657",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d688",
         "machineId": "26",
         "machineCurrentNumber": "3318385650",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d689",
         "machineId": "27",
         "machineCurrentNumber": "3318385659",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229287f1da16389505d68a",
         "machineId": "28",
         "machineCurrentNumber": "3398825181",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a229289f1da16389505d68b",
         "machineId": "1000",
         "machineCurrentNumber": "3939393939",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
     }, {
         "_id": "5a2292a0f1da16389505d6ab",
         "machineId": "30",
         "machineCurrentNumber": "3338756271",
         "status": "OK",
+        "connectionStatus": "ACTIVE",
         "startDate": null
+    }, {
+        "_id": "5c88d633c7cc6e1c278099ea",
+        "machineId": "31",
+        "machineCurrentNumber": "3206415831",
+        "status": "NA",
+        "__v": 0,
+        "connectionStatus": "ACTIVE",
+        "startDate": "2019-03-13T10:06:43.162Z"
+    }, {
+        "_id": "5c88dcf2caf1a61e5c9e29da",
+        "machineId": "32",
+        "machineCurrentNumber": "3206415832",
+        "status": "NA",
+        "__v": 0,
+        "connectionStatus": "ACTIVE",
+        "startDate": "2019-03-13T10:35:30.252Z"
+    }, {
+        "_id": "5c892f15bf86ec566a13c3a5",
+        "machineId": "33",
+        "machineCurrentNumber": "3206415833",
+        "status": "OK",
+        "__v": 0,
+        "endDate": null,
+        "matricola": null,
+        "connectionStatus": "ACTIVE",
+        "startDate": "2019-03-13T16:25:57.219Z"
     }],
     "getTotalMoney": {
         "totalDay": 133,

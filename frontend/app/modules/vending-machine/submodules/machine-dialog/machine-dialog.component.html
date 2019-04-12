@@ -28,7 +28,7 @@
           <label for="machineNice">Status:</label>
         </div>
         <div class="form-group col-8">
-          <select class="form-control" name="status" [(ngModel)]="model.status" required>
+          <select class="form-control" name="connectionStatus" [(ngModel)]="model.connectionStatus" required>
             <option></option>
             <option class="form-control" [ngValue]="item.id" *ngFor="let item of statusList">{{item.name}}</option>
           </select>

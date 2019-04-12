@@ -63,7 +63,7 @@ mongo ds261440.mlab.com:61440/heroku_27t7rq4b -u heroku_27t7rq4b  -p kersey128D1
 -- backup / mail
 sudo mongodump --host 34.230.189.92 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
         -- restore local
-        sudo mongorestore -d machine --archive="./backups/log.$(date +%Y%m%d)" --gzip
+sudo mongorestore --host 54.166.41.171 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive="./backups/log.$(date +%Y%m%d)" --gzip
         -- restore test
         sudo mongorestore --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
         

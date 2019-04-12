@@ -4,4 +4,5 @@ export class Machine {
     startDate: Date;
     endDate: Date;
     status: String;
+    connectionStatus: String;
 }

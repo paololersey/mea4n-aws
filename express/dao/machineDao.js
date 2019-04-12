@@ -40,6 +40,7 @@ exports.insertUpdateMachine = function (machine, insertFlag) {
             machineId: machine.machineId,
             machineCurrentNumber: machine.machineCurrentNumber,
             status: machine.status,
+            connectionStatus: machine.connectionStatus,
             matricola: machine.matricola,
         });
         return new Promise((resolve,reject) => {
@@ -58,6 +59,7 @@ exports.insertUpdateMachine = function (machine, insertFlag) {
         }, {
             $set: {
                 "status": machine.status,
+                "connectionStatus": machine.connectionStatus,
                 "machineCurrentNumber": machine.machineCurrentNumber,
                 "startDate": machine.startDate,
                 "endDate": machine.endDate,

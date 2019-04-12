@@ -1,0 +1,1 @@
+db.machines.updateMany({},{$set:{"connectionStatus":"ACTIVE"}},{ multi: true });

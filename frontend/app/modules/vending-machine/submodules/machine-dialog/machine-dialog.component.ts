@@ -41,16 +41,7 @@ export class MachineDialogComponent implements OnInit, ICellRendererAngularComp 
     constructor(private modalService: NgbModal, private dialogModalService: DialogModalService
         , private machineService: MachineService) {
         this.model = new Machine();
-        this.statusList = [
-            {
-                'id': 'OK',
-                'name': 'ACTIVE'
-            },
-            {
-                'id': 'NA',
-                'name': 'INACTIVE'
-            }
-        ];
+
     }
 
 
@@ -59,11 +50,11 @@ export class MachineDialogComponent implements OnInit, ICellRendererAngularComp 
 
         this.statusList = [
             {
-                'id': 'OK',
+                'id': 'ACTIVE',
                 'name': 'ACTIVE'
             },
             {
-                'id': 'NA',
+                'id': 'INACTIVE',
                 'name': 'INACTIVE'
             }
         ];
@@ -85,7 +76,10 @@ export class MachineDialogComponent implements OnInit, ICellRendererAngularComp 
             this.model = { ...this.params.data };
             this.originaryModel = { ...this.params.data };
         }
-
+        else {
+            this.model.status = 'OK';
+        }
+        
         this.modalService.open(content).result.then((result) => {
             if (result == "Confirm") {
                 this.machinesFromSearchFilteredByCellNumber = [];
@@ -107,7 +101,7 @@ export class MachineDialogComponent implements OnInit, ICellRendererAngularComp 
                             this.machinesFromSearchFilteredByCellNumber[0].machineCurrentNumber + ' for N-ICE machine ' + this.machinesFromSearchFilteredByCellNumber[0].machineId,
                     }).then()
                     {
-                        () => {}
+                        () => { }
                         () => { this.closeResult = `Dismissed ${this.getDismissReason('by click CANCEL')}`; }
                     }
                     return
@@ -123,7 +117,7 @@ export class MachineDialogComponent implements OnInit, ICellRendererAngularComp 
                                         message: 'The operation has ended successfully',
                                     }).then()
                                     {
-                                        () => {}
+                                        () => { }
                                         () => { this.closeResult = `Dismissed ${this.getDismissReason('by click Ok')}`; }
                                     }
                                 },

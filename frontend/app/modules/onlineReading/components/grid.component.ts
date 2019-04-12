@@ -110,7 +110,7 @@ export class GridComponent implements OnInit, OnChanges {
             .subscribe(
                 result => {
                     this.rowData = result.filter(element =>
-                        element.status !== 'NA')
+                        element.connectionStatus !== 'INACTIVE')
                 },
                 error => this.errorMessage = <any>error)
     }

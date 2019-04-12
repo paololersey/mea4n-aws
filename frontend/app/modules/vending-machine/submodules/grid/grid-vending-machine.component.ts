@@ -50,7 +50,8 @@ export class GridVendingMachineComponent implements OnInit, OnChanges {
         this.columnDefs = [
 
             { headerName: "N-ICE", field: "machineId", width: 130,/*, suppressSizeToFit:true, headerComponentFramework: MyHeaderComponent */ },
-            { headerName: "Status", field: "status", width: 150 },
+            { headerName: "Connection Status", field: "connectionStatus", width: 100 },
+            { headerName: "Status", field: "status", width: 100 },
             { headerName: "Number", field: "machineCurrentNumber", width: 240 },
             { headerName: "Edit", width: 110, cellRendererFramework: MachineDialogComponent }
 
