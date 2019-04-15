@@ -21,12 +21,14 @@ exports.checkMachineBreakdown = function () {
                         for (let k = 0; k < messages.length; k++) {
                             if (messages[k][0] && messages[k][0].date) {
                                 var lastDate = moment(messages[k][0].date);
-                                //var nowTwoHoursBefore = moment().add('minutes', -12);
+                                var threeTwoHoursBefore = moment().add('hours', -3);
                                 var nowTwoHoursBefore = moment().add('hours', -2);
                                 if (lastDate.isBefore(nowTwoHoursBefore)) {
                                     console.log("machine " + messages[k][0].machine + " is in timeout")
                                     updateNocommunicationErrorPromises.push(machineDao.updateMachine(messages[k][0].machine, "TI"))
-                                    sendMailTimeoutArray.push(mail.sendMail('TI', messages[k][0].machine, lastDate));
+                                    if (lastDate.isAfter(threeTwoHoursBefore)) {
+                                        sendMailTimeoutArray.push(mail.sendMail('TI', messages[k][0].machine, lastDate.toLocaleString));
+                                    }
                                 } else {
                                     if (!messages[k][0].errorCode) {
                                         console.log("machine " + messages[k][0].machine + " will pass from timeout to OK")
@@ -41,12 +43,14 @@ exports.checkMachineBreakdown = function () {
                         Promise.all(updateStatusOkPromises).then((result) => {
                                 if (updateNocommunicationErrorPromises.length > 0) {
                                     Promise.all(updateNocommunicationErrorPromises).then((result) => {
-                                            Promise.all(sendMailTimeoutArray).then((result) => {
-                                                    console.log("result" + result);
-                                                },
-                                                (err) => {
-                                                    reject(Error(err))
-                                                })
+                                            if (sendMailTimeoutArray.length > 0) {
+                                                Promise.all(sendMailTimeoutArray).then((result) => {
+                                                        console.log("result" + result);
+                                                    },
+                                                    (err) => {
+                                                        reject(Error(err))
+                                                    })
+                                            }
                                         },
                                         (err) => {
                                             reject(Error(err))
