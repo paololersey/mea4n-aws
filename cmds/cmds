@@ -1,5 +1,5 @@
-forever start app -l LOGFILE -e ERRFILE
-forever stop app
+forever start app.js -l LOGFILE -e ERRFILE
+forever stop app.js
 forever list
 
 vi /home/bitnami/.forever/f_mj.log
