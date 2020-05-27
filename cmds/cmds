@@ -4,6 +4,8 @@ forever list
 
 vi /home/bitnami/.forever/f_mj.log
 grep "ERROR" /home/bitnami/.forever/f_mj.log
+tail -1500 /home/bitnami/.forever/9b0C.log | grep "3338171469" 
+
 
 
 --MONGO
