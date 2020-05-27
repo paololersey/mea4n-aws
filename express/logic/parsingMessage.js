@@ -32,6 +32,9 @@ exports.parsingMessage = function (body) {
         if (line.indexOf('DOOR OPEN') != -1) {
             errorCode = "DO"
         }
+        if (line.indexOf('BELOW') != -1) {
+            errorCode = "BL"
+        }
         if (line.indexOf('CLEAR') != -1) {
             errorCode = "IC"
         }
