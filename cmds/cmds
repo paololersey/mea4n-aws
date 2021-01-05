@@ -61,14 +61,15 @@ ssh -N -L 8888:127.0.0.1:80 -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-1
 
 -- mLab sandbox on heroku 
 mongo ds261440.mlab.com:61440/heroku_27t7rq4b -u heroku_27t7rq4b  -p kersey128D1
- 
+mongodb://heroku_27t7rq4b:heroku_27t7rq4b_1@ds261440.mlab.com:61440/heroku_27t7rq4bs 
+
 -- backup / mail
 sudo mongodump --host 34.230.189.92 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
         -- restore local
 sudo mongorestore --host 54.166.41.171 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive="./backups/log.$(date +%Y%m%d)" --gzip
         -- restore test
-        sudo mongorestore --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
-        
+sudo mongorestore --host 52.50.66.116 --port 27017 --authenticationDatabase admin --username paolokersey --password kersey11 -d machine --archive=backups/log.$(date +%Y%m%d) --gzip
+Atlas: sudo mongorestore --uri "mongodb+srv://mainUser:mainUser@cluster0.c11ys.mongodb.net/machine" dump/       
         echo "Mongodump" | mutt -a "./backups/log.20180427" -s "Mongodump 20180427" -- paolospadoni1980@gmail.com
 
 
