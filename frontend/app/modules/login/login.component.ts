@@ -28,15 +28,12 @@ export class LoginComponent implements OnInit {
 
     login(): void {
         // utente loggato 
-        if (this.model.username === 'nice' && this.model.password === 'nice') {
+        if (this.model.username === 'nice-vending-machines' && this.model.password === 'NiCpqU9yV59x4m8yFvL4X01OthtxCEh6') {
             this.token = "?token=NiCpqU9yV59x4m8yFvL4X01OthtxCEh6";
-        this.router.navigate(['/application'  /*+this.token*/]);
-
+            this.router.navigate(['/application'  /*+this.token*/]);
             return;
         }
-        if (this.model.username !== 'nice') { this.model.username = null }
-        if (this.model.password !== 'nice') { this.model.password = null }
-
+      
         return;
     }
 
