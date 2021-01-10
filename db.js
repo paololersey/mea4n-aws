@@ -16,6 +16,7 @@ if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 // HEROKU string
 if (process.env.MONGODB_URI) {
     connectionString = process.env.MONGODB_URI;
+    //connectionString= "mongodb+srv://mainUser:mainUser@cluster0.c11ys.mongodb.net/machine";
 }
 
 // AWS connection string
@@ -26,13 +27,13 @@ if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('172.31.95.
 }
 
 // PROD
-if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('172.31.37.50')!=-1) {
+//if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('172.31.37.50')!=-1) {
   connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-34-230-189-92.compute-1.amazonaws.com:27017/machine';
-}
+//}
 console.log('mongodb starting with string = ' + connectionString);
 
 // Connect to mongodb
-mongoose.connect(connectionString,  { useNewUrlParser: true } ,  {useUnifiedTopology: true}, function () {
+mongoose.connect(connectionString,  { useNewUrlParser: true } , function () {
   console.log('mongodb connected with string = ' + connectionString);
 })
 
