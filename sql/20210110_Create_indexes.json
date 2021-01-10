@@ -1,0 +1,2 @@
+db.machines.createIndex({machineId:1});
+db.messages.createIndex({machine:1, date:1, status:1});
