@@ -31,11 +31,14 @@ if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('172.31.37.
   connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-34-230-189-92.compute-1.amazonaws.com:27017/machine';
 }
 //connectionString= "mongodb+srv://mainUser:mainUser@cluster0.c11ys.mongodb.net/machine";
+
+
 console.log('mongodb starting with string = ' + connectionString);
 
 // Connect to mongodb
 mongoose.connect(connectionString,  { useNewUrlParser: true } , function () {
   console.log('mongodb connected with string = ' + connectionString);
 })
+
 
 module.exports = mongoose
