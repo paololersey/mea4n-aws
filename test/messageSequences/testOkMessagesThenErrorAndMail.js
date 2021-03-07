@@ -9,7 +9,7 @@ var assert = require('assert'),
     mapErrorCodeToStatus = require('../../express/logic/mapErrorCodeToStatus')
 
 describe("Save an OK message then Error:", () => {
-    it("saved those messages", (done) => {
+    it("saved those messages with email", (done) => {
         var asyncFunction = new Promise((resolve, reject) => {
             var firstBodyOkText = {
                 "text": `A-SPIN RPT:

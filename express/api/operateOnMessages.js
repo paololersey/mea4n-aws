@@ -3,6 +3,8 @@ var Message = require('../models/message')
 var messageDao = require('../dao/messageDao')
 var cron = require('node-cron')
 var moment = require('moment')
+var elaborateMessage = require('../logic/elaborateMessage')
+var parsing = require('../logic/parsingMessage')
 
 var EXCEL_ROWS_MAX_LENGTH = 5000
 // get all messages
@@ -53,6 +55,28 @@ router.post('/api/messagesCount',
             return res.status(200).json(result)
         });
     });
+
+router.get('/api/sendTestMail',
+    function (req, res, next) {
+    var messageErrorTest = {
+            "text": `A-SPIN RPT:
+WARNING:
+ERROR=C2
+2020/05/16 19:01:05`
+        }
+
+        var messageErrorTest = parsing.parsingMessage(messageErrorTest)
+    elaborateMessage.sendMail(messageErrorTest).then(
+        (infoMessage) => {
+            console.log("infoMessage=" + infoMessage)
+            var obj = {};
+            obj.infoMessage = infoMessage
+            return res.status(200).json(obj)
+        },
+        (err) => {
+            return res.status(500).json(obj)
+        })
+}) 
 
 
 

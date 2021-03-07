@@ -2,10 +2,11 @@ forever start app.js -l LOGFILE -e ERRFILE
 forever stop app.js
 forever list
 
+
 vi /home/bitnami/.forever/f_mj.log
 grep "ERROR" /home/bitnami/.forever/f_mj.log
 tail -1500 /home/bitnami/.forever/9b0C.log | grep "3338171469" 
-
+        
 
 
 --MONGO
@@ -88,3 +89,16 @@ Once connected to
 2) Nano:
   - exit: Ctrl+x;
   - save: Y afer exit;
+
+  backups
+  bitnami@ip-xxx-xx-xx-xxx:~/backups$ sudo find /home/bitnami/backups -type f -mtime +30 (find files older than 30 days)
+  bitnami@ip-xxx-xx-xx-xxx:~/backups$ sudo find /home/bitnami/backups -type f -mtime +30  -exec rm -f {} \; (remove them)
+
+TO REMOVE SPACE, check:
+- sudo du . | sort -h // disk usage for all files
+sudo df -h . // disk space fr the current dir 
+The dirs
+/home/bitnami/.forever
+/home/bitnami/backups
+/home/var/log
+npm cache clean --force

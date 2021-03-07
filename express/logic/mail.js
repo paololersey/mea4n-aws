@@ -15,10 +15,15 @@ var transporter = nodemailer.createTransport({
         
     }*/
     service: 'Yahoo',
-      auth: {
+    auth: {
           user: 'nicenotifier',
-          pass: 'abc591ed6d',
-      }
+          pass: 'fyygjchrmtdjszaa',
+      },
+    host: 'smtp.mail.yahoo.com',
+    port: 465,
+    secure: false,
+    debug: false,
+    logger: true
     /*service: 'Gmail',
     auth: {
         user: 'paolospadoni19801@gmail.com',
@@ -47,7 +52,7 @@ exports.sendMail = (errorCode, machine, date ) => {
         }
         let mailOptions = {
             from: 'nicenotifier@yahoo.com', // sender address
-            // to: 'paolo_spadoni@yahoo.it, macchine@n-ice.it',
+            //to: 'paolo_spadoni@yahoo.it, macchine@n-ice.it',
             to: 'macchine@n-ice.it, michele.romanin.jacur@n-ice.it, ludovica.fante@n-ice.it', // list of receivers
             subject: "N-ICE " + machine + "-" + errorCode + " date:" + date, // Subject line
             text: textMail, // plain text body
@@ -77,7 +82,13 @@ exports.sendMail = (errorCode, machine, date ) => {
             transporter.close();
             resolve(info);
 
+        },
+        (error) => {
+            reject(info)
         });
+    },
+    (err) => {
+        reject(info)
     })
 
 
