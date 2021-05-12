@@ -25,7 +25,7 @@
     "morgan": "~1.1.1",
     "node-cron": "^1.2.0",
     "node-schedule": "^1.2.1",
-    "nodemailer": "^4.0.1",
+    "nodemailer": "^6.4.16",
     "object-assign": "^4.1.1",
     "request": "^2.81.0"
   },
