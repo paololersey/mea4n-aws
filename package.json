@@ -30,10 +30,10 @@
     "request": "^2.81.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-ng-annotate": "^2.0.0",
-    "gulp-nodemon": "^2.2.1",
+    "gulp-nodemon": "^2.5.0",
     "gulp-sourcemaps": "^1.9.1",
     "gulp-stylus": "^2.6.0",
     "gulp-uglify": "^2.0.0",
