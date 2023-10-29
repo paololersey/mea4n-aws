@@ -52,7 +52,8 @@ sudo mongo admin --username root --password  Zlixhwwp1hMy --tst
 sudo service mongod start
 
 ssh -i todoalcoholic.pem bitnami@ec2-52-50-66-116.eu-west-1.compute.amazonaws.com --prd
-ssh -i nice-amministrazione-test.pem bitnami@ec2-54-166-41-171.compute-1.amazonaws.com --tst
+ssh -i nice-amministrazione-test.pem bitnami@ec2-54-166-41-171.compute-1.amazonaws.com --test old
+ssh -i nice-amministrazione-test.pem bitnami@ec2-3-85-172-195.compute-1.amazonaws.com --test
 
 cd /home/paolo/Documenti/Paolo/Lavoro/N-ICE/keys/Prod;
 ssh -i bitnami-aws-380559445194.pem bitnami@ec2-34-230-189-92.compute-1.amazonaws.com
