@@ -23,7 +23,7 @@ if (process.env.MONGODB_URI) {
 
 // TEST 2020
 //if (process.env.BITNAMI_ROOT && (process.env.SSH_CONNECTION).indexOf('172.31.95.65')!=-1) {
-  connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-54-166-41-171.compute-1.amazonaws.com:27017/machine';
+  connectionString = 'mongodb://paolo.spadoni:kersey8D1@ec2-3-85-172-195.compute-1.amazonaws.com:27017/machine';
 //}
 
 // PROD
