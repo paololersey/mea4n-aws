@@ -29,7 +29,7 @@ console.log('mongodb starting with string = ' + connectionString);
 // Connect to mongodb
 mongoose.connect(connectionString,  { useNewUrlParser: true } , function () {
   console.log('mongodb connected with string = ' + connectionString);
-  console.log(process.env.MONGODB_URI);
+  
 })
 
 
